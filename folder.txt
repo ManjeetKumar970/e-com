@@ -1,0 +1,44 @@
+resources/views/
+├── layouts/
+│   └── app.blade.php        # Main layout (includes header/footer/sections)
+├── partials/
+│   ├── header.blade.php     # Header partial
+│   ├── footer.blade.php     # Footer partial
+│   └── sidebar.blade.php    # Sidebar partial
+├── auth/
+│   ├── login.blade.php      # Login view
+│   └── register.blade.php   # Register view
+├── dashboard/
+│   ├── index.blade.php      # Dashboard home
+│   └── stats.blade.php      # Stats page
+├── projects/
+│   ├── index.blade.php      # List all projects
+│   ├── show.blade.php       # Show project detail
+│   └── edit.blade.php       # Edit project
+├── users/
+│   ├── index.blade.php      # User list
+│   └── profile.blade.php    # User profile
+└── welcome.blade.php        # Default welcome view
+------------------------------------------------------------------controller----------------
+app/Http/Controllers/
+├── Auth/
+│   ├── LoginController.php
+│   └── RegisterController.php
+├── Dashboard/
+│   └── DashboardController.php
+├── Project/
+│   ├── ProjectController.php
+│   └── ProjectFileController.php
+├── User/
+│   ├── UserController.php
+│   └── ProfileController.php
+└── Controller.php   # Base controller
+----------------------------------------------------------------------------------------
+User login detail
+*name
+*email
+*password
+*profile_img
+*mobile_number
+*if_user_is_prime -pancard
+*stats
