@@ -49,84 +49,87 @@
     <!-- left-side-bar -->
     @include('../dashboard.partials.leftsidebar')
 
-    <div class="main-container">
+    <div class="main-container ">
         <div class="container card card-box md-5">
             <div class="card-body">
-                <h5 class="card-title" style="text-align: center;">Billing Rols</h5>
+                <h5 class="card-title" style="text-align: center;">Printers</h5>
             </div>
         </div>
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('dashboard.storebillingrols') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('dashboard.storeprinter') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-5" style="padding-top: 20px;">
-                    <div class="col-md-6 md-2">
+                    <div class="col-md-4 md-2">
                         <div class="form-floating form-group">
-                            <input name="name" class="form-control" type="text" placeholder="Fixed Name" required />
-                            <label>Fixed Name *</label>
-                            <div class="invalid-feedback">Please provide a fixed name.</div>
+                            <input name="name" class="form-control" type="text" placeholder="Printer Name " required />
+                            <label>Printer Name *</label>
                         </div>
                     </div>
-                    <div class="col-md-6 md-2">
+                    <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="size" class="form-control" type="text" placeholder="Size Index" required />
-                            <label>Size Index *</label>
-                            <div class="invalid-feedback">Please provide a size index.</div>
+                            <input name="brand" class="form-control" type="text" placeholder="Brand" required />
+                            <label>Brand *</label>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 md-2">
-                        <div class="form-floating">
-                            <input name="page_thickness" class="form-control" type="text" placeholder="Page Thickness" required />
-                            <label>Page Thickness (mm) *</label>
-                            <div class="invalid-feedback">Please provide page thickness.</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 md-2">
-                        <div class="form-floating">
-                            <input name="color" class="form-control" type="text" placeholder="Color" required />
-                            <label>Color *</label>
-                            <div class="invalid-feedback">Please provide a color.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4 md-2">
                         <div class="form-group">
-                            <select class="custom-select2 form-control select2-hidden-accessible" name="paper_type" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
-                                <optgroup label="Select Paper Type" data-select2-id="17">
-                                    <option value="XYZ" data-select2-id="18">XYZ</option>
-                                    
+                            <select class="custom-select2 form-control select2-hidden-accessible" name="printer_type" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <optgroup label="Printer" data-select2-id="6">
+                                    <option value="billing_printer" data-select2-id="5">Billing Printer</option>
+                                    <option value="barcode_printer" data-select2-id="4">Barcode Printer</option>
+                                    <option value="a4_printer" data-select2-id="3">A4 Printer</option>
                                 </optgroup>
                             </select>
-                            <label>Paper Type</label>
-                        </div>
-                    </div>
-                    <div class="col-md-6 md-2">
-                        <div class="form-floating">
-                            <input name="length" class="form-control" type="number" placeholder="Length" required />
-                            <label>Length (cm) *</label>
-                            <div class="invalid-feedback">Please provide a valid length.</div>
+                            <label>Printer Type</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 md-2">
+                    <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="core" class="form-control" type="text" placeholder="Core" required />
-                            <label>Core Diameter (mm) *</label>
-                            <div class="invalid-feedback">Please provide core diameter.</div>
+                            <input name="model_number" class="form-control" type="text" placeholder="Page Thickness" required />
+                            <label>Model Mumber *</label>
                         </div>
                     </div>
-                    <div class="col-md-6 md-2">
+                    <div class="col-md-4 md-2">
+                        <div class="form-floating">
+                            <input name="dpi" class="form-control" type="number" placeholder="Dpi" required />
+                            <label>dpi *</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 md-2">
+                        <div class="form-group">
+                            <select class="custom-select2 form-control select2-hidden-accessible" name="connectivity" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                <optgroup label="Connectivity" data-select2-id="6">
+                                    <option value="windows" data-select2-id="5">Windows</option>
+                                    <option value="mac" data-select2-id="4">Mac</option>
+                                    <option value="linux-ubuntu " data-select2-id="2">linux/ubuntu</option>
+                                </optgroup>
+                            </select>
+                            <label>Connectivity</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 md-2">
+                        <div class="form-floating">
+                            <input name="print_speed" class="form-control" type="text" placeholder="Printer Speed" required />
+                            <label>Print Speed *</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 md-2">
                         <div class="form-floating">
                             <input name="price" class="form-control" type="number" step="0.01" placeholder="Price" required />
                             <label>Price *</label>
-                            <div class="invalid-feedback">Please provide a valid price.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 md-2">
+                        <div class="form-floating">
+                            <input name="warranty" class="form-control" type="number" step="0.01" placeholder="Warranty" required />
+                            <label>Warranty *</label>
                         </div>
                     </div>
                 </div>
@@ -153,20 +156,21 @@
                 </div>
             </form>
         </div>
-    </div>
-
-    <!-- welcome modal start -->
+          <!-- welcome modal start -->
     @include('dashboard.partials.messagemode')
     <!-- welcome modal end -->
 
     <!-- js -->
     @include('dashboard.footer.footer')
+    </div>
+
+  
 
     <!-- Add Dropzone JS -->
-    <script>
+   <script>
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
-            url: "{{ route('dashboard.storebillingrols') }}", // Not used directly
+            url: "{{ route('dashboard.storeprinter') }}", // Not used directly
             autoProcessQueue: false,
             uploadMultiple: true,
             parallelUploads: 3,
@@ -180,11 +184,8 @@
             // List all required fields from your form
             const requiredFields = [
                 'name',
-                'size',
-                'page_thickness',
-                'color',
-                'length',
-                'core',
+                'brand',
+                'model_number',
                 'price'
             ];
 
@@ -210,7 +211,6 @@
                     });
                     continue;
                 }
-
 
                 if (!field.value.trim()) {
                     const Toast = Swal.mixin({
@@ -278,7 +278,7 @@
             myDropzone.getAcceptedFiles().forEach((file, index) => {
                 formData.append('images[]', file);
             });
-            fetch("{{ route('dashboard.storebillingrols') }}", {
+            fetch("{{ route('dashboard.storeprinter') }}", {
                     method: 'POST',
                     body: formData,
                     headers: {

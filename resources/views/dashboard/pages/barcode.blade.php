@@ -49,15 +49,15 @@
     <!-- left-side-bar -->
     @include('../dashboard.partials.leftsidebar')
 
-    <div class="main-container">
+    <div class="main-container ">
         <div class="container card card-box md-5">
             <div class="card-body">
-                <h5 class="card-title" style="text-align: center;">Billing Rols</h5>
+                <h5 class="card-title" style="text-align: center;">Barcode Rols</h5>
             </div>
         </div>
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('dashboard.storebillingrols') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('dashboard.storebarcoderols') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-6 md-2">
@@ -77,29 +77,35 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 md-2">
+                    <div class="col-md-4 md-2">
                         <div class="form-floating">
                             <input name="page_thickness" class="form-control" type="text" placeholder="Page Thickness" required />
                             <label>Page Thickness (mm) *</label>
                             <div class="invalid-feedback">Please provide page thickness.</div>
                         </div>
                     </div>
-                    <div class="col-md-6 md-2">
+                    <div class="col-md-4 md-2">
                         <div class="form-floating">
                             <input name="color" class="form-control" type="text" placeholder="Color" required />
                             <label>Color *</label>
                             <div class="invalid-feedback">Please provide a color.</div>
                         </div>
                     </div>
+                    <div class="col-md-4 md-2">
+                        <div class="form-floating">
+                            <input name="numberoflabel" class="form-control" type="number" placeholder="Number Of Labels" required />
+                            <label>Number Of Labels *</label>
+                             <div class="invalid-feedback">Please provide a Labels.</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6 md-2">
                         <div class="form-group">
                             <select class="custom-select2 form-control select2-hidden-accessible" name="paper_type" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                 <optgroup label="Select Paper Type" data-select2-id="17">
                                     <option value="XYZ" data-select2-id="18">XYZ</option>
-                                    
                                 </optgroup>
                             </select>
                             <label>Paper Type</label>
@@ -153,20 +159,21 @@
                 </div>
             </form>
         </div>
-    </div>
-
-    <!-- welcome modal start -->
+          <!-- welcome modal start -->
     @include('dashboard.partials.messagemode')
     <!-- welcome modal end -->
 
     <!-- js -->
     @include('dashboard.footer.footer')
+    </div>
+
+  
 
     <!-- Add Dropzone JS -->
-    <script>
+   <script>
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
-            url: "{{ route('dashboard.storebillingrols') }}", // Not used directly
+            url: "{{ route('dashboard.storebarcoderols') }}", // Not used directly
             autoProcessQueue: false,
             uploadMultiple: true,
             parallelUploads: 3,
@@ -183,6 +190,7 @@
                 'size',
                 'page_thickness',
                 'color',
+                'state',
                 'length',
                 'core',
                 'price'
@@ -211,6 +219,14 @@
                     continue;
                 }
 
+                // Special handling for select2 if needed
+                if (fieldName === 'state' && field.classList.contains('select2-hidden-accessible')) {
+                    if (!field.value) {
+                        alert('Please select a state');
+                        return false;
+                    }
+                    continue;
+                }
 
                 if (!field.value.trim()) {
                     const Toast = Swal.mixin({
@@ -278,7 +294,7 @@
             myDropzone.getAcceptedFiles().forEach((file, index) => {
                 formData.append('images[]', file);
             });
-            fetch("{{ route('dashboard.storebillingrols') }}", {
+            fetch("{{ route('dashboard.storebarcoderols') }}", {
                     method: 'POST',
                     body: formData,
                     headers: {

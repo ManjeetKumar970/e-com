@@ -1,19 +1,20 @@
+<div class="footer-wrap pd-20 mb-20 card-box">
+	FTPL
+	<a href="FTPL" target="_blank">FTPL</a>
+</div>
 <script src="{{ asset ('vendors/scripts/core.js') }}"></script>
-		<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
-		<script src="{{ asset('vendors/scripts/process.js') }}"></script>
-		<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
-		<script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
-		<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
-		<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
-		<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
-		<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
-		<script src="{{ asset('vendors/scripts/dashboard3.js') }}"></script>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript
-			><iframe
-				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
-				height="0"
-				width="0"
-				style="display: none; visibility: hidden"
-			></iframe
-		></noscript>
+<script src="{{ asset('vendors/scripts/script.min.js') }}"></script>
+<script src="{{ asset('vendors/scripts/process.js') }}"></script>
+<script src="{{ asset('vendors/scripts/layout-settings.js') }}"></script>
+<script src="{{ asset('src/plugins/apexcharts/apexcharts.min.js') }}"></script>
+<script src="{{ asset('src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendors/scripts/dashboard3.js') }}"></script>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe
+		src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"
+		height="0"
+		width="0"
+		style="display: none; visibility: hidden"></iframe></noscript>

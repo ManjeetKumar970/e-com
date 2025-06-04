@@ -30,8 +30,8 @@
 								<li>
                                    <a href="{{ route('dashboard.createbillingrols') }}">Billing Rolls</a>
 								</li>
-								<li><a href="form-wizard.html">Barcodes</a></li>
-								<li><a href="html5-editor.html">Billing Printer</a></li>
+								<li><a href="{{ route('dashboard.barcodepage') }}">Barcodes</a></li>
+								<li><a href="{{ route('dashboard.billingprinter') }}">Billing Printer</a></li>
 								<li><a href="form-pickers.html">Barcode Printer</a></li>
 								<li><a href="image-cropper.html">Custome</a></li>
 								<li><a href="image-dropzone.html">Scanner</a></li>

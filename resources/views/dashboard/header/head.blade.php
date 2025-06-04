@@ -27,6 +27,8 @@
 
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!--Sweetalert   -->
+
     <script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
