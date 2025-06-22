@@ -59,7 +59,7 @@
 								><span class="mtext">Sliders Img</span>
 							</a>
                             <ul class="submenu">
-								<li><a href="highchart.html">View</a></li>
+								<li><a href="{{ route('dashboard.slider') }}">View</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

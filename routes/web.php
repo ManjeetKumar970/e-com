@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\Dashboard;
+use App\Http\Controllers\Dashboard\ImgSlides;
 use App\Http\Controllers\Dashboard\PrintersController;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,11 @@ Route::prefix('dashboard')->group(function () {
         //Billing Printer
         Route::get('/billingprinter', [PrintersController::class, 'billingPrinter'])->name('dashboard.billingprinter');
         Route::get('/storegprinter', [PrintersController::class, 'storePrinter'])->name('dashboard.storeprinter');
+        //Sidebar
+        Route::get('/sidebar', [Dashboard::class, 'sidebar'])->name('dashboard.sidebar');
+        //Slider
+        Route::get('/slider', [ImgSlides::class, 'slider'])->name('dashboard.slider');
+        Route::post('/slider/store', [ImgSlides::class, 'storeSlider'])->name('dashboard.slider.store');
 
         Route::post('/logout', [Dashboard::class, 'logout'])->name('dashboard.logout');
     });

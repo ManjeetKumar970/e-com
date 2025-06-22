@@ -38,15 +38,17 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name'             => $request->name,
-            'email'            => $request->email,
-            'password'         => Hash::make($request->password),
-            'profile_img'      => $request->profile_img,
-            'mobile_number'    => $request->mobile_number,
-            'if_user_is_prime' => $request->if_user_is_prime??false,
-            'pancard'          => $request->pancard,
-            'stats'            => $request->stats,
-        ]);
+        'name'             => $request->name,
+        'email'            => $request->email,
+        'password'         => Hash::make($request->password),
+        'profile_img'      => $request->profile_img,
+        'mobile_number'    => $request->mobile_number,
+        'if_user_is_prime' => $request->if_user_is_prime ?? false,
+        'pancard'          => $request->pancard,
+        'stats'            => $request->stats,
+        'usertype'         => 'user', // ✅ explicitly set
+    ]);
+
         if($user) {
             return redirect()->back()->with('success', 'User registered successfully');
         } else {
@@ -65,12 +67,24 @@ public function login(Request $request)
     if (Auth::attempt($credentials)) {
         // Regenerate session to prevent fixation
         $request->session()->regenerate();
-        session()->put('user', Auth::user());
 
-        // Check if session is correctly set
-        if (session()->has('user')) {
-            return redirect()->route('dashboard.admindashboard')
-                ->with('message', 'Login successful');
+        $user = Auth::user();
+        session()->put('user', $user);
+
+        // Check if session is correctly set and user is authenticated
+        if ($user) {
+            if ($user->usertype === 'admin') {
+                return redirect()->route('dashboard.admindashboard')
+                    ->with('message', 'Admin login successful');
+            } elseif ($user->usertype === 'user') {
+                Auth::logout();
+                return redirect()->route('/')
+                    ->withErrors(['access' => 'Access denied: only admins can log in.']);
+            } else {
+                Auth::logout();
+                return redirect()->route('login')
+                    ->withErrors(['usertype' => 'Invalid user type']);
+            }
         } else {
             return redirect()->back()->withErrors([
                 'session' => 'Login successful, but session could not be set',
@@ -82,5 +96,6 @@ public function login(Request $request)
         'email' => 'Login failed: incorrect email or password',
     ])->withInput();
 }
+
 
 }

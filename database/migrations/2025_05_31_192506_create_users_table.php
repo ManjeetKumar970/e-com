@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('usertype')->default('user')->change();
             $table->string('profile_img')->nullable();
             $table->string('mobile_number')->nullable();
             $table->boolean('if_user_is_prime')->default(false);
