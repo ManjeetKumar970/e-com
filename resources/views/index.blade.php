@@ -6,6 +6,8 @@
         <!-- start section -->
          @include('partials.slider')
         <!-- end section -->
+     <pre>{{ json_encode(compact('barcodes', 'billingroll', 'printer', 'img'), JSON_PRETTY_PRINT) }}</pre>
+
         <!-- start section -->
         <section class="half-section">
             <div class="container">
@@ -73,12 +75,12 @@
                     <!-- start categories style -->
                     <div class="col categories-style-02 lg-mb-30px">
                         <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
+                            <a href="{{route('product')}}">
                                 <img class="sm-w-100" src="images/demo-fashion-store-banner-01.jpg" alt=""/>
                             </a>
                             <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">8 items</div>
                             <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
+                                <a href="{{route('product')}}" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
                                     <span>
                                         <span class="btn-double-text ls-0px" data-text="Women">Women</span>
                                     </span>
@@ -90,14 +92,14 @@
                     <!-- start categories style -->
                     <div class="col categories-style-02 lg-mb-30px">
                         <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
+                            <a href="{{route('billingroll')}}">
                                 <img class="sm-w-100" src="images/demo-fashion-store-banner-02.jpg" alt=""/>
                             </a>
                             <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">9 items</div>
                             <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
+                                <a href="{{route('billingroll')}}" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
                                     <span>
-                                        <span class="btn-double-text ls-0px" data-text="Men">Men</span>
+                                        <span class="btn-double-text ls-0px" data-text="Roll">Billing Roll</span>
                                     </span>
                                 </a>
                             </div>
@@ -107,14 +109,14 @@
                     <!-- start categories style -->
                     <div class="col categories-style-02 sm-mb-30px">
                         <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
+                            <a href="{{route('billingprinter')}}" >
                                 <img class="sm-w-100" src="images/demo-fashion-store-banner-03.jpg" alt=""/>
                             </a>
                             <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">8 items</div>
                             <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
+                                <a href="{{route('billingprinter')}}"  class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
                                     <span>
-                                        <span class="btn-double-text ls-0px" data-text="Accessories">Accessories</span>
+                                        <span class="btn-double-text ls-0px" data-text="Printers">Printers</span>
                                     </span>
                                 </a>
                             </div>
@@ -124,14 +126,14 @@
                     <!-- start categories style -->
                     <div class="col categories-style-02">
                         <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
+                            <a href="{{route('billingprinter')}}">
                                 <img class="sm-w-100" src="images/demo-fashion-store-banner-04.jpg" alt=""/>
                             </a>
                             <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">8 items</div>
                             <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
+                                <a href="{{route('billingprinter')}}" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
                                     <span>
-                                        <span class="btn-double-text ls-0px" data-text="Kids">Kids</span>
+                                        <span class="btn-double-text ls-0px" data-text="Customer Roll">Customer Roll</span>
                                     </span>
                                 </a>
                             </div>
@@ -674,7 +676,6 @@
         </section>
         <!-- end section -->
         <!-- start footer -->
-       
         <!-- end footer -->
         <!-- start cookie message -->
           @include('partials.cookie')

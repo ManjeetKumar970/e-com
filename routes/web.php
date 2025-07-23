@@ -10,7 +10,9 @@ use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Index::class, 'index'])->name('index');
-
+Route::get('/product',[Index::class,'product'])->name('product');
+Route::get('/billingroll',[Index::class,'billingroll'])->name('billingroll');
+Route::get('/billingprinter',[Index::class,'billingprinter'])->name('billingprinter');
 
 // Dashboard routes
 Route::prefix('dashboard')->group(function () {
