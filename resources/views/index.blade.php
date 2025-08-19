@@ -1,726 +1,385 @@
-<!doctype html>
-<html class="no-js" lang="en">
-  @extends('layouts.app')
-  @section('content')
-    <body data-mobile-nav-style="classic">
-        <!-- start section -->
-         @include('partials.slider')
-        <!-- end section -->
-        <!-- start section -->
-        <section class="half-section">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-4 row-cols-md-2 row-cols-sm-2" data-anime='{ "el": "childs", "translateX": [30, 0], "opacity": [0,1], "duration": 800, "delay": 200, "staggervalue": 300, "easing": "easeOutQuad" }'>
-                    <!-- start features box item -->
-                    <div class="col icon-with-text-style-01 md-mb-35px">
-                        <div class="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
-                            <div class="feature-box-icon me-20px">
-                                <i class="line-icon-Box-Close icon-large text-dark-gray"></i>
-                            </div>
-                            <div class="feature-box-content">
-                                <span class="alt-font fs-20 fw-500 d-block text-dark-gray">Free shipping</span>
-                                <p class="fs-16 lh-24">Free shipping on first order</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end features box item -->
-                    <!-- start features box item -->
-                    <div class="col icon-with-text-style-01 md-mb-35px">
-                        <div class="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
-                            <div class="feature-box-icon me-20px">
-                                <i class="line-icon-Reload-3 icon-large text-dark-gray"></i>
-                            </div>
-                            <div class="feature-box-content">
-                                <span class="alt-font fs-20 fw-500 d-block text-dark-gray">15 days returns</span>
-                                <p class="fs-16 lh-24">Moneyback guarantee</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end features box item -->
-                    <!-- start features box item -->
-                    <div class="col icon-with-text-style-01 xs-mb-35px">
-                        <div class="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
-                            <div class="feature-box-icon me-20px">
-                                <i class="line-icon-Credit-Card2 icon-large text-dark-gray"></i>
-                            </div>
-                            <div class="feature-box-content">
-                                <span class="alt-font fs-20 fw-500 d-block text-dark-gray">Secure payment</span>
-                                <p class="fs-16 lh-24">100% protected payment</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end features box item -->
-                    <!-- start features box item -->
-                    <div class="col icon-with-text-style-01">
-                        <div class="feature-box feature-box-left-icon-middle last-paragraph-no-margin">
-                            <div class="feature-box-icon me-20px">
-                                <i class="line-icon-Phone-2 icon-large text-dark-gray"></i>
-                            </div>
-                            <div class="feature-box-content">
-                                <span class="alt-font fs-20 fw-500 d-block text-dark-gray">Online support</span>
-                                <p class="fs-16 lh-24">24/7 days a week support</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end features box item -->
+<!DOCTYPE html>
+<html lang="en">
+    
+@include('partials.head1')
+<body>
+   @include('partials.header')
+
+   @include('partials.slider')
+    <!-- Hero Section -->
+   
+    <!-- Browse by Category -->
+   <section class="py-5" id="categories">
+    <div class="container">
+        <div class="text-center ">
+         <h5>Our Products</h5>
+    </div>
+        <div class="text-center mb-5">
+            <h2 class="section-title">Browse by Category</h2>
+            <p class="text-muted">Explore our comprehensive range of business solutions</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <!-- Item 1 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="category-card text-center p-3 rounded shadow-sm h-100">
+                    <img src="{{ asset('images/logos/icons/barcode.svg') }}" alt="Thermal Printers" class="icons">
+                    <h6 class="fw-bold">Thermal Printers</h6>
+                    <small class="text-muted">45+ Models</small>
                 </div>
             </div>
-        </section>
-        <!-- end section -->
-        <!-- start section -->
-        <section class="pt-0 pb-0 ps-7 pe-7 lg-ps-3 lg-pe-3 xs-p-0">
-            <div class="container-fluid">
-                <div class="row row-cols-1 row-cols-xl-4 row-cols-lg-2 row-cols-md-2" data-anime='{ "el": "childs", "translateY": [-15, 0], "perspective": [1200,1200], "scale": [1.1, 1], "rotateX": [50, 0], "opacity": [0,1], "duration": 400, "delay": 100, "staggervalue": 200, "easing": "easeOutQuad" }'>
-                    <!-- start categories style -->
-                    <div class="col categories-style-02 lg-mb-30px">
-                        <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
-                                <img class="sm-w-100" src="images/demo-fashion-store-banner-01.jpg" alt=""/>
-                            </a>
-                            <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">8 items</div>
-                            <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
-                                    <span>
-                                        <span class="btn-double-text ls-0px" data-text="Women">Women</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end categories style -->
-                    <!-- start categories style -->
-                    <div class="col categories-style-02 lg-mb-30px">
-                        <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
-                                <img class="sm-w-100" src="images/demo-fashion-store-banner-02.jpg" alt=""/>
-                            </a>
-                            <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">9 items</div>
-                            <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
-                                    <span>
-                                        <span class="btn-double-text ls-0px" data-text="Men">Men</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end categories style -->
-                    <!-- start categories style -->
-                    <div class="col categories-style-02 sm-mb-30px">
-                        <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
-                                <img class="sm-w-100" src="images/demo-fashion-store-banner-03.jpg" alt=""/>
-                            </a>
-                            <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">8 items</div>
-                            <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
-                                    <span>
-                                        <span class="btn-double-text ls-0px" data-text="Accessories">Accessories</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end categories style -->
-                    <!-- start categories style -->
-                    <div class="col categories-style-02">
-                        <div class="categories-box">
-                            <a href="demo-fashion-store-shop.html">
-                                <img class="sm-w-100" src="images/demo-fashion-store-banner-04.jpg" alt=""/>
-                            </a>
-                            <div class="border-color-transparent-dark-very-light border alt-font fw-500 text-dark-gray text-uppercase ps-15px pe-15px fs-11 lh-26 border-radius-100px d-inline-block position-absolute right-20px top-20px">8 items</div>
-                            <div class="absolute-bottom-center bottom-40px md-bottom-25px">
-                                <a href="demo-fashion-store-shop.html" class="btn btn-white btn-switch-text btn-round-edge btn-box-shadow fs-18 text-uppercase-inherit p-5 min-w-150px">
-                                    <span>
-                                        <span class="btn-double-text ls-0px" data-text="Kids">Kids</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end categories style -->
+
+            <!-- Item 2 (duplicate removed for unique entry) -->
+            
+            <!-- Item 3 -->
+            <div class="col-lg-2 col-md-4 col-sm-6 " >
+                <div class="category-card text-center p-3 rounded shadow-sm h-100">
+                    <img src="{{ asset('images/logos/icons/barcode.svg') }}" alt="Thermal Printers" class="icons">
+                    <h6 class="fw-bold">Barcode Labels</h6>
+                    <small class="text-muted">100+ Types</small>
                 </div>
             </div>
-        </section>
-        <!-- end section -->
-        <!-- start section Best seller -->
-       @include('partials.bestseller')
-        <!-- end section Best seller-->
-        <!-- start section -->
-        <section class="p-15px bg-dark-gray text-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <span class="fs-15 text-uppercase fw-500">Take an extra 25% discount our favorite dress style. Use code:<span class="fs-14 fw-700 lh-28 alt-font text-dark-gray text-uppercase bg-base-color d-inline-block border-radius-30px ps-15px pe-15px ms-5px align-middle">fw205</span></span>
-                    </div>
+
+            <!-- Item 4 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="category-card text-center p-3 rounded shadow-sm h-100">
+                    <img src="{{ asset('images/logos/icons/barcode.svg') }}" alt="Thermal Printers" class="icons">
+                    <h6 class="fw-bold">POS Systems</h6>
+                    <small class="text-muted">25+ Solutions</small>
                 </div>
             </div>
-        </section>
-        <!-- end section -->
-        <!-- start section -->
-        <section class="bg-very-light-gray overflow-hidden position-relative ps-3 xs-ps-0">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-lg-3 ps-5 pe-5 xl-pe-0 lg-ps-0 text-center text-lg-start md-mb-40px">
-                        <div class="mb-10px"><span class="text-dark-gray fw-500 text-highlight">Lookbook 2023<span class="bg-base-color h-8px bottom-0px"></span></span></div>
-                        <h2 class="alt-font lh-50 text-dark-gray ls-minus-1px mb-15px">New arrival <span class="fw-600">collection</span></h2>
-                        <p class="xs-pe-15px xs-ps-15px">Flash summer sale 70% off on selected collection for him.</p>
-                        <a href="demo-fashion-store-shop.html" class="btn btn-dark-gray btn-box-shadow btn-medium">View collection</a>
-                        <!--<div class="d-flex mt-30px justify-content-center justify-content-lg-start">
-                             start slider navigation 
-                            <div class="slider-one-slide-prev-1 icon-small text-dark-gray swiper-button-prev slider-navigation-style-04 bg-white box-shadow-large"><i class="fa-solid fa-arrow-left"></i></div>
-                            <div class="slider-one-slide-next-1 icon-small text-dark-gray swiper-button-next slider-navigation-style-04 bg-white box-shadow-large"><i class="fa-solid fa-arrow-right"></i></div> 
-                             end slider navigation 
-                        </div>-->
-                    </div>
-                    <div class="col-12 col-lg-9 position-relative">
-                        <div class="outside-box-right-10 lg-outside-box-right-20 md-outside-box-right-25 xs-outside-box-right-0">
-                            <div class="swiper slider-three-slide" data-slider-options='{ "slidesPerView": 1, "spaceBetween": 30, "loop": true, "autoplay": { "delay": 4000, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-one-slide-next-1", "prevEl": ".slider-one-slide-prev-1" }, "pagination": { "el": ".slider-four-slide-pagination-1", "clickable": true, "dynamicBullets": false }, "keyboard": { "enabled": true, "onlyInViewport": true }, "breakpoints": { "1400": { "slidesPerView": 4 }, "1024": { "slidesPerView": 3 }, "768": { "slidesPerView": 3 }, "576": { "slidesPerView": 2 }, "320": { "slidesPerView": 1 } }, "effect": "slide" }'>
-                                <div class="swiper-wrapper">
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide"> 
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-01.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Ethnic wear</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Outfits matching</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide">
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-02.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Dress materials</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Explore a variety</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide">
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-03.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Western wear</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Traditional attires</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide">
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-04.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Loungewear</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Women branded</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide"> 
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-01.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Ethnic wear</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Outfits matching</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide">
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-02.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Dress materials</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Explore a variety</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide">
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-03.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Western wear</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Traditional attires</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end content carousal item -->
-                                    <!-- start content carousal item --> 
-                                    <div class="swiper-slide">
-                                        <div class="interactive-banner-style-09 border-radius-6px overflow-hidden position-relative">
-                                            <img src="images/demo-fashion-store-collection-slider-04.jpg" alt="" />
-                                            <div class="opacity-full bg-gradient-gray-light-dark-transparent"></div>
-                                            <div class="image-content h-100 w-100 ps-15 pe-15 pt-11 pb-11 lg-p-11 d-flex justify-content-bottom align-items-start flex-column">
-                                                <div class="mt-auto d-flex align-items-start w-100 z-index-1 position-relative overflow-hidden flex-column">
-                                                    <span class="text-white fw-500 fs-22">Loungewear</span>
-                                                    <span class="content-title text-white fs-14 fw-500 opacity-7 text-uppercase ls-05px">Women branded</span>
-                                                    <a href="demo-fashion-store-shop.html" class="content-title-hover fs-14 lh-24 fw-500 ls-05px text-uppercase text-white opacity-6 text-decoration-line-bottom">Explore collection</a>
-                                                    <span class="content-arrow lh-50 rounded-circle bg-base-color w-50px h-50px ms-20px text-center"><i class="bi bi-arrow-right-short text-dark-gray icon-very-medium"></i></span>
-                                                </div>
-                                                <div class="position-absolute left-0px top-0px w-100 h-100 bg-gradient-regal-blue-transparent opacity-9"></div>
-                                                <div class="box-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                                <a href="demo-fashion-store-shop.html" class="position-absolute z-index-1 top-0px left-0px h-100 w-100"></a> 
-                                            </div>
-                                        </div> 
-                                    </div>
-                                    <!-- end content carousal item -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- start slider pagination -->
-                        <!--<div class="swiper-pagination slider-four-slide-pagination-1 swiper-pagination-style-2 swiper-pagination-clickable swiper-pagination-bullets"></div>-->
-                        <!-- end slider pagination --> 
-                    </div>
+
+            <!-- Item 5 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="category-card text-center p-3 rounded shadow-sm h-100">
+                    <img src="{{ asset('images/logos/icons/barcode.svg') }}" alt="Thermal Printers" class="icons">
+                    <h6 class="fw-bold">Scanners</h6>
+                    <small class="text-muted">30+ Models</small>
                 </div>
             </div>
-            <div class="fs-180 lg-fs-150 md-fs-130 fw-700 position-absolute bottom-minus-50px md-bottom-minus-40px ls-minus-5px left-0px right-0px text-center w-100 opacity-1 d-none d-md-block"  data-bottom-top="transform:scale(1, 1) translate3d(0px, 0px, 0px);" data-top-bottom="transform:scale(1, 1) translate3d(-100px, 0px, 0px);">new collection</div>
-        </section>
-        <!-- end section -->
-        <!-- start section -->
-        <section class="half-section border-bottom border-color-extra-medium-gray">
-            <div class="container">
-                <div class="row row-cols-2 row-cols-md-5 row-cols-sm-3 position-relative justify-content-center" data-anime='{ "el": "childs", "translateY": [-15, 0], "scale": [0.8, 1], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 100, "easing": "easeOutQuad" }'>
-                    <!-- start client item -->
-                    <div class="col text-center sm-mb-30px">
-                        <a href="#"><img src="images/logo-asos.svg" class="h-30px" alt="" /></a>
-                    </div>
-                    <!-- end client item -->
-                    <!-- start client item -->
-                    <div class="col text-center sm-mb-30px">
-                        <a href="#"><img src="images/logo-chanel.svg" class="h-30px" alt="" /></a>
-                    </div>
-                    <!-- end client item -->
-                    <!-- start client item -->
-                    <div class="col text-center sm-mb-30px">
-                        <a href="#"><img src="images/logo-gucci.svg" class="h-30px" alt="" /></a>
-                    </div>
-                    <!-- end client item -->
-                    <!-- start client item -->
-                    <div class="col text-center xs-mb-30px">
-                        <a href="#"><img src="images/logo-celine.svg" class="h-30px" alt="" /></a>
-                    </div>
-                    <!-- end client item -->
-                    <!-- start client item -->
-                    <div class="col text-center">
-                        <a href="#"><img src="images/logo-adidas.svg" class="h-30px" alt="" /></a>
-                    </div>
-                    <!-- end client item --> 
-                </div> 
-            </div>
-        </section>
-        <!-- end section -->
-        <!-- start section -->
-        <section class="ps-7 pe-7 pb-3 lg-ps-3 lg-pe-3 md-pb-5 xs-px-0">
-            <div class="container">
-                <div class="row mb-5 xs-mb-8">
-                    <div class="col-12 text-center">
-                        <h2 class="alt-font text-dark-gray mb-0 ls-minus-2px">Featured <span class="text-highlight fw-600">products<span class="bg-base-color h-5px bottom-2px"></span></span></h2>
-                    </div>
+
+            <!-- Item 6 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="category-card text-center p-3 rounded shadow-sm h-100">
+                    <img src="{{ asset('images/logos/icons/barcode.svg') }}" alt="Thermal Printers" class="icons">
+                    <h6 class="fw-bold">Cash Drawers</h6>
+                    <small class="text-muted">15+ Options</small>
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="shop-modern shop-wrapper grid-loading grid grid-5col lg-grid-3col sm-grid-2col xs-grid-1col gutter-extra-large text-center" data-anime='{ "el": "childs", "translateY": [-15, 0], "opacity": [0,1], "duration": 300, "delay": 0, "staggervalue": 100, "easing": "easeOutQuad" }'>
-                            <li class="grid-sizer"></li>
-                            <!-- start shop item -->
-                            <li class="grid-item">
-                                <div class="shop-box mb-10px">
-                                    <div class="shop-image mb-20px">
-                                        <a href="demo-fashion-store-single-product.html">
-                                            <img src="images/demo-fashion-store-product-09.jpg" alt=""> 
-                                            <span class="lable new">New</span>
-                                            <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                        </a>
-                                        <div class="shop-buttons-wrap">
-                                            <a href="demo-fashion-store-single-product.html" class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                                <i class="feather icon-feather-shopping-bag"></i><span class="quick-view-text button-text">Add to cart</span>
-                                            </a>
-                                        </div>
-                                        <div class="shop-hover d-flex justify-content-center"> 
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="feather icon-feather-heart fs-16"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick shop"><i class="feather icon-feather-eye fs-16"></i></a>
-                                                </li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                    <div class="shop-footer text-center">
-                                        <a href="demo-fashion-store-single-product.html" class="alt-font text-dark-gray fs-19 fw-500">Textured sweater</a>
-                                        <div class="price lh-22 fs-16"><del>$200.00</del>$189.00</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end shop item -->
-                            <!-- start shop item -->
-                            <li class="grid-item">
-                                <div class="shop-box mb-10px">
-                                    <div class="shop-image mb-20px">
-                                        <a href="demo-fashion-store-single-product.html">
-                                            <img src="images/demo-fashion-store-product-10.jpg" alt=""> 
-                                            <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                        </a>
-                                        <div class="shop-buttons-wrap">
-                                            <a href="demo-fashion-store-single-product.html" class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                                <i class="feather icon-feather-shopping-bag"></i><span class="quick-view-text button-text">Add to cart</span>
-                                            </a>
-                                        </div>
-                                        <div class="shop-hover d-flex justify-content-center"> 
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="feather icon-feather-heart fs-16"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick shop"><i class="feather icon-feather-eye fs-16"></i></a>
-                                                </li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                    <div class="shop-footer text-center">
-                                        <a href="demo-fashion-store-single-product.html" class="alt-font text-dark-gray fs-19 fw-500">Traveller shirt</a>
-                                        <div class="price lh-22 fs-16"><del>$350.00</del>$289.00</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end shop item -->
-                            <!-- start shop item -->
-                            <li class="grid-item">
-                                <div class="shop-box mb-10px">
-                                    <div class="shop-image mb-20px">
-                                        <a href="demo-fashion-store-single-product.html">
-                                            <img src="images/demo-fashion-store-product-11.jpg" alt=""> 
-                                            <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                        </a>
-                                        <div class="shop-buttons-wrap">
-                                            <a href="demo-fashion-store-single-product.html" class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                                <i class="feather icon-feather-shopping-bag"></i><span class="quick-view-text button-text">Add to cart</span>
-                                            </a>
-                                        </div>
-                                        <div class="shop-hover d-flex justify-content-center"> 
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="feather icon-feather-heart fs-16"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick shop"><i class="feather icon-feather-eye fs-16"></i></a>
-                                                </li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                    <div class="shop-footer text-center">
-                                        <a href="demo-fashion-store-single-product.html" class="alt-font text-dark-gray fs-19 fw-500">Crewneck sweatshirt</a>
-                                        <div class="price lh-22 fs-16"><del>$220.00</del>$199.00</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end shop item -->
-                            <!-- start shop item -->
-                            <li class="grid-item">
-                                <div class="shop-box mb-10px">
-                                    <div class="shop-image mb-20px">
-                                        <a href="demo-fashion-store-single-product.html">
-                                            <img src="images/demo-fashion-store-product-12.jpg" alt=""> 
-                                            <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                        </a>
-                                        <div class="shop-buttons-wrap">
-                                            <a href="demo-fashion-store-single-product.html" class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                                <i class="feather icon-feather-shopping-bag"></i><span class="quick-view-text button-text">Add to cart</span>
-                                            </a>
-                                        </div>
-                                        <div class="shop-hover d-flex justify-content-center"> 
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="feather icon-feather-heart fs-16"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick shop"><i class="feather icon-feather-eye fs-16"></i></a>
-                                                </li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                    <div class="shop-footer text-center">
-                                        <a href="demo-fashion-store-single-product.html" class="alt-font text-dark-gray fs-19 fw-500">Skinny trousers</a>
-                                        <div class="price lh-22 fs-16"><del>$300.00</del>$259.00</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end shop item -->
-                            <!-- start shop item -->
-                            <li class="grid-item">
-                                <div class="shop-box mb-10px">
-                                    <div class="shop-image mb-20px">
-                                        <a href="demo-fashion-store-single-product.html">
-                                            <img src="images/demo-fashion-store-product-08.jpg" alt=""> 
-                                            <div class="shop-overlay bg-gradient-gray-light-dark-transparent"></div>
-                                        </a>
-                                        <div class="shop-buttons-wrap">
-                                            <a href="demo-fashion-store-single-product.html" class="alt-font btn btn-small btn-box-shadow btn-white btn-round-edge left-icon add-to-cart">
-                                                <i class="feather icon-feather-shopping-bag"></i><span class="quick-view-text button-text">Add to cart</span>
-                                            </a>
-                                        </div>
-                                        <div class="shop-hover d-flex justify-content-center"> 
-                                            <ul>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to wishlist"><i class="feather icon-feather-heart fs-16"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" class="w-40px h-40px bg-white text-dark-gray d-flex align-items-center justify-content-center rounded-circle ms-5px me-5px" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick shop"><i class="feather icon-feather-eye fs-16"></i></a>
-                                                </li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                    <div class="shop-footer text-center">
-                                        <a href="demo-fashion-store-single-product.html" class="alt-font text-dark-gray fs-19 fw-500">Sleeve sweater</a>
-                                        <div class="price lh-22 fs-16"><del>$250.00</del>$239.00</div>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end shop item -->
-                        </ul>
-                    </div> 
+
+            <!-- Item 7 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="category-card text-center p-3 rounded shadow-sm h-100">
+                    <img src="{{ asset('images/logos/icons/barcode.svg') }}" alt="Thermal Printers" class="icons">
+                    <h6 class="fw-bold">Software</h6>
+                    <small class="text-muted">10+ Solutions</small>
                 </div>
-            </div>
-        </section>
-        <!-- end section -->
-        <!-- start section -->
-        <section class="p-0 border-top border-bottom border-color-extra-medium-gray">
-            <div class="container-fluid"> 
-                <div class="row position-relative">
-                    <div class="col swiper text-center swiper-width-auto" data-slider-options='{ "slidesPerView": "auto", "spaceBetween":0, "speed": 10000, "loop": true, "pagination": { "el": ".slider-four-slide-pagination-2", "clickable": false }, "allowTouchMove": false, "autoplay": { "delay":0, "disableOnInteraction": false }, "navigation": { "nextEl": ".slider-four-slide-next-2", "prevEl": ".slider-four-slide-prev-2" }, "keyboard": { "enabled": true, "onlyInViewport": true }, "effect": "slide" }'>
-                        <div class="swiper-wrapper marquee-slide">
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Get 20% off for your first order</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">The fashion core collection</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">100% secure protected payment</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Free shipping for orders over $130</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Pay with multiple credit cards</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">Get 20% off for your first order</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">The fashion core collection</div>
-                            </div>
-                            <!-- end client item -->
-                            <!-- start client item -->
-                            <div class="swiper-slide">
-                                <div class="alt-font fs-26 fw-500 text-dark-gray border-color-extra-medium-gray border-end pt-30px pb-30px ps-60px pe-60px sm-p-25px">100% secure protected payment</div>
-                            </div>
-                            <!-- end client item -->
-                        </div> 
-                    </div>  
-                </div>
-            </div>
-        </section>
-        <!-- end section -->
-        <!-- start section -->
-        <section class="pb-3 ps-7 pe-7 lg-ps-3 lg-pe-3 xs-px-0">
-            <div class="container">
-                <div class="row mb-4 xs-mb-7">
-                    <div class="col-12 text-center">
-                        <h2 class="alt-font text-dark-gray mb-0 ls-minus-2px">Fashion <span class="text-highlight fw-600">magazine<span class="bg-base-color h-5px bottom-2px"></span></span></h2>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <ul class="blog-classic blog-wrapper grid-loading grid grid-4col xl-grid-4col lg-grid-3col md-grid-2col sm-grid-2col xs-grid-1col gutter-extra-large" data-anime='{ "el": "childs", "translateY": [15, 0], "translateX": [-15, 0], "opacity": [0,1], "duration": 500, "delay": 300, "staggervalue": 300, "easing": "easeOutQuad" }'>
-                            <li class="grid-sizer"></li>
-                            <!-- start blog item -->
-                            <li class="grid-item">
-                                <div class="card bg-transparent border-0 h-100">
-                                    <div class="blog-image position-relative overflow-hidden">
-                                        <a href="demo-fashion-store-blog-single-creative.html"><img src="images/demo-fashion-store-blog-01.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                        <span class="mb-5px d-block">By <a href="#" class="text-dark-gray fw-500 categories-text">Den viliamson</a><a href="#" class="blog-date">26 December 2023</a></span>
-                                        <a href="demo-fashion-store-blog-single-creative.html" class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">Elegance is not standing out, but being remembered.</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end blog item -->
-                            <!-- start blog item -->
-                            <li class="grid-item">
-                                <div class="card bg-transparent border-0 h-100">
-                                    <div class="blog-image position-relative overflow-hidden">
-                                        <a href="demo-fashion-store-blog-single-creative.html"><img src="images/demo-fashion-store-blog-02.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                        <span class="mb-5px d-block">By <a href="#" class="text-dark-gray fw-500 categories-text">Hugh macleod</a><a href="#" class="blog-date">20 December 2023</a></span>
-                                        <a href="demo-fashion-store-blog-single-creative.html" class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">Fashion is the armor to survive the reality of everyday life.</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end blog item -->
-                            <!-- start blog item -->
-                            <li class="grid-item">
-                                <div class="card bg-transparent border-0 h-100">
-                                    <div class="blog-image position-relative overflow-hidden">
-                                        <a href="demo-fashion-store-blog-single-creative.html"><img src="images/demo-fashion-store-blog-06.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                        <span class="mb-5px d-block">By <a href="#" class="text-dark-gray fw-500 categories-text">Walton smith</a><a href="#" class="blog-date">10 December 2023</a></span>
-                                        <a href="demo-fashion-store-blog-single-creative.html" class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">In order to be irreplaceable one must always be different.</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end blog item -->
-                            <!-- start blog item -->
-                            <li class="grid-item">
-                                <div class="card bg-transparent border-0 h-100">
-                                    <div class="blog-image position-relative overflow-hidden">
-                                        <a href="demo-fashion-store-blog-single-creative.html"><img src="images/demo-fashion-store-blog-07.jpg" alt="" /></a>
-                                    </div>
-                                    <div class="card-body px-0 pt-30px pb-30px sm-pb-15px">
-                                        <span class="mb-5px d-block">By <a href="#" class="text-dark-gray fw-500 categories-text">Walton smith</a><a href="#" class="blog-date">10 December 2023</a></span>
-                                        <a href="demo-fashion-store-blog-single-creative.html" class="alt-font card-title fs-20 lh-30 fw-500 text-dark-gray d-inline-block w-75 xl-w-85 lg-w-100">Gucci has represented design and contemporary lifestyle.</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- end blog item -->
-                        </ul>
-                    </div> 
-                </div>
-            </div>
-        </section>
-        <!-- end section -->
-        <!-- start footer -->
-       
-        <!-- end footer -->
-        <!-- start cookie message -->
-          @include('partials.cookie')
-        <!-- end cookie message -->
-        <!-- start sticky elements -->
-        <div class="sticky-wrap z-index-1 d-none d-xl-inline-block" data-animation-delay="100" data-shadow-animation="true">
-            <div class="elements-social social-icon-style-10">
-                <ul class="fs-16">
-                    <li class="me-30px"><a class="facebook" href="https://www.facebook.com/" target="_blank">
-                            <i class="fa-brands fa-facebook-f me-10px"></i>
-                            <span class="alt-font">Facebook</span>
-                        </a>
-                    </li> 
-                    <li class="me-30px">
-                        <a class="dribbble" href="http://www.dribbble.com" target="_blank">
-                            <i class="fa-brands fa-dribbble me-10px"></i>
-                            <span class="alt-font">Dribbble</span>
-                        </a> 
-                    </li>
-                    <li class="me-30px">
-                        <a class="twitter" href="https://www.twitter.com" target="_blank">
-                            <i class="fa-brands fa-twitter me-10px"></i>
-                            <span class="alt-font">Twitter</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="instagram" href="https://www.instagram.com" target="_blank">
-                            <i class="fa-brands fa-instagram me-10px"></i>
-                            <span class="alt-font">Instagram</span>
-                        </a> 
-                    </li>
-                </ul>
             </div>
         </div>
-        <!-- end sticky elements -->
-        <!-- start scroll progress -->
-        <div class="scroll-progress d-none d-xxl-block">
-            <a href="#" class="scroll-top" aria-label="scroll">
-                <span class="scroll-text">Scroll</span><span class="scroll-line"><span class="scroll-point"></span></span>
-            </a>
+    </div>
+</section>
+
+
+  @include('partials.bestseller')
+
+    <!-- Hot Deals -->
+
+    @include('partials.hotdeals')
+   
+    <!-- Restaurant Solutions -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Restaurant Solutions</h2>
+                <p class="text-muted">Specialized technology for food service businesses</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-utensils" style="font-size: 60px; color: var(--primary-color);"></i>
+                        </div>
+                        <div class="p-4">
+                            <h6 class="fw-bold">TEC Alpha-4 Restaurant POS</h6>
+                            <div class="price-tag">₹22,999</div>
+                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-receipt" style="font-size: 60px; color: var(--primary-color);"></i>
+                        </div>
+                        <div class="p-4">
+                            <h6 class="fw-bold">TEC Alpha-4 Kitchen Printer</h6>
+                            <div class="price-tag">₹12,999</div>
+                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-clipboard-list" style="font-size: 60px; color: var(--primary-color);"></i>
+                        </div>
+                        <div class="p-4">
+                            <h6 class="fw-bold">TEC Alpha-4 Order Management</h6>
+                            <div class="price-tag">₹15,999</div>
+                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <i class="fas fa-chart-pie" style="font-size: 60px; color: var(--primary-color);"></i>
+                        </div>
+                        <div class="p-4">
+                            <h6 class="fw-bold">TEC Alpha-4 Restaurant Analytics</h6>
+                            <div class="price-tag">₹18,999</div>
+                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- end scroll progress -->
-        <!-- javascript libraries -->
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/vendors.min.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-    </body>
-    @endsection
-</html>
+    </section>
+
+    <!-- Experience the Difference -->
+    <section class="py-5" style="background: linear-gradient(135deg, var(--secondary-color), var(--dark-blue));">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="text-white fw-bold">Experience the Difference</h2>
+                <p class="text-white-50">Why thousands of businesses choose our solutions</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="experience-card">
+                        <div class="category-icon mb-3" style="background: var(--primary-color);">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h5 class="text-white fw-bold">Express Delivery</h5>
+                        <p class="text-white-50">Fast and reliable delivery to your doorstep with real-time tracking</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="experience-card">
+                        <div class="category-icon mb-3" style="background: var(--primary-color);">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <h5 class="text-white fw-bold">Warranty Protection</h5>
+                        <p class="text-white-50">Comprehensive warranty coverage and dedicated support</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="experience-card">
+                        <div class="category-icon mb-3" style="background: var(--primary-color);">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5 class="text-white fw-bold">Expert Guidance</h5>
+                        <p class="text-white-50">24/7 customer support and technical assistance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section text-center">
+            <h2 class="fw-bold mb-4">Need Custom Solutions for Your Business?</h2>
+            <p class="mb-4">Get personalized recommendations and pricing for your specific needs</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-light btn-lg">Contact Sales</button>
+                <button class="btn btn-outline-light btn-lg">Request Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-cube me-2"></i>Formatter Tech</h5>
+                    <p class="text-white-50">Transforming businesses with smart technology solutions since 2015.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white-50"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-white-50"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Products</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Solutions</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Product Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">POS Systems</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Billing Software</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Restaurant Solutions</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Analytics Tools</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3">Contact Info</h6>
+                    <ul class="list-unstyled">
+                        <li class="text-white-50"><i class="fas fa-phone me-2"></i>+91 98765 43210</li>
+                        <li class="text-white-50"><i class="fas fa-envelope me-2"></i>info@formattertech.com</li>
+                        <li class="text-white-50"><i class="fas fa-map-marker-alt me-2"></i>Bengaluru, Karnataka</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 text-white-50">
+            <div class="text-center">
+                <p class="text-white-50 mb-0">&copy; 2025 Formatter Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add to cart functionality
+        let cartCount = 3; // Initial cart count
+        
+        document.querySelectorAll('.btn-primary-custom').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get product info
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h5, h6').textContent;
+                const priceElement = productCard.querySelector('.price-tag');
+                const price = priceElement ? priceElement.textContent : 'Price on request';
+                
+                // Update cart count
+                cartCount++;
+                const cartBadge = document.querySelector('.badge.bg-danger');
+                if (cartBadge) {
+                    cartBadge.textContent = cartCount;
+                }
+                
+                // Visual feedback
+                this.innerHTML = '<i class="fas fa-check me-1"></i>Added!';
+                this.style.background = '#28a745';
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    this.innerHTML = this.textContent.includes('Buy Now') ? 'Buy Now' : 
+                                   this.textContent.includes('Order Now') ? 'Order Now' : 'Add to Cart';
+                    this.style.background = '';
+                }, 2000);
+                
+                // Show toast notification
+                showToast(`${productName} added to cart!`);
+            });
+        });
+        
+        // Toast notification function
+        function showToast(message) {
+            // Create toast element
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification';
+            toast.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-check-circle text-success me-2"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Toast styles
+            toast.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+                z-index: 9999;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+                border-left: 4px solid #28a745;
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Search functionality
+        document.querySelector('.input-group button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.input-group input').value;
+            if (searchTerm.trim()) {
+                showToast(`Searching for: ${searchTerm}`);
+                // Here you would implement actual search logic
+            }
+        });
+        
+        // Enter key for search
+        document.querySelector('.input-group input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.input-group button').click();
+            }
+        });
+        
+        // Category hover effects
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Product card interactions
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.product-image i');
+                if (icon) {
+                    icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.product-image i');
+                if (icon) {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                }
+            });
+        });

@@ -1,257 +1,70 @@
-
- <header class="header-with-topbar">
-            <!-- start header top bar -->
-            <div class="header-top-bar top-bar-light bg-base-color disable-fixed md-border-bottom border-color-transparent-dark-very-light">
-                <div class="container-fluid">
-                    <div class="row h-40px align-items-center m-0">
-                        <div class="col-12 justify-content-center alt-font fs-13 fw-500 text-uppercase">
-                            <div class="text-dark-gray">Enjoy FREE standard delivery on orders over $100.</div>
-                            <a href="#" class="text-dark-gray fw-600 ms-5px text-dark-gray-hover"><span class="text-decoration-line-bottom">Shop now</span></a>
-                        </div>
+ <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+                <div class="d-flex align-items-center">
+                    <div class="rounded-circle p-2 me-2">
+                       <img src="{{asset('images/logos/logo.png')}}" alt="" style="width: 40px; height: 60px;">
                     </div>
+                </div>
+            </a>
+
+            <!-- Search Bar -->
+            <div class="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for thermal printers, barcode labels..." style="width: 599; height: 47;max-width: 596px;padding-right: 48px;padding-left: 48px;angle: 0 deg;opacity: 1;">
+                    <button class="btn btn-primary" type="button" style="box-shadow: 0px 1px 2px 0px #0000000F; box-shadow: 0px 1px 3px 0px #0000001A;">Search</button>
                 </div>
             </div>
-            <!-- end header top bar -->
-            <!-- start navigation -->
-            <nav class="navbar navbar-expand-lg header-light bg-white disable-fixed center-logo">
-                <div class="container-fluid">
-                    <div class="col-auto col-xxl-3 col-lg-2 menu-logo">  
-                        <div class="header-icon d-none d-lg-flex"> 
-                            <div class="widget-text icon alt-font">
-                                <a href="demo-fashion-store-contact.html"><i class="feather icon-feather-map-pin d-inline-block me-5px"></i><span class="d-none d-xxl-inline-block">Find stores</span></a>
-                            </div>
-                            <div class="widget-text icon alt-font">
-                                <a href="https://www.instagram.com/" target="_blank"><i class="feather icon-feather-instagram d-inline-block me-5px"></i><span class="d-none d-xxl-inline-block">100k Followers</span></a>
-                            </div>
-                        </div> 
-                        <a class="navbar-brand" href="demo-fashion-store.html">
-                            <img src="images/demo-fashion-store-logo-black.png" data-at2x="images/demo-fashion-store-logo-black@2x.png" alt="" class="default-logo">
-                            <img src="images/demo-fashion-store-logo-black.png" data-at2x="images/demo-fashion-store-logo-black@2x.png" alt="" class="alt-logo">
-                            <img src="images/demo-fashion-store-logo-black.png" data-at2x="images/demo-fashion-store-logo-black@2x.png" alt="" class="mobile-logo">
-                        </a>   
-                    </div>
-                    <div class="col-auto col-xxl-6 col-lg-8 menu-order">
-                        <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                            <span class="navbar-toggler-line"></span>
-                        </button>
-                        <div class="collapse navbar-collapse justify-content-between" id="navbarNav"> 
-                            <ul class="navbar-nav alt-font navbar-left justify-content-end">
-                                <li class="nav-item">
-                                    <a href="demo-fashion-store.html" class="nav-link">Home</a>
-                                </li>
-                                <li class="nav-item dropdown submenu">
-                                    <a href="demo-fashion-store-shop.html" class="nav-link">Shop</a>
-                                    <i class="fa-solid fa-angle-down dropdown-toggle" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                    <div class="dropdown-menu submenu-content" aria-labelledby="navbarDropdownMenuLink1"> 
-                                        <div class="d-lg-flex mega-menu m-auto flex-column">
-                                            <div class="row row-cols-1 row-cols-lg-5 row-cols-md-3 row-cols-sm-3 mb-50px md-mb-25px xs-mb-15px">
-                                                <div class="col">
-                                                    <ul>  
-                                                        <li class="sub-title">Thermal Roll</li>
-                                                        <li><a href="#">Pos roll 79x50</a></li>
-                                                        
-                                                    </ul>
-                                                </div> 
-                                                <div class="col">
-                                                    <ul>  
-                                                        <li class="sub-title">Barcode Labels</li>
-                                                        <li><a href="#">50x50</a></li>
-                                                         
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <ul>  
-                                                        <li class="sub-title">Billing Printer</li>
-                                                        <li><a href="#">TVS</a></li>
-                                                       
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <ul>  
-                                                        <li class="sub-title">Barcode Printer</li>
-                                                        <li><a href="#">TSC</a></li>
-                                                        
-                                                    </ul>
-                                                </div>
-                                                <div class="col">
-                                                    <ul>  
-                                                        <li class="sub-title">Accessories</li>
-                                                        <li><a href="#">Biiling rolls</a></li>
-                                                        <li><a href="#">Barcodes</a></li>
-                                                        <li><a href="#">Billing Printer</a></li>
-                                                        <li><a href="#">Billing software</a></li>
-                                                        <li><a href="#">Custome billing rolls</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="row row-cols-1 row-cols-sm-2">
-                                                <div class="col">
-                                                    <a href="demo-fashion-store-shop.html"><img src="images/demo-fashion-store-menu-banner-01.jpg" alt=""></a>
-                                                </div>
-                                                <div class="col">
-                                                    <a href="demo-fashion-store-shop.html"><img src="images/demo-fashion-store-menu-banner-02.jpg" alt=""></a>
-                                                </div>
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </li> 
-                                <li class="nav-item dropdown submenu">
-                                    <a href="demo-fashion-store-collection.html" class="nav-link">Collection</a>
-                                    <i class="fa-solid fa-angle-down dropdown-toggle" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                    <div class="dropdown-menu submenu-content" aria-labelledby="navbarDropdownMenuLink2"> 
-                                        <div class="d-lg-flex mega-menu m-auto flex-column"> 
-                                            <div class="row row-cols-2 row-cols-lg-6 row-cols-md-3 row-cols-sm-2 md-mx-0 align-items-center justify-content-center">
-                                                <div class="col md-mb-25px">
-                                                    <a href="demo-fashion-store-collection.html" class="justify-content-center mb-10px"> 
-                                                        <img src="images/billing rolls/2.jpg" class="border-radius-4px w-100" alt="">  
-                                                    </a>
-                                                    <a href="demo-fashion-store-collection.html" class="btn btn-hover-animation fw-500 text-uppercase-inherit justify-content-center pt-0 pb-0">
-                                                        <span> 
-                                                            <span class="btn-text text-dark-gray fs-17">Billing Roll</span> 
-                                                            <span class="btn-icon"><i class="fa-solid fa-arrow-right icon-very-small w-auto"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="col md-mb-25px">
-                                                    <a href="demo-fashion-store-collection.html" class="justify-content-center mb-10px"> 
-                                                        <img src="images/billing rolls/3.jpg" class="border-radius-4px w-100" alt="">  
-                                                    </a>
-                                                    <a href="demo-fashion-store-collection.html" class="btn btn-hover-animation fw-500 text-uppercase-inherit justify-content-center pt-0 pb-0">
-                                                        <span> 
-                                                            <span class="btn-text text-dark-gray fs-17">Barcode</span> 
-                                                            <span class="btn-icon"><i class="fa-solid fa-arrow-right icon-very-small w-auto"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="col md-mb-25px">
-                                                    <a href="demo-fashion-store-collection.html" class="justify-content-center mb-10px"> 
-                                                        <img src="images/billing rolls/4.jpg" class="border-radius-4px w-100" alt="">  
-                                                    </a>
-                                                    <a href="demo-fashion-store-collection.html" class="btn btn-hover-animation fw-500 text-uppercase-inherit justify-content-center pt-0 pb-0">
-                                                        <span> 
-                                                            <span class="btn-text text-dark-gray fs-17">Billing Printer</span> 
-                                                            <span class="btn-icon"><i class="fa-solid fa-arrow-right icon-very-small w-auto"></i></span>
-                                                        </span>
-                                                    </a> 
-                                                </div>
-                                                <div class="col sm-mb-25px">
-                                                    <a href="demo-fashion-store-collection.html" class="justify-content-center mb-10px"> 
-                                                        <img src="images/billing rolls/2.jpg" class="border-radius-4px w-100" alt="">  
-                                                    </a>
-                                                    <a href="demo-fashion-store-collection.html" class="btn btn-hover-animation fw-500 text-uppercase-inherit justify-content-center pt-0 pb-0">
-                                                        <span> 
-                                                            <span class="btn-text text-dark-gray fs-17">Barcode Printer</span> 
-                                                            <span class="btn-icon"><i class="fa-solid fa-arrow-right icon-very-small w-auto"></i></span>
-                                                        </span>
-                                                    </a> 
-                                                </div>
-                                                <div class="col">
-                                                    <a href="demo-fashion-store-collection.html" class="justify-content-center mb-10px">
-                                                        <img src="images/billing rolls/2.jpg" class="border-radius-4px w-100" alt="">
-                                                    </a>
-                                                    <a href="demo-fashion-store-collection.html" class="btn btn-hover-animation fw-500 text-uppercase-inherit justify-content-center pt-0 pb-0">
-                                                        <span>
-                                                            <span class="btn-text text-dark-gray fs-17">Billing Software</span>
-                                                            <span class="btn-icon"><i class="fa-solid fa-arrow-right icon-very-small w-auto"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                                <div class="col">
-                                                    <a href="demo-fashion-store-collection.html" class="justify-content-center mb-10px"> 
-                                                        <img src="images/billing rolls/2.jpg" class="border-radius-4px w-100" alt="">  
-                                                    </a>
-                                                    <a href="demo-fashion-store-collection.html" class="btn btn-hover-animation fw-500 text-uppercase-inherit justify-content-center pt-0 pb-0">
-                                                        <span>
-                                                            <span class="btn-text text-dark-gray fs-17">Support</span>
-                                                            <span class="btn-icon"><i class="fa-solid fa-arrow-right icon-very-small w-auto"></i></span>
-                                                        </span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="navbar-nav alt-font navbar-right justify-content-start"> 
-                                <li class="nav-item">
-                                    <a href="demo-fashion-store-magazine.html" class="nav-link">Magazine</a>
-                                </li>
-                                <li class="nav-item dropdown simple-dropdown">
-                                    <a href="javascript:void(0);" class="nav-link">Pages</a>
-                                    <i class="fa-solid fa-angle-down dropdown-toggle" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3"> 
-                                        <li><a href="demo-fashion-store-about.html">About</a></li>
-                                        <li><a href="demo-fashion-store-faq.html">Faq</a></li>
-                                        <li><a href="demo-fashion-store-wishlist.html">Wishlist</a></li>
-                                        <li><a href="demo-fashion-store-account.html">Account</a></li>
-                                        <li><a href="demo-fashion-store-cart.html">Cart</a></li>
-                                        <li><a href="demo-fashion-store-checkout.html">Checkout</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="demo-fashion-store-contact.html" class="nav-link">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> 
-                    <div class="col-auto col-xxl-3 col-lg-2 text-end">
-                        <div class="header-icon">
-                            <div class="header-search-icon icon alt-font">
-                                <a href="javascript:void(0)" class="search-form-icon header-search-form"><i class="feather icon-feather-search me-5px"></i><span class="d-none d-xxl-inline-block">Search</span></a>
-                                <div class="search-form-wrapper">
-                                    <button title="Close" type="button" class="search-close alt-font">×</button>
-                                    <form id="search-form" role="search" method="get" class="search-form text-left" action="search-result.html">
-                                        <div class="search-form-box">
-                                            <h2 class="text-dark-gray text-center mb-4 fw-600 alt-font ls-minus-1px">What are you looking for?</h2>
-                                            <input class="search-input alt-font" id="search-form-input5e219ef164995" placeholder="Enter your keywords..." name="s" value="" type="text" autocomplete="off">
-                                            <button type="submit" class="search-button">
-                                                <i class="feather icon-feather-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="widget-text icon alt-font">
-                                <a href="demo-fashion-store-account.html"><i class="feather icon-feather-user d-inline-block me-5px"></i><span class="d-none d-xxl-inline-block">Account</span></a>
-                            </div>
-                            <div class="header-cart-icon icon">
-                                <div class="header-cart dropdown">
-                                    <a href="javascript:void(0);"><i class="feather icon-feather-shopping-bag"></i><span class="cart-count alt-font text-white bg-dark-gray">2</span></a> 
-                                    <ul class="cart-item-list">
-                                        <li class="cart-item align-items-center">
-                                            <a href="javascript:void(0);" class="alt-font close">×</a>
-                                            <div class="product-image">
-                                                <a href="demo-fashion-store-single-product.html"><img src="images/demo-fashion-store-product-01.jpg" class="cart-thumb" alt=""></a>
-                                            </div>
-                                            <div class="product-detail fw-600">
-                                                <a href="demo-fashion-store-single-product.html">Ribbed tank</a>
-                                                <span class="item-ammount fw-400">1 x $23.00</span> 
-                                            </div>
-                                        </li>
-                                        <li class="cart-item align-items-center">
-                                            <a href="javascript:void(0);" class="alt-font close">×</a>
-                                            <div class="product-image">
-                                                <a href="demo-fashion-store-single-product.html"><img src="images/demo-fashion-store-product-02.jpg" class="cart-thumb" alt=""></a>
-                                            </div>
-                                            <div class="product-detail fw-600">
-                                                <a href="demo-fashion-store-single-product.html">Pleated dress</a>
-                                                <span class="item-ammount fw-400">2 x $15.00</span> 
-                                            </div>
-                                        </li>
-                                        <li class="cart-total">
-                                            <div class="fs-18 alt-font mb-15px"><span class="w-50 fw-500 text-start">Subtotal:</span><span class="w-50 text-end fw-700">$199.99</span></div>
-                                            <a href="demo-fashion-store-cart.html" class="btn btn-large btn-transparent-light-gray border-color-extra-medium-gray">View cart</a>
-                                            <a href="demo-fashion-store-checkout.html" class="btn btn-large btn-dark-gray btn-box-shadow">Checkout</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </nav>
-        </header>
 
+            <!-- Right Side Icons -->
+            <div class="d-flex align-items-center gap-3">
+                <a href="#" class="text-decoration-none text-dark">
+                    <i class="fas fa-user me-1"></i> Account
+                </a>
+                <a href="#" class="text-decoration-none text-dark position-relative">
+                    <i class="fas fa-shopping-cart me-1"></i> Cart
+                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill" style="font-size: 10px;">3</span>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+ <!-- Category Navigation -->
+    <nav class="navbar navbar-expand-lg" style="background: linear-gradient(135deg, #4285f4, #1a73e8);">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav w-100 justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#categories">All Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#thermal">Thermal Printers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#barcode">Barcode Labels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#billing">Billing Machines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#software">POS Software</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#bulk">Bulk Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#custom">Custom Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fw-medium px-3" href="#support">Support</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
