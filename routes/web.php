@@ -10,6 +10,10 @@ use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Index::class, 'index'])->name('index');
+Route::get('/product', [Index::class, 'product'])->name('product');
+Route::get('/custombarcode', [Index::class, 'custombarcode'])->name('custombarcode');
+
+
 
 
 // Dashboard routes

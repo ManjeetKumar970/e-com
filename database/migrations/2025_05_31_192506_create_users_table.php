@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('if_user_is_prime')->default(false);
             $table->string('pancard')->nullable(); // Optional: can add condition in model/form
             $table->json('stats')->nullable();
+            $table->string('usertype')->nullable()->default('user');
             $table->timestamps();
         });
     }

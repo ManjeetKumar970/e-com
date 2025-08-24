@@ -1,7 +1,7 @@
 
-<div class="container-lg py-5">
+<div class="py-5">
             <div class="product-header-hot">
-            <h1 class="main-title-hot center">Best Selling Products</h1>
+            <h1 class="main-title-hot center">Best Selling Products 2</h1>
         </div>
 
         <div class="products-grid-hot">

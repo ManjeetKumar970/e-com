@@ -35,36 +35,4 @@
             </button>
         </div>
     </nav>
- <!-- Category Navigation -->
-    <nav class="navbar navbar-expand-lg" style="background: linear-gradient(135deg, #4285f4, #1a73e8);">
-        <div class="container">
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav w-100 justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#categories">All Categories</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#thermal">Thermal Printers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#barcode">Barcode Labels</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#billing">Billing Machines</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#software">POS Software</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#bulk">Bulk Orders</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#custom">Custom Solutions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#support">Support</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  @include('partials.navbar')

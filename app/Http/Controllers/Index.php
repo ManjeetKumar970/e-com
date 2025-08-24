@@ -15,4 +15,12 @@ class Index extends Controller
     {
         return view('index'); 
     }
+    public function product()
+    {
+        return view('product'); 
+    }
+    public function custombarcode()
+    {
+        return view('custombarcode'); 
+    }
 }
