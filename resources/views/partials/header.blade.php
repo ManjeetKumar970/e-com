@@ -20,17 +20,65 @@
 
             <!-- Right Side Icons -->
             <div class="d-flex align-items-center gap-3">
-                <a href="#" class="text-decoration-none text-dark">
-                    <i class="fas fa-user me-1"></i> Account
-                </a>
-                <a href="#" class="text-decoration-none text-dark position-relative">
-                    <i class="fas fa-shopping-cart me-1"></i> Cart
-                    <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill" style="font-size: 10px;">3</span>
-                </a>
+    <!-- Account Dropdown -->
+    <div class="container">
+                    <div class="dropdown">
+                        <a href="#" class="text-decoration-none text-dark dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i> Manjeet
+                        </a>
+                          <ul class="dropdown-menu p-2 shadow" aria-labelledby="accountDropdown" style="min-width: 220px;">
+                            <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="fas fa-user me-2"></i> My Profile
+            </a>
+        </li>
+       
+      
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="fas fa-heart me-2"></i> Wishlist <span class="badge bg-secondary ms-auto">2</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="fas fa-tag me-2"></i> Coupons
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="fas fa-bell me-2"></i> Notifications
+            </a>
+        </li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="fas fa-sign-out-alt me-2"></i> Logout
+            </a>
+        </li>
+                        </ul>
+                    </div>
+</div>  
+
+<div class="container">
+                <!-- Cart Dropdown -->
+                <div class="dropdown position-relative">
+                    <a href="#" class="text-decoration-none text-dark dropdown-toggle" id="cartDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shopping-cart me-1"></i> Cart
+                        <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill" style="font-size: 10px;">3</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="cartDropdown">
+                        <li><a class="dropdown-item" href="#">View Cart</a></li>
+                        <li><a class="dropdown-item" href="#">Checkout</a></li>
+                    </ul>
+                </div>
             </div>
+        </div >
+
 
             <!-- Mobile Toggle -->
-            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavs">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>

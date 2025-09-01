@@ -43,7 +43,7 @@
 								><span class="mtext">Creta Category</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="basic-table.html">Sub Creta Category</a></li>
+								<li><a href="{{route('dashboard.navcategory') }}">Creta Category</a></li>
 							</ul>
 						</li>
 						<li>

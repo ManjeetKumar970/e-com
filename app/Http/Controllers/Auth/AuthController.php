@@ -64,33 +64,36 @@ public function login(Request $request)
 {
     $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        // Regenerate session to prevent fixation
-        $request->session()->regenerate();
+   if (Auth::attempt($credentials)) {
+    // Regenerate session to prevent fixation
+    $request->session()->regenerate();
 
-        $user = Auth::user();
-        session()->put('user', $user);
+    $user = Auth::user();
 
-        // Check if session is correctly set and user is authenticated
-        if ($user) {
-            if ($user->usertype === 'admin') {
-                return redirect()->route('dashboard.admindashboard')
-                    ->with('message', 'Admin login successful');
-            } elseif ($user->usertype === 'user') {
-                Auth::logout();
-                return redirect()->route('/')
-                    ->withErrors(['access' => 'Access denied: only admins can log in.']);
-            } else {
-                Auth::logout();
-                return redirect()->route('login')
-                    ->withErrors(['usertype' => 'Invalid user type']);
-            }
+    if ($user) {
+        if ($user->usertype === 'admin') {
+            return redirect()
+                ->route('dashboard.admindashboard')
+                ->with('message', 'Admin login successful');
+        } elseif ($user->usertype === 'user') {
+            Auth::logout();
+            return redirect()
+                ->back()
+                ->withErrors(['access' => 'Access denied: only admins can log in.']);
         } else {
-            return redirect()->back()->withErrors([
-                'session' => 'Login successful, but session could not be set',
-            ])->withInput();
+            Auth::logout();
+            return redirect()
+                ->route('login')
+                ->withErrors(['usertype' => 'Invalid user type']);
         }
     }
+
+    return redirect()
+        ->back()
+        ->withErrors(['session' => 'Login successful, but session could not be set'])
+        ->withInput();
+}
+
 
     return redirect()->back()->withErrors([
         'email' => 'Login failed: incorrect email or password',

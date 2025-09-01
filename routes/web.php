@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\Dashboard;
+use App\Http\Controllers\Dashboard\NavBar;
 use App\Http\Controllers\Dashboard\ImgSlides;
 use App\Http\Controllers\Dashboard\PrintersController;
 use App\Http\Controllers\Index;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Index::class, 'index'])->name('index');
 Route::get('/product', [Index::class, 'product'])->name('product');
 Route::get('/custombarcode', [Index::class, 'custombarcode'])->name('custombarcode');
+Route::get('/contactus', [Index::class, 'contactus'])->name('contactus');
 
 
 
@@ -46,7 +48,9 @@ Route::prefix('dashboard')->group(function () {
         //Slider
         Route::get('/slider', [ImgSlides::class, 'slider'])->name('dashboard.slider');
         Route::post('/slider/store', [ImgSlides::class, 'storeSlider'])->name('dashboard.slider.store');
-
+        //NavBar
+        Route::get('/navcategory', [NavBar::class, 'navcategory'])->name('dashboard.navcategory');
+        Route::post('/navcategory/store', [NavBar::class, 'store'])->name('dashboard.storeCategory');
         Route::post('/logout', [Dashboard::class, 'logout'])->name('dashboard.logout');
     });
 });

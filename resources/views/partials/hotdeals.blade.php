@@ -180,6 +180,94 @@
                 </div>
             </div>
         </div>
+        <div class="product-card-hot-deel card-1">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+            <div class="image-section-hot-deel">
+                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
+            </div>
+            <div class="info-section-hot-deel">
+                <div class="hot-deal-badge">HOT DEAL</div>
+                <div>
+                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
+                    <p class="product-category-hot-deel">Software</p>
+                </div>
+                <div class="pricing-section-hot-deel">
+                    <div class="price-container-hot-deel">
+                        <div class="current-price-hot-deel">
+                            <span class="currency-hot-deel">₹</span>19,999
+                        </div>
+                        <div class="original-price-hot-deel">₹24,999</div>
+                    </div>
+                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card-hot-deel card-1">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+            <div class="image-section-hot-deel">
+                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
+            </div>
+            <div class="info-section-hot-deel">
+                <div class="hot-deal-badge">HOT DEAL</div>
+                <div>
+                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
+                    <p class="product-category-hot-deel">Software</p>
+                </div>
+                <div class="pricing-section-hot-deel">
+                    <div class="price-container-hot-deel">
+                        <div class="current-price-hot-deel">
+                            <span class="currency-hot-deel">₹</span>19,999
+                        </div>
+                        <div class="original-price-hot-deel">₹24,999</div>
+                    </div>
+                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
+                </div>
+            </div>
+        </div>
+         <div class="product-card-hot-deel card-1">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+            <div class="image-section-hot-deel">
+                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
+            </div>
+            <div class="info-section-hot-deel">
+                <div class="hot-deal-badge">HOT DEAL</div>
+                <div>
+                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
+                    <p class="product-category-hot-deel">Software</p>
+                </div>
+                <div class="pricing-section-hot-deel">
+                    <div class="price-container-hot-deel">
+                        <div class="current-price-hot-deel">
+                            <span class="currency-hot-deel">₹</span>19,999
+                        </div>
+                        <div class="original-price-hot-deel">₹24,999</div>
+                    </div>
+                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-card-hot-deel card-1">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+            <div class="image-section-hot-deel">
+                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
+            </div>
+            <div class="info-section-hot-deel">
+                <div class="hot-deal-badge">HOT DEAL</div>
+                <div>
+                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
+                    <p class="product-category-hot-deel">Software</p>
+                </div>
+                <div class="pricing-section-hot-deel">
+                    <div class="price-container-hot-deel">
+                        <div class="current-price-hot-deel">
+                            <span class="currency-hot-deel">₹</span>19,999
+                        </div>
+                        <div class="original-price-hot-deel">₹24,999</div>
+                    </div>
+                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
+                </div>
+            </div>
+        </div>
 </div>
 
 

@@ -1,58 +1,90 @@
 <section class="py-5 bg-light">
-        <div class="container">
+        <div class="container-fluid">
             <div class="text-center mb-5">
                 <h2 class="section-title">Restaurant Solutions</h2>
                 <p class="text-muted">Specialized technology for food service businesses</p>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <i class="fas fa-utensils" style="font-size: 60px; color: var(--primary-color);"></i>
-                        </div>
-                        <div class="p-4">
-                            <h6 class="fw-bold">TEC Alpha-4 Restaurant POS</h6>
-                            <div class="price-tag">₹22,999</div>
-                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
-                        </div>
+           
+        <div class="products-grid-hot">
+            <div class="product-card-hot">
+                <div class="product-header-hot">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+                </div>
+                <div class="product-image-hot">
+                    <div class="product-icon">
+                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <i class="fas fa-receipt" style="font-size: 60px; color: var(--primary-color);"></i>
-                        </div>
-                        <div class="p-4">
-                            <h6 class="fw-bold">TEC Alpha-4 Kitchen Printer</h6>
-                            <div class="price-tag">₹12,999</div>
-                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
-                        </div>
+                <h3 class="product-title">TSC Alpha-4<br>Thermal Printer</h3>
+                <p class="product-description">High-speed printing with wireless connectivity and cloud integration.</p>
+                <div class="product-footer">
+                    <div class="price-section">
+                        <div class="current-price">₹12,999</div>
+                        <div class="original-price">₹15,999</div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <i class="fas fa-clipboard-list" style="font-size: 60px; color: var(--primary-color);"></i>
-                        </div>
-                        <div class="p-4">
-                            <h6 class="fw-bold">TEC Alpha-4 Order Management</h6>
-                            <div class="price-tag">₹15,999</div>
-                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="product-card">
-                        <div class="product-image">
-                            <i class="fas fa-chart-pie" style="font-size: 60px; color: var(--primary-color);"></i>
-                        </div>
-                        <div class="p-4">
-                            <h6 class="fw-bold">TEC Alpha-4 Restaurant Analytics</h6>
-                            <div class="price-tag">₹18,999</div>
-                            <button class="btn btn-primary-custom btn-sm mt-2">Order Now</button>
-                        </div>
-                    </div>
+                    <button class="add-btn" onclick="addToCart('TSC Alpha-4')">+</button>
                 </div>
             </div>
+
+            <div class="product-card-hot">
+                <div class="product-header-hot">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+                </div>
+                <div class="product-image-hot">
+                     <div class="product-icon">
+                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
+                    </div>
+                </div>
+                <h3 class="product-title">ProScan X200<br>Scanner</h3>
+                <p class="product-description">Lightning-fast barcode scanning with AI-powered recognition.</p>
+                <div class="product-footer">
+                    <div class="price-section">
+                        <div class="current-price">₹4,999</div>
+                        <div class="original-price">₹6,999</div>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('ProScan X200')">+</button>
+                </div>
+            </div>
+
+            <div class="product-card-hot">
+                <div class="product-header-hot">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+                </div>
+                <div class="product-image-hot">
+                     <div class="product-icon">
+                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
+                    </div>
+                </div>
+                <h3 class="product-title">SmartPOS Pro<br>Software</h3>
+                <p class="product-description">Complete business management with inventory and GST billing.</p>
+                <div class="product-footer">
+                    <div class="price-section">
+                        <div class="current-price">₹19,999</div>
+                        <div class="original-price">₹24,999</div>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('SmartPOS Pro')">+</button>
+                </div>
+            </div>
+
+            <div class="product-card-hot">
+                <div class="product-header-hot">
+            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+                </div>
+                <div class="product-image-hot">
+                    <div class="product-icon">
+                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
+                    </div>
+                </div>
+                <h3 class="product-title">SmartPOS Pro<br>Software</h3>
+                <p class="product-description">Complete business management with inventory and GST billing.</p>
+                <div class="product-footer">
+                    <div class="price-section">
+                        <div class="current-price">₹19,999</div>
+                        <div class="original-price">₹24,999</div>
+                    </div>
+                    <button class="add-btn" onclick="addToCart('SmartPOS Pro')">+</button>
+                </div>
+            </div>
+        </div>
         </div>
     </section>

@@ -19,13 +19,13 @@
                         <a class="nav-link text-white fw-medium px-3" href="/product">POS Software</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="#bulk">Bulk Orders</a>
+                        <a class="nav-link text-white fw-medium px-3" href="/contactus">Bulk Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white fw-medium px-3" href="/custombarcode">Custom Solutions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3" href="/support">Support</a>
+                        <a class="nav-link text-white fw-medium px-3" href="/contactus">Support</a>
                     </li>
                 </ul>
             </div>

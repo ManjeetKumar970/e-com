@@ -23,4 +23,8 @@ class Index extends Controller
     {
         return view('custombarcode'); 
     }
+    public function contactus()
+    {
+        return view('contactus'); 
+    }
 }
