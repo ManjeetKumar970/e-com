@@ -57,12 +57,13 @@
         </div>
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('dashboard.storebarcoderols') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('dashboard.storeProduct') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-6 md-2">
                         <div class="form-floating form-group">
                             <input name="name" class="form-control" type="text" placeholder="Fixed Name" required />
+                              <input name="category" class="form-control" value="barcode" type="hidden" />
                             <label>Fixed Name *</label>
                             <div class="invalid-feedback">Please provide a fixed name.</div>
                         </div>
@@ -170,192 +171,109 @@
   
 
     <!-- Add Dropzone JS -->
-   <script>
-        Dropzone.autoDiscover = false;
-        var myDropzone = new Dropzone("#myDropzone", {
-            url: "{{ route('dashboard.storebarcoderols') }}", // Not used directly
-            autoProcessQueue: false,
-            uploadMultiple: true,
-            parallelUploads: 3,
-            maxFilesize: 2,
-            acceptedFiles: 'image/*',
-            paramName: 'images[]',
-            addRemoveLinks: true,
-        });
+ <script>
+    Dropzone.autoDiscover = false;
 
-        function validateForm(form) {
-            // List all required fields from your form
-            const requiredFields = [
-                'name',
-                'size',
-                'page_thickness',
-                'color',
-                'state',
-                'length',
-                'core',
-                'price'
-            ];
+    var myDropzone = new Dropzone("#myDropzone", {
+        url: "{{ route('dashboard.storeProduct') }}", // not used because we handle fetch
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        parallelUploads: 3,
+        maxFilesize: 2, // MB
+        acceptedFiles: 'image/*',
+        paramName: 'images[]',
+        addRemoveLinks: true,
+    });
 
-            // Check each required field
-            for (let fieldName of requiredFields) {
-                let field = form.querySelector('[name="' + fieldName + '"]');
+    function validateForm(form) {
+        const requiredFields = [
+            'name',
+            'size',
+            'page_thickness',
+            'color',
+            'numberoflabel',
+            'paper_type',
+            'length',
+            'core',
+            'price'
+        ];
 
-                if (!field) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "warning",
-                        title: (`Please fill the ${fieldName.replace('_', ' ')} field.`)
-                    });
-                    continue;
-                }
+        for (let fieldName of requiredFields) {
+            let field = form.querySelector('[name="' + fieldName + '"]');
 
-                // Special handling for select2 if needed
-                if (fieldName === 'state' && field.classList.contains('select2-hidden-accessible')) {
-                    if (!field.value) {
-                        alert('Please select a state');
-                        return false;
-                    }
-                    continue;
-                }
+            if (!field) {
+                showToast(`Missing field: ${fieldName}`);
+                return false;
+            }
 
-                if (!field.value.trim()) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "warning",
-                        title: (`Please fill the ${fieldName.replace('_', ' ')} field.`)
-                    });
+            if (!String(field.value).trim()) {
+                showToast(`Please fill the ${fieldName.replace('_', ' ')} field.`);
+                field.focus();
+                return false;
+            }
+
+            if (['price', 'length', 'numberoflabel'].includes(fieldName)) {
+                if (isNaN(field.value) || parseFloat(field.value) <= 0) {
+                    showToast(`Please enter a valid number for ${fieldName.replace('_', ' ')}`);
                     field.focus();
                     return false;
                 }
-
-                // Additional validation for specific fields
-                if (fieldName === 'price' || fieldName === 'length') {
-                    if (isNaN(field.value) || parseFloat(field.value) <= 0) {
-                        alert(`Please enter a valid number for ${fieldName.replace('_', ' ')}`);
-                        field.focus();
-                        return false;
-                    }
-                }
             }
-
-            return true;
         }
+        return true;
+    }
 
-        document.getElementById("submit-all").addEventListener("click", function(e) {
-            e.preventDefault();
-            var form = document.getElementById("product-form");
-
-            // Validate form first
-            if (!validateForm(form)) {
-                return;
-            }
-
-            // Check if files are uploaded (if required)
-            if (myDropzone.getAcceptedFiles().length === 0) {
-                // alert("Please upload at least one image.");
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    icon: "warning",
-                    title: (`Please upload at least one image.`)
-                });
-                return;
-            }
-            var formData = new FormData(form);
-            myDropzone.getAcceptedFiles().forEach((file, index) => {
-                formData.append('images[]', file);
-            });
-            fetch("{{ route('dashboard.storebarcoderols') }}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}",
-                        'Accept': 'application/json'
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(err => {
-                            throw err;
-                        });
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    alert(data.message || "Upload successful!");
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "success",
-                        title: data.message || "Upload successful!"
-                    });
-
-                    myDropzone.removeAllFiles();
-                    form.reset();
-                    setTimeout(()=>{
-                        window.location.reload()
-                    },3000)
-                })
-                .catch(error => {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        }
-                    });
-                    Toast.fire({
-                        icon: "error",
-                        title: ("Upload failed:", error)
-                    });
-                    return;
-                    console.error("Upload failed:", error);
-                    alert(error.message || "Upload failed. Please check console for details.");
-                });
+    function showToast(message, icon = "warning") {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
         });
-    </script>
+        Toast.fire({
+            icon: icon,
+            title: message,
+        });
+    }
+
+    document.getElementById("submit-all").addEventListener("click", function (e) {
+        e.preventDefault();
+        var form = document.getElementById("product-form");
+
+        if (!validateForm(form)) return;
+
+        var formData = new FormData(form);
+
+        // Add Dropzone images
+        myDropzone.getAcceptedFiles().forEach((file) => {
+            formData.append('images[]', file);
+        });
+
+        fetch("{{ route('dashboard.storeProduct') }}", {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+                'Accept': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            showToast(data.message || "Upload successful!", "success");
+            myDropzone.removeAllFiles();
+            form.reset();
+        })
+        .catch(err => {
+            Swal.fire({
+                icon: "error",
+                title: "Upload failed",
+                text: err.message || "Please try again."
+            });
+        });
+    });
+</script>
+
 </body>
 
 </html>

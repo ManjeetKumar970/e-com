@@ -23,7 +23,7 @@ public function storeBillingRols(Request $request)
 
     if ($request->hasFile('images')) {
         foreach ($request->file('images') as $file) {
-            $filename = $file->store('uploads/billingroll', 'public'); // Save to storage/app/public/uploads
+            $filename = $file->store('uploads/billingroll', 'public');
             $imagePaths[] = $filename;
         }
     }

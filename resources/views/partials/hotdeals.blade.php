@@ -5,86 +5,39 @@
         </div>
 
         <div class="products-grid-hot">
-            <div class="product-card-hot">
-                <div class="product-header-hot">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-                </div>
-                <div class="product-image-hot">
-                    <div class="product-icon">
-                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
-                    </div>
-                </div>
-                <h3 class="product-title">TSC Alpha-4<br>Thermal Printer</h3>
-                <p class="product-description">High-speed printing with wireless connectivity and cloud integration.</p>
-                <div class="product-footer">
-                    <div class="price-section">
-                        <div class="current-price">₹12,999</div>
-                        <div class="original-price">₹15,999</div>
-                    </div>
-                    <button class="add-btn" onclick="addToCart('TSC Alpha-4')">+</button>
-                </div>
+        @foreach($barcodes as $barcode)
+        <div class="product-card-hot">
+            <div class="product-header-hot">
+                <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
             </div>
 
-            <div class="product-card-hot">
-                <div class="product-header-hot">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-                </div>
+             {{-- Bootstrap Carousel inside your style wrapper --}}
                 <div class="product-image-hot">
-                     <div class="product-icon">
-                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
+                    <div id="carousel-{{ $barcode->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                        <div class="carousel-inner">
+                            @foreach($barcode->images as $index => $image)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 product-image" alt="{{ $barcode->name }}">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-                <h3 class="product-title">ProScan X200<br>Scanner</h3>
-                <p class="product-description">Lightning-fast barcode scanning with AI-powered recognition.</p>
-                <div class="product-footer">
-                    <div class="price-section">
-                        <div class="current-price">₹4,999</div>
-                        <div class="original-price">₹6,999</div>
-                    </div>
-                    <button class="add-btn" onclick="addToCart('ProScan X200')">+</button>
-                </div>
-            </div>
 
-            <div class="product-card-hot">
-                <div class="product-header-hot">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-                </div>
-                <div class="product-image-hot">
-                     <div class="product-icon">
-                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
-                    </div>
-                </div>
-                <h3 class="product-title">SmartPOS Pro<br>Software</h3>
-                <p class="product-description">Complete business management with inventory and GST billing.</p>
-                <div class="product-footer">
-                    <div class="price-section">
-                        <div class="current-price">₹19,999</div>
-                        <div class="original-price">₹24,999</div>
-                    </div>
-                    <button class="add-btn" onclick="addToCart('SmartPOS Pro')">+</button>
-                </div>
-            </div>
+            <h3 class="product-title">{{ $barcode->name }}</h3>
+            <p class="product-description">{{ $barcode->description }}</p>
 
-            <div class="product-card-hot">
-                <div class="product-header-hot">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+            <div class="product-footer">
+                <div class="price-section">
+                    <div class="current-price">₹{{ $barcode->price }}</div>
+                    <div class="original-price">₹{{ $barcode->price }}</div>
                 </div>
-                <div class="product-image-hot">
-                    <div class="product-icon">
-                        <img src="{{asset('images/products/download.png')}}" alt="TSC Alpha-4 Thermal Printer" class="product-image">
-                    </div>
-                </div>
-                <h3 class="product-title">SmartPOS Pro<br>Software</h3>
-                <p class="product-description">Complete business management with inventory and GST billing.</p>
-                <div class="product-footer">
-                    <div class="price-section">
-                        <div class="current-price">₹19,999</div>
-                        <div class="original-price">₹24,999</div>
-                    </div>
-                    <button class="add-btn" onclick="addToCart('SmartPOS Pro')">+</button>
-                </div>
+                <button class="add-btn" onclick="addToCart('{{ $barcode->name }}')">+</button>
             </div>
         </div>
+    @endforeach
+</div>
+
     </div>
 
 
@@ -314,4 +267,5 @@
                 }, index * 200);
             });
         });
+        
     </script>

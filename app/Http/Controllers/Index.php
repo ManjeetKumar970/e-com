@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Dashboard\BarcodeRol;
 
 class Index extends Controller
 {
@@ -13,7 +14,12 @@ class Index extends Controller
      */
     public function index()
     {
-        return view('index'); 
+         $barcodes = BarcodeRol::all()->map(function($barcode){
+         $barcode->images = json_decode($barcode->images, true); // decode to array
+         return $barcode;
+    });
+
+    return view('index', compact('barcodes')); 
     }
     public function product()
     {

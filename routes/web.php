@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Dashboard;
 use App\Http\Controllers\Dashboard\NavBar;
 use App\Http\Controllers\Dashboard\ImgSlides;
 use App\Http\Controllers\Dashboard\PrintersController;
+use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -38,7 +39,7 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/storebillingrols', [BillingRols::class, 'storeBillingRols'])->name('dashboard.storebillingrols');
         //Barcode Rols
         Route::get('/barcodepage', [BarcodeRolController::class, 'barcodepage'])->name('dashboard.barcodepage');
-        Route::post('/storebarcoderols', [BarcodeRolController::class, 'storeBarcodeRols'])->name('dashboard.storebarcoderols');
+        Route::post('/storeProduct', [ProductsController::class, 'storeProduct'])->name('dashboard.storeProduct');
         
         //Billing Printer
         Route::get('/billingprinter', [PrintersController::class, 'billingPrinter'])->name('dashboard.billingprinter');
