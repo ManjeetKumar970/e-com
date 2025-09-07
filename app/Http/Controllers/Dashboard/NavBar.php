@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Dashboard\NavCategory;
+use App\Models\Dashboard\ProductAttribute;
 use App\Models\Dashboard\SubCategory;
+use Attribute;
 
 class NavBar extends Controller
 {
@@ -28,7 +30,10 @@ class NavBar extends Controller
             'name' => $request->name,
             'slug' => $request->slug,
         ]);
-
+        $proudctcategory = ProductAttribute::create([
+                    'name' => $request->name,
+                    'slug' => $request->slug,
+                ]);
         // Create subcategory
         SubCategory::create([
             'navcategory_id' => $category->id,

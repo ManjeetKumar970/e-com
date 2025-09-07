@@ -57,19 +57,25 @@
     </div>
 
     <div class="container card card-box mt-3 pd-20 mb-20">
-        <form method="POST" action="{{ route('dashboard.storeCategory') }}">
+        {{-- <form method="POST" action="{{ route('dashboard.storeCategory') }}"> --}}
             @csrf
 
             {{-- Category Section --}}
             <div class="row mb-4" style="padding-top: 20px;">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-floating">
                         <input name="name" class="form-control" type="text" placeholder="Category Name" required />
                         <label>Category Name *</label>
                         <div class="invalid-feedback">Please provide a category name.</div>
                     </div>
                 </div>
-
+                    <div class="col-md-6">
+                    <div class="form-floating">
+                        <input name="cat_type" class="form-control" type="text" placeholder="Category Name" required />
+                        <label>Category Type *</label>
+                        <div class="invalid-feedback">Please provide a category name.</div>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="form-floating">
                         <input name="slug" class="form-control" type="text" placeholder="Category Slug" required />
@@ -78,10 +84,11 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+         <div class="container card card-box mt-3 pd-20 mb-20">
             {{-- Sub Category Section --}}
-            <div class="row mb-4">
-                <div class="col-md-6">
+            <div class="row mb-4" style="padding-top: 20px;">
+                <div class="col-md-12">
                     <div class="form-floating">
                         <input name="sub_name" class="form-control" type="text" placeholder="Sub Category Name" required />
                         <label>Sub Category Name *</label>
@@ -89,6 +96,13 @@
                     </div>
                 </div>
 
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input name="sub_type" class="form-control" type="text" placeholder="Sub Category Name" required />
+                        <label>Sub Category Type *</label>
+                        <div class="invalid-feedback">Please provide a subcategory name.</div>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="form-floating">
                         <input name="sub_slug" class="form-control" type="text" placeholder="Sub Category Slug" required />

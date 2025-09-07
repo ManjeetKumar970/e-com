@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPSON TM-T20III Thermal Receipt Printer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .breadcrumb-nav {
+            background-color: #f8f9fa;
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .product-image-container {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 8px;
+            padding: 20px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #dee2e6;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 3px;
+            transition: transform 0.3s ease;
+        }
+        
+        .thumbnail:hover img {
+            transform: scale(1.1);
+        }
+        
+        .thumbnail.active {
+            border-color: #007bff;
+        }
+        
+        .thumbnail:hover {
+            border-color: #007bff;
+        }
+        
+        .thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+            z-index: 2;
+        }
+        
+        .thumbnail:hover::before {
+            left: 100%;
+        }
+        
+        .rating-stars {
+            color: #28a745;
+            margin-right: 10px;
+        }
+        
+        .rating-info {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .special-price-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .current-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .original-price {
+            font-size: 1.2rem;
+            color: #6c757d;
+            text-decoration: line-through;
+            margin-left: 10px;
+        }
+        
+        .discount-badge {
+            background-color: #ff6b35;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .product-specs-table {
+            background-color: #f8f9fa;
+        }
+        
+        .product-specs-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+        }
+        
+        .product-specs-table td:first-child {
+            background-color: #e9ecef;
+            font-weight: 500;
+            width: 30%;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .feature-list li:before {
+            content: "•";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dee2e6;
+            background-color: white;
+            color: #6c757d;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-icon:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .video-placeholder {
+            border-radius: 8px;
+            text-align: center;
+            color: #6c757d;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=250&fit=crop&crop=center');
+            background-size: cover;
+            background-position: center;
+            min-height: 200px;
+        }
+        
+        .video-placeholder:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-overlay {
+            background: rgba(0,0,0,0.6);
+            border-radius: 8px;
+            padding: 40px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            border: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            background: linear-gradient(135deg, #ff5722, #ff7043);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+        
+        .zoom-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .zoom-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+        
+        .zoom-modal .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .current-price {
+                font-size: 1.5rem;
+            }
+            
+            .product-image-container {
+                min-height: 250px;
+            }
+            
+            .action-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb-nav">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Thermal Printers</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">EPSON TM-T20III</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Product Section -->
+    <div class="container my-5">
+        <div class="row">
+            <!-- Product Images -->
+            <div class="col-lg-6 mb-4">
+                <div class="product-image-container" id="main-product-image">
+                    <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&h=400&fit=crop&crop=center" 
+                         alt="EPSON TM-T20III Thermal Printer" 
+                         class="product-image" 
+                         id="mainProductImage">
+                </div>
+                
+                <!-- Thumbnails -->
+                <div class="thumbnail-container">
+                    <div class="thumbnail active" data-image="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&h=400&fit=crop&crop=center">
+                        <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=60&h=60&fit=crop&crop=center" alt="Main Printer View">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=500&h=400&fit=crop&crop=center">
+                        <img src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=60&h=60&fit=crop&crop=center" alt="Control Panel">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop&crop=center">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60&h=60&fit=crop&crop=center" alt="Connectivity">
+                    </div>
+                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&h=400&fit=crop&crop=center">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=60&h=60&fit=crop&crop=center" alt="Setup Guide">
+                    </div>
+                </div>
+                
+                <!-- Video Section -->
+                <div class="video-placeholder">
+                    <div class="video-overlay">
+                        <i class="fas fa-play-circle fa-3x mb-3 text-white"></i>
+                        <h5 class="text-white">Play</h5>
+                        <p class="mb-0 text-white">Product demonstration video</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Details -->
+            <div class="col-lg-6">
+                <h1 class="h2 mb-3">EPSON TM-T20III Thermal Receipt Printer</h1>
+                <p class="text-muted mb-3">High Speed Business Printer (Black)</p>
+                
+                <!-- Rating -->
+                <div class="d-flex align-items-center mb-3">
+                    <div class="rating-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span class="ms-1 text-dark">4.6</span>
+                    </div>
+                    <span class="rating-info">2,847 ratings and 892 reviews</span>
+                </div>
+                
+                <!-- Price Section -->
+                <div class="mb-4">
+                    <div class="special-price-badge">Special Price</div>
+                    <div>
+                        <span class="current-price">₹8,450</span>
+                        <span class="original-price">₹12,999</span>
+                        <span class="discount-badge">35% off</span>
+                    </div>
+                </div>
+                
+                <!-- Product Specifications -->
+                <div class="mb-4">
+                    <table class="table table-sm product-specs-table">
+                        <tr>
+                            <td>Category</td>
+                            <td>THERMAL POS ROLLS</td>
+                        </tr>
+                        <tr>
+                            <td>Product Model</td>
+                            <td>SW-TR79X50</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td>79mm</td>
+                        </tr>
+                        <tr>
+                            <td>Diameter</td>
+                            <td>60mm</td>
+                        </tr>
+                        <tr>
+                            <td>Core</td>
+                            <td>1/2" Inch</td>
+                        </tr>
+                        <tr>
+                            <td>Unit</td>
+                            <td>Roll</td>
+                        </tr>
+                        <tr>
+                            <td>Standard Packing</td>
+                            <td>16 Rolls Packing</td>
+                        </tr>
+                        <tr>
+                            <td>Product Weight</td>
+                            <td>200gm</td>
+                        </tr>
+                        <tr>
+                            <td>Min Order Limit</td>
+                            <td>1 Roll</td>
+                        </tr>
+                        <tr>
+                            <td>Roll Length</td>
+                            <td>50Mtr</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- Material Selection -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Material:</label>
+                    <select class="form-select">
+                        <option>Select Material</option>
+                        <option>Standard Thermal Paper</option>
+                        <option>Premium Thermal Paper</option>
+                        <option>Eco-Friendly Paper</option>
+                    </select>
+                </div>
+                
+                <!-- Quantity Selection -->
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Quantity:</label>
+                    <select class="form-select">
+                        <option>Select Quantity</option>
+                        <option>1 Roll</option>
+                        <option>5 Rolls</option>
+                        <option>10 Rolls</option>
+                        <option>16 Rolls (Standard Pack)</option>
+                        <option>50 Rolls (Bulk)</option>
+                    </select>
+                </div>
+                
+                <!-- Core Selection -->
+                <div class="mb-4">
+                    <label class="form-label fw-bold">Core:</label>
+                    <select class="form-select">
+                        <option>Select Core</option>
+                        <option>1/2" Inch</option>
+                        <option>3/4" Inch</option>
+                        <option>1" Inch</option>
+                    </select>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-lg flex-fill me-2 add-to-cart-btn">
+                        <i class="fas fa-shopping-cart me-2"></i>ADD TO CART
+                    </button>
+                    <button class="btn btn-success btn-lg flex-fill buy-now-btn">
+                        <i class="fas fa-bolt me-2"></i>BUY NOW
+                    </button>
+                </div>
+                
+                <!-- Download Link -->
+                <div class="text-center mt-3">
+                    <a href="#" class="text-primary text-decoration-none">
+                        <i class="fas fa-download me-1"></i>Download Product Catalog
+                    </a>
+                    <br>
+                    <small class="text-muted">Complete specifications & compatibility guide</small>
+                </div>
+                
+                <div class="action-buttons mt-3 justify-content-center">
+                    <a href="#" class="btn-icon" title="Wishlist">
+                        <i class="far fa-heart"></i>
+                    </a>
+                    <a href="#" class="btn-icon" title="Compare">
+                        <i class="fas fa-balance-scale"></i>
+                    </a>
+                    <a href="#" class="btn-icon" title="Share">
+                        <i class="fas fa-share-alt"></i>
+                    </a>
+                    <a href="#" class="btn-icon" title="Download">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a href="#" class="btn-icon" title="Print">
+                        <i class="fas fa-print"></i>
+                    </a>
+                    <a href="#" class="btn-icon" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Description -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Product Description</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>The EPSON TM-T20III is a high-performance thermal receipt printer designed for modern business environments. With its sleek design and robust functionality, this printer delivers exceptional print quality and reliability for retail, hospitality, and service industries.</p>
+                        
+                        <h5 class="mt-4 mb-3">Key Features:</h5>
+                        <ul class="feature-list">
+                            <li>Print speed up to 250mm/sec for fast customer service</li>
+                            <li>Multiple connectivity options: USB, Ethernet, and Serial ports</li>
+                            <li>Compact design perfect for space-constrained counters</li>
+                            <li>ENERGY STAR qualified for reduced power consumption</li>
+                            <li>Easy drop-in paper loading mechanism</li>
+                            <li>Reliable partial cut function</li>
+                        </ul>
+                        
+                        <h5 class="mt-4 mb-3">Ideal For:</h5>
+                        <p class="text-muted">Retail stores, restaurants, cafes, hotels, and any POS environment requiring reliable receipt printing.</p>
+                        
+                        <div class="mt-4 p-3 rounded" style="background-color: #f8f9fa;">
+                            <h6><strong>Material:</strong></h6>
+                            <div class="mb-3">
+                                <select class="form-select">
+                                    <option>Select Material</option>
+                                    <option>Standard Thermal Paper</option>
+                                    <option>Premium Thermal Paper</option>
+                                    <option>Eco-Friendly Paper</option>
+                                </select>
+                            </div>
+                            
+                            <h6><strong>Quantity:</strong></h6>
+                            <div class="mb-3">
+                                <select class="form-select">
+                                    <option>Select Quantity</option>
+                                    <option>1 Roll</option>
+                                    <option>5 Rolls</option>
+                                    <option>10 Rolls</option>
+                                    <option>16 Rolls (Standard Pack)</option>
+                                    <option>50 Rolls (Bulk)</option>
+                                </select>
+                            </div>
+                            
+                            <h6><strong>Core:</strong></h6>
+                            <div class="mb-3">
+                                <select class="form-select">
+                                    <option>Select Core</option>
+                                    <option>1/2" Inch</option>
+                                    <option>3/4" Inch</option>
+                                    <option>1" Inch</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="d-flex gap-2 mb-3">
+                                <button class="btn btn-lg flex-fill" style="background-color: #ff6b47; color: white; border: none;">
+                                    <i class="fas fa-shopping-cart me-2"></i>ADD TO CART
+                                </button>
+                                <button class="btn btn-lg flex-fill" style="background-color: #6c5ce7; color: white; border: none;">
+                                    <i class="fas fa-bolt me-2"></i>BUY NOW
+                                </button>
+                            </div>
+                            
+                            <!-- Download Link -->
+                            <div class="text-center">
+                                <a href="#" class="text-primary text-decoration-none">
+                                    <i class="fas fa-download me-1"></i>Download Product Catalog
+                                </a>
+                                <br>
+                                <small class="text-muted">Complete specifications & compatibility guide</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Highlights Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="mb-4">Product Highlights</h3>
+                <div class="row g-4">
+                    <!-- High Speed Printing -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="d-flex align-items-start">
+                            <div class="me-3 text-warning">
+                                <i class="fas fa-tachometer-alt fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">High Speed Printing</h5>
+                                <p class="text-muted small mb-0">Print speed up to 250mm/sec for fast customer service operations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Multiple Connectivity -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="d-flex align-items-start">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-network-wired fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">Multiple Connectivity</h5>
+                                <p class="text-muted small mb-0">USB, Ethernet, and Serial ports for versatile connection options</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reliable & Durable -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="d-flex align-items-start">
+                            <div class="me-3 text-success">
+                                <i class="fas fa-shield-alt fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">Reliable & Durable</h5>
+                                <p class="text-muted small mb-0">Built for heavy-duty commercial use with 2-year warranty</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Easy Integration -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="d-flex align-items-start">
+                            <div class="me-3 text-info">
+                                <i class="fas fa-puzzle-piece fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-2">Easy Integration</h5>
+                                <p class="text-muted small mb-0">Compatible with Windows, Linux, Android, and iOS systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zoom Modal -->
+    <div class="zoom-modal" id="zoomModal">
+        <span class="close-btn">&times;</span>
+        <img src="" alt="Zoomed Image" id="zoomedImage">
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Thumbnail click functionality with image switching
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                // Remove active class from all thumbnails
+                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+                
+                // Get the image URL from data-image attribute
+                const imageUrl = this.getAttribute('data-image');
+                const mainImage = document.getElementById('mainProductImage');
+                
+                // Add fade effect
+                mainImage.style.opacity = '0.3';
+                
+                setTimeout(() => {
+                    mainImage.src = imageUrl;
+                    mainImage.style.opacity = '1';
+                }, 200);
+            });
+        });
+        
+        // Image zoom functionality
+        document.getElementById('mainProductImage').addEventListener('click', function() {
+            const modal = document.getElementById('zoomModal');
+            const zoomedImg = document.getElementById('zoomedImage');
+            
+            zoomedImg.src = this.src;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Close zoom modal
+        document.querySelector('.close-btn').addEventListener('click', function() {
+            const modal = document.getElementById('zoomModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('zoomModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('zoomModal');
+                if (modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+        
+        // Thumbnail hover effect
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('mouseenter', function() {
+                const mainImage = document.getElementById('mainProductImage');
+                mainImage.style.transform = 'scale(1.02)';
+            });
+            
+            thumbnail.addEventListener('mouseleave', function() {
+                const mainImage = document.getElementById('mainProductImage');
+                mainImage.style.transform = 'scale(1)';
+            });
+        });
+        
+        // Add to cart functionality
+        document.querySelector('.add-to-cart-btn').addEventListener('click', function() {
+            // Add loading state
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Adding...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check me-2"></i>Added to Cart!';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-success');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-primary');
+                    btn.disabled = false;
+                }, 2000);
+            }, 1000);
+        });
+        
+        // Buy now functionality
+        document.querySelector('.buy-now-btn').addEventListener('click', function() {
+            // Add loading state
+            const btn = this;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Redirecting to secure checkout...');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 1500);
+        });
+        
+        // Additional Add to Cart buttons functionality (in description section)
+        document.querySelectorAll('button[style*="background-color: #ff6b47"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Adding...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fas fa-check me-2"></i>Added!';
+                    this.style.backgroundColor = '#28a745';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.style.backgroundColor = '#ff6b47';
+                        this.disabled = false;
+                    }, 2000);
+                }, 1000);
+            });
+        });
+        
+        // Additional Buy Now buttons functionality (in description section)
+        document.querySelectorAll('button[style*="background-color: #6c5ce7"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Redirecting to secure checkout...');
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 1500);
+            });
+        });
+        
+        // Action button functionalities
+        document.querySelectorAll('.btn-icon').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const title = this.getAttribute('title');
+                
+                // Add visual feedback
+                const icon = this.querySelector('i');
+                const originalClass = icon.className;
+                icon.className = 'fas fa-spinner fa-spin';
+                
+                setTimeout(() => {
+                    icon.className = originalClass;
+                    alert(`${title} functionality would be implemented here.`);
+                }, 500);
+            });
+        });
+        
+        // Video placeholder click
+        document.querySelector('.video-placeholder').addEventListener('click', function() {
+            const overlay = this.querySelector('.video-overlay');
+            overlay.style.background = 'rgba(0,0,0,0.8)';
+            
+            setTimeout(() => {
+                alert('Video player would open here.');
+                overlay.style.background = 'rgba(0,0,0,0.6)';
+            }, 200);
+        });
+        
+        // Download Product Catalog functionality
+        document.querySelectorAll('a[href="#"]').forEach(link => {
+            if (link.textContent.includes('Download Product Catalog')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const icon = this.querySelector('i');
+                    const originalClass = icon.className;
+                    
+                    icon.className = 'fas fa-spinner fa-spin me-1';
+                    
+                    setTimeout(() => {
+                        icon.className = 'fas fa-check me-1';
+                        alert('Downloading product catalog...');
+                        
+                        setTimeout(() => {
+                            icon.className = originalClass;
+                        }, 2000);
+                    }, 1000);
+                });
+            }
+        });
+        
+        // Smooth scroll animation for page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to main elements
+            const elements = document.querySelectorAll('.product-image-container, .thumbnail-container, .video-placeholder, h1, .rating-stars, .current-price, .product-specs-table');
+            
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+        
+        // Enhanced image loading with placeholder
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('load', function() {
+                this.style.opacity = '0';
+                this.style.transform = 'scale(0.8)';
+                
+                setTimeout(() => {
+                    this.style.transition = 'all 0.3s ease';
+                    this.style.opacity = '1';
+                    this.style.transform = 'scale(1)';
+                }, 50);
+            });
+        });
+    </script>
+</body>
+</html>

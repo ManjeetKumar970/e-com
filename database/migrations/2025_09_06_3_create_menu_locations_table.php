@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('menu_locations', function (Blueprint $table) {
         $table->id();
-        $table->string('name');   // Barcode, Printer, Scanner, Thermal
-        $table->string('slug')->unique();
+        $table->string('name')->unique();
+        $table->string('display_name');
+        $table->text('description')->nullable();
+        $table->boolean('is_active')->default(true);
         $table->timestamps();
     });
+
     }
 
     /**
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('menu_locations');
     }
 };

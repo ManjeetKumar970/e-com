@@ -75,7 +75,7 @@
         </div>
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                 @csrf
                 
                 <!-- Basic Product Information -->
@@ -119,6 +119,43 @@
                     </div>
                 </div>
 
+                <!--  Size    -->
+                <div class="form-section">
+                    <h6><i class="fas fa-info-circle"></i>Size decription</h6>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating form-group">
+                                <input name="name" id="product-name" class="form-control" type="text" placeholder="Product Name" required />
+                                <label>Product Size *</label>
+                                <div class="invalid-feedback">Please provide a product Size.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input name="core" id="core" class="form-control" type="text" placeholder="Core"  />
+                                <label>Core</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input name="paper_color" class="form-control" type="text" placeholder="Product Color" required />
+                                <label>Paper Color *</label>
+                                <div class="invalid-feedback">Please provide a Paper Color.</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input name="paper_type" class="form-control" type="text" placeholder="Paper Type" required />
+                                <label>Paper Type *</label>
+                                <div class="invalid-feedback">Please provide a Type.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Pricing Information -->
                 <div class="form-section">
                     <h6><i class="fas fa-dollar-sign"></i> Pricing & Inventory</h6>
@@ -153,7 +190,7 @@
                             <label class="form-label">Select Categories *</label>
                             <div class="border rounded p-3" style="max-height: 200px; overflow-y: auto;">
                                 @php
-                                    $categories = \App\Models\Category::active()
+                                    $categories = \App\Models\Dashboard\Category::active()
                                         ->orderBy('name')
                                         ->get()
                                         ->groupBy('parent_id');
@@ -269,7 +306,7 @@
                         <button id="submit-all" type="button" class="btn btn-success btn-lg btn-block">
                             <i class="fas fa-save"></i> Create Product
                         </button>
-                        <a href="{{ route('admin.products.index') }}" class="btn btn-secondary btn-lg ms-2">
+                        <a href="{{ route('products.index') }}" class="btn btn-secondary btn-lg ms-2">
                             <i class="fas fa-arrow-left"></i> Back to Products
                         </a>
                     </div>
@@ -300,7 +337,7 @@
 
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
-            url: "{{ route('admin.products.store') }}", // Not used directly
+            url: "{{ route('products.store') }}", // Not used directly
             autoProcessQueue: false,
             uploadMultiple: true,
             parallelUploads: 5,
@@ -415,7 +452,7 @@
                 formData.append('images[]', file);
             });
 
-            fetch("{{ route('admin.products.store') }}", {
+            fetch("{{ route('products.store') }}", {
                     method: 'POST',
                     body: formData,
                     headers: {
@@ -454,7 +491,7 @@
                     
                     // Redirect to products list after delay
                     setTimeout(() => {
-                        window.location.href = "{{ route('admin.products.index') }}";
+                        window.location.href = "{{ route('products.index') }}";
                     }, 2000);
                 })
                 .catch(error => {
