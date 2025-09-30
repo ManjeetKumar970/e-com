@@ -32,5 +32,12 @@ class Index extends Controller
     public function contactus()
     {
         return view('contactus'); 
-    }
+        
+    } function productreview(){
+     return view('productreview'); 
+  }
+
+   function productcheckout(){
+    return view('productcheckout');
+   }
 }

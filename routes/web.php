@@ -15,7 +15,8 @@ Route::get('/', [Index::class, 'index'])->name('index');
 Route::get('/product', [Index::class, 'product'])->name('product');
 Route::get('/custombarcode', [Index::class, 'custombarcode'])->name('custombarcode');
 Route::get('/contactus', [Index::class, 'contactus'])->name('contactus');
-
+Route::get('/productreview', [Index::class, 'productreview'])->name('productreview');
+Route::get('/productcheckout', [Index::class, 'productcheckout'])->name('productcheckout');
 
 
 
