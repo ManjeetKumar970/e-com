@@ -779,31 +779,31 @@
     </div>
         <!-- Product Description -->
         <div class="container product-card py-5">
-        <div class="row mt-5">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Product Description</h3>
-                    </div>
-                    <div class="card-body">
-                        <p>The EPSON TM-T20III is a high-performance thermal receipt printer designed for modern business environments. With its sleek design and robust functionality, this printer delivers exceptional print quality and reliability for retail, hospitality, and service industries.</p>
-                        
-                        <h5 class="mt-4 mb-3">Key Features:</h5>
-                        <ul class="feature-list">
-                            <li>Print speed up to 250mm/sec for fast customer service</li>
-                            <li>Multiple connectivity options: USB, Ethernet, and Serial ports</li>
-                            <li>Compact design perfect for space-constrained counters</li>
-                            <li>ENERGY STAR qualified for reduced power consumption</li>
-                            <li>Easy drop-in paper loading mechanism</li>
-                            <li>Reliable partial cut function</li>
-                        </ul>
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Product Description</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>The EPSON TM-T20III is a high-performance thermal receipt printer designed for modern business environments. With its sleek design and robust functionality, this printer delivers exceptional print quality and reliability for retail, hospitality, and service industries.</p>
+                            
+                            <h5 class="mt-4 mb-3">Key Features:</h5>
+                            <ul class="feature-list">
+                                <li>Print speed up to 250mm/sec for fast customer service</li>
+                                <li>Multiple connectivity options: USB, Ethernet, and Serial ports</li>
+                                <li>Compact design perfect for space-constrained counters</li>
+                                <li>ENERGY STAR qualified for reduced power consumption</li>
+                                <li>Easy drop-in paper loading mechanism</li>
+                                <li>Reliable partial cut function</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
         <!-- Product Highlights Section -->
-        <div class="container card">
+        <div class="container product-card">
         <!-- Product Highlights Section -->
         <h2>Product Highlights</h2>
         <div class="highlights-grid">
@@ -840,47 +840,47 @@
             </div>
         </div>
         </div>
-        <div class="container card py-5">
+        <div class="container product-card py-5">
         <!-- What's in the Box Section -->
         <div class="box-section">
             <h2>What's in the Box</h2>
             <div class="box-grid">
-                <div class="box-item">
+                <div class="box-item highlight-card">
                     <div class="box-icon">
                         <i class="fas fa-print"></i>
                     </div>
                     <p>EPSON TM-T20III Printer</p>
                 </div>
 
-                <div class="box-item">
+                <div class="box-item highlight-card">
                     <div class="box-icon">
                         <i class="fas fa-plug"></i>
                     </div>
                     <p>Power Adapter & Cable</p>
                 </div>
 
-                <div class="box-item">
+                <div class="box-item highlight-card">
                     <div class="box-icon">
                         <i class="fas fa-usb"></i>
                     </div>
                     <p>USB Cable</p>
                 </div>
 
-                <div class="box-item">
+                <div class="box-item highlight-card">
                     <div class="box-icon">
                         <i class="fas fa-book"></i>
                     </div>
                     <p>Quick Setup Guide</p>
                 </div>
 
-                <div class="box-item">
+                <div class="box-item highlight-card">
                     <div class="box-icon">
                         <i class="fas fa-compact-disc"></i>
                     </div>
                     <p>Driver CD & Documentation</p>
                 </div>
 
-                <div class="box-item">
+                <div class="box-item highlight-card">
                     <div class="box-icon">
                         <i class="fas fa-certificate"></i>
                     </div>
