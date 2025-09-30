@@ -3,30 +3,7 @@
 <head>
     @include('partials.head1')
   <style>
-      * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f5f5f5;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 40px;
-            color: #1a1a1a;
-        }
-
+    
         .highlights-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -460,14 +437,7 @@
             max-width: 1200px;
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 50px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
+    
 
         .policy-grid {
             display: grid;
@@ -564,40 +534,6 @@
             z-index: 1;
         }
 
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #667eea;
-            border: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-        }
-
-        .share-btn:hover {
-            background: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-        }
-
-        .share-btn i {
-            font-size: 1.2rem;
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-                margin-bottom: 30px;
-            }
 
             .policy-grid {
                 grid-template-columns: 1fr;
@@ -653,7 +589,7 @@
     </div>
 
     <!-- Main Product Section -->
-    <div class="container my-5">
+    <div class="container product-card my-5">
         <div class="row">
             <!-- Product Images -->
             <div class="col-lg-6 mb-4">
@@ -840,8 +776,9 @@
                 </div>
             </div>
         </div>
-        
+    </div>
         <!-- Product Description -->
+        <div class="container product-card py-5">
         <div class="row mt-5">
             <div class="col-12">
                 <div class="card">
@@ -864,9 +801,9 @@
                 </div>
             </div>
         </div>
-        
+        </div>
         <!-- Product Highlights Section -->
-        <div class="container">
+        <div class="container card">
         <!-- Product Highlights Section -->
         <h2>Product Highlights</h2>
         <div class="highlights-grid">
@@ -902,7 +839,8 @@
                 <p>Compatible with Windows, Linux, Android, and iOS systems</p>
             </div>
         </div>
-
+        </div>
+        <div class="container card py-5">
         <!-- What's in the Box Section -->
         <div class="box-section">
             <h2>What's in the Box</h2>
@@ -950,11 +888,12 @@
                 </div>
             </div>
         </div>
-    </div>
+     </div>
+     
         <!-- What's in the Box Section -->
         <!-- View Similar Products Section -->
-        <section>
-            <h3 class="section-title">View Similar Products</h3>
+        <div class="container   product-card py-5">
+            <h3 class="">View Similar Products</h3>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="product-card">
@@ -1005,17 +944,17 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+  
 
 
 
 
 
 
-    <div class="container py-4">
+    <div class="container product-card py-4">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-12">
                 <!-- Customer Reviews Section -->
                 <div class="card mb-4">
                     <div class="card-body">
@@ -1291,7 +1230,11 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            
+        </div>
+    </div>
+    <div class="container product-card py-5">
+        <div class="col-lg-12">
                 <!-- Technical Specifications -->
                 <div class="card">
                     <div class="card-body">
@@ -1373,99 +1316,8 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
-
-<div class="container">
-        <!-- Technical Specifications Section -->
-        <div class="specs-container">
-            <h2 class="specs-title">Technical Specifications</h2>
-            
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Print Technology</div>
-                        <div class="spec-value">Thermal Transfer</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Print Speed</div>
-                        <div class="spec-value">250 mm/sec</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Paper Width</div>
-                        <div class="spec-value">80mm</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Interface</div>
-                        <div class="spec-value">USB, Ethernet, Serial</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Cut Type</div>
-                        <div class="spec-value">Partial Cut</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Compatibility</div>
-                        <div class="spec-value">Windows, Linux, Android, iOS</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Warranty</div>
-                        <div class="spec-value">2 Years Manufacturer Warranty</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Dimensions</div>
-                        <div class="spec-value">150 x 195 x 148 mm</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Weight</div>
-                        <div class="spec-value">1.6 kg</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Power Consumption</div>
-                        <div class="spec-value">Approx. 1.4A (Standby: 0.1A)</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Operating Temperature</div>
-                        <div class="spec-value">5°C to 45°C</div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="spec-item">
-                        <div class="spec-label">Humidity Range</div>
-                        <div class="spec-value">10% to 90% (non-condensing)</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+<div class="container py-10 product-card">
         <!-- Customers Also Viewed Section -->
         <div class="customers-section">
             <h2 class="customers-title">Customers Also Viewed</h2>
@@ -1519,10 +1371,10 @@
     </div>
 
 
-<section class="policy-section">
-        <h2 class="section-title">Return & Exchange Policy</h2>
-        
-        <div class="policy-grid">
+<div class="container product-card py-5">
+    <h2 class="section-title">Return & Exchange Policy</h2>
+    <div class="row">
+        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon return-icon">
                     <i class="fas fa-undo-alt"></i>
@@ -1532,7 +1384,9 @@
                     Easy returns within 7 days of delivery. No questions asked for unused items in original packaging.
                 </p>
             </div>
+        </div>
 
+        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon exchange-icon">
                     <i class="fas fa-exchange-alt"></i>
@@ -1542,7 +1396,9 @@
                     Exchange facility available for defective products or size/model changes within 7 days.
                 </p>
             </div>
+        </div>
 
+        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon warranty-icon">
                     <i class="fas fa-shield-alt"></i>
@@ -1552,7 +1408,9 @@
                     All products are covered under manufacturer warranty. Extended warranty options available.
                 </p>
             </div>
+        </div>
 
+        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon pickup-icon">
                     <i class="fas fa-truck"></i>
@@ -1563,12 +1421,13 @@
                 </p>
             </div>
         </div>
-
-        <button class="share-btn" onclick="sharePolicy()">
-            <i class="fas fa-share-alt"></i>
-            Share
-        </button>
-    </section>
+    </div>
+</div>
+<center class="py-5">  <button class="btn btn-success">
+        <i class="fas fa-share-alt"></i>
+        Share
+    </button>
+</center>  
 
     <!-- Zoom Modal -->
     <div class="zoom-modal" id="zoomModal">
@@ -1807,33 +1666,7 @@
     </script>
 
 
- <script>
-        function sharePolicy() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Return & Exchange Policy',
-                    text: 'Check out our customer-friendly return and exchange policy!',
-                    url: window.location.href
-                }).catch(() => {
-                    fallbackShare();
-                });
-            } else {
-                fallbackShare();
-            }
-        }
-
-        function fallbackShare() {
-            const url = window.location.href;
-            navigator.clipboard.writeText(url).then(() => {
-                const btn = document.querySelector('.share-btn');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-check"></i> Link Copied!';
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                }, 2000);
-            });
-        }
-    </script>
+ 
 </body>
     @include('partials.footer')
 </html>
