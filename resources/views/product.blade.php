@@ -30,7 +30,7 @@
                 <!-- Product Grid -->
                 <div class="row">
                     <!-- Product 1 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-badge badge-bestseller">Best Seller</div>
                             <div class="product-image-pd">
@@ -58,8 +58,8 @@
 
 
                     <!-- Product 2 -->
-                    <div class="col-lg-4 col-md-6">
-                        <div class="product-card-pd position-relative">
+                    <div class="col-lg-4 col-md-6 py-2">
+                        <div class="product-card-pd position-relative" >
                             <div class="product-badge badge-new">New</div>
                              <div class="product-image-pd">
                                 <img src="{{asset('/images/products/2pd.png')}}" alt="" class="img-fluid">
@@ -84,7 +84,7 @@
                     </div>
 
                     <!-- Product 3 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                              <div class="product-image-pd">
                                 <img src="{{asset('/images/products/2pd.png')}}" alt="" class="img-fluid">
@@ -109,7 +109,7 @@
                     </div>
 
                     <!-- Product 4 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                              <div class="product-image-pd">
                                 <img src="{{asset('/images/products/2pd.png')}}" alt="" class="img-fluid">
@@ -134,7 +134,7 @@
                     </div>
 
                     <!-- Product 5 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-badge badge-popular">Popular</div>
                              <div class="product-image-pd">
@@ -160,7 +160,7 @@
                     </div>
 
                     <!-- Product 6 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                              <div class="product-image-pd">
                                 <img src="{{asset('/images/products/2pd.png')}}" alt="" class="img-fluid">
@@ -185,7 +185,7 @@
                     </div>
 
                     <!-- Product 7 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-badge badge-best-value">Best Value</div>
                              <div class="product-image-pd">
@@ -211,7 +211,7 @@
                     </div>
 
                     <!-- Product 8 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-badge badge-best-value">Best Value</div>
                              <div class="product-image-pd">
@@ -237,7 +237,7 @@
                     </div>
 
                     <!-- Product 9 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-badge badge-new">New</div>
                             <div class="product-image-pd">
@@ -263,7 +263,7 @@
                     </div>
 
                     <!-- Product 10 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-image-pd">
                                 <img src="{{asset('/images/products/2pd.png')}}" alt="" class="img-fluid">
@@ -287,7 +287,7 @@
                     </div>
 
                     <!-- Product 12 -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 py-2">
                         <div class="product-card-pd position-relative">
                             <div class="product-badge badge-hot-deal">Hot Deal</div>
                              <div class="product-image-pd">

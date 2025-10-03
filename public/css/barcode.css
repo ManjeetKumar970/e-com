@@ -382,7 +382,7 @@
             margin-top: 20px;
         }
 
-        .btn {
+        .btn-br {
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
@@ -403,16 +403,6 @@
             background: rgba(255,255,255,0.3);
         }
 
-        .btn-primary {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #ee5a52;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
 
         .features-section {
             background: #f8f9fa;
@@ -492,7 +482,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transform: translateX(400px);
             transition: transform 0.3s ease;
-            z-index: 1000;
+             z-index: 2000;
         }
 
         .toast.show {

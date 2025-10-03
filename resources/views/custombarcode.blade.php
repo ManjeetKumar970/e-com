@@ -185,8 +185,8 @@
                     </div>
 
                     <div class="action-buttons">
-                        <button class="btn btn-secondary" onclick="saveConfiguration()">Save Configuration</button>
-                        <button class="btn btn-primary" onclick="requestQuote()">Request Quote</button>
+                        <button class="btn-br btn-secondary" onclick="saveConfiguration()">Save Configuration</button>
+                        <button class="btn-br btn-primary" onclick="requestQuote()">Request Quote</button>
                     </div>
                 </div>
             </div>
