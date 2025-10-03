@@ -8,16 +8,16 @@
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
-  <!-- Top Header Bar -->
-    <div class="bg-dark text-white py-2">
+    <!-- Top Contact Bar -->
+    <div class="top-bar d-none d-lg-block bg-dark text-white py-2">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <small class="me-4"><i class="fas fa-phone me-1"></i> +91 98765 43210</small>
-                    <small><i class="fas fa-envelope me-1"></i> info@formattertech.com</small>
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-phone me-2"></i> +91 98765 43210
+                    <i class="fas fa-envelope ms-3 me-2"></i> info@formattertech.com
                 </div>
-                <div class="col-md-6 text-end">
-                    <small>GST: 09AADCF1234H1Z5</small>
+                <div>
+                    GST: 09AADCF1234H1Z5
                 </div>
             </div>
         </div>
