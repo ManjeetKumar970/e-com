@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ @include('partials.head1')
+
+    <style>
+        .success-icon {
+            width: 50px;
+            height: 50px;
+            background: #10b981;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .order-badge {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .status-badge {
+            background: #6366f1;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+
+        .progress-tracker {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 14px;
+            left: 12%;
+            right: 12%;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 0;
+        }
+
+        .progress-line-active {
+            position: absolute;
+            top: 14px;
+            left: 12%;
+            height: 2px;
+            background: #6366f1;
+            z-index: 1;
+            transition: width 1s ease;
+            width: 0;
+        }
+
+        .progress-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-circle {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #e5e7eb;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .step-circle.completed {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: white;
+        }
+
+        .step-circle.active {
+            border-color: #6366f1;
+        }
+
+        .item-image {
+            width: 40px;
+            height: 40px;
+            background: #f9fafb;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .payment-summary {
+            background: #f9fafb;
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        .payment-method {
+            background: #eff6ff;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .info-box {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        .step-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .help-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .newsletter-section {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 10px;
+        }
+
+        .btn-primary-custom {
+            background: #6366f1;
+            border: none;
+            padding: 11px 28px;
+            font-size: 13px;
+        }
+
+        .btn-primary-custom:hover {
+            background: #4f46e5;
+        }
+
+        .btn-secondary-custom {
+            background: white;
+            color: #6366f1;
+            border: 1px solid #d1d5db;
+            padding: 11px 28px;
+            font-size: 13px;
+        }
+
+        .btn-secondary-custom:hover {
+            background: #f9fafb;
+            border-color: #6366f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section-pd text-center">
+        <div class="container">
+            <div class="success-icon">✓</div>
+            <h1 class="h3 mb-3">Thank You for Your Order!</h1>
+            <div class="order-badge mb-3">Order #FT-2024-78954</div>
+            <p class="small mb-0" style="opacity: 0.95; max-width: 480px; margin: 0 auto;">
+                Your order has been successfully placed and is being processed. We will send a confirmation email to your.email@example.com with all the details.
+            </p>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <!-- Order Status Card -->
+        <div class="container product-card">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <h2 class="h6 mb-0 fw-semibold">Order Status</h2>
+                    <span class="status-badge">Processing</span>
+                </div>
+
+                <!-- Progress Tracker -->
+                <div class="progress-tracker">
+                    <div class="progress-line"></div>
+                    <div class="progress-line-active" id="progressLine"></div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="progress-step">
+                                <div class="step-circle completed fw-bold">✓</div>
+                                <div class="fw-semibold small">Order Placed</div>
+                                <div class="text-muted" style="font-size: 10px;">Today, 10:30 AM</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="progress-step">
+                                <div class="step-circle active">○</div>
+                                <div class="fw-semibold small">Processing</div>
+                                <div class="text-muted" style="font-size: 10px;">In Progress</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="progress-step">
+                                <div class="step-circle">📦</div>
+                                <div class="fw-semibold small">Shipped</div>
+                                <div class="text-muted" style="font-size: 10px;">Expected Tomorrow</div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="progress-step">
+                                <div class="step-circle">📫</div>
+                                <div class="fw-semibold small">Delivered</div>
+                                <div class="text-muted" style="font-size: 10px;">Est. 23 Nov</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Items and Payment -->
+                <div class="row">
+                    <div class="col-lg-7">
+                        <h3 class="h6 fw-semibold mb-3">Items Ordered (3)</h3>
+                        
+                        <div class="d-flex gap-2 py-3 border-bottom">
+                            <div class="item-image flex-shrink-0">🖨️</div>
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold small">TSC Alpha-4 Thermal Printer</div>
+                                <div class="text-muted" style="font-size: 11px;">Wireless, Cloud Integration</div>
+                                <div class="text-secondary" style="font-size: 11px;">Qty: 1</div>
+                            </div>
+                            <div class="fw-semibold">₹12,999</div>
+                        </div>
+
+                        <div class="d-flex gap-2 py-3 border-bottom">
+                            <div class="item-image flex-shrink-0">🏷️</div>
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold small">Premium Barcode Labels</div>
+                                <div class="text-muted" style="font-size: 11px;">Water Resistant, 100mm x 50mm</div>
+                                <div class="text-secondary" style="font-size: 11px;">Qty: 5 Rolls</div>
+                            </div>
+                            <div class="fw-semibold">₹4,495</div>
+                        </div>
+
+                        <div class="d-flex gap-2 py-3">
+                            <div class="item-image flex-shrink-0">📄</div>
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold small">Thermal Paper Roll 80mm</div>
+                                <div class="text-muted" style="font-size: 11px;">Premium Quality</div>
+                                <div class="text-secondary" style="font-size: 11px;">Qty: 2 Packs</div>
+                            </div>
+                            <div class="fw-semibold">₹2,998</div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="payment-summary">
+                            <h3 class="h6 fw-semibold mb-3">Payment Summary</h3>
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Subtotal</span>
+                                <span>₹20,492</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 small" style="color: #6366f1;">
+                                <span>Discount (SAVE10)</span>
+                                <span>-₹2,049</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>Delivery Charges</span>
+                                <span>FREE</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2 small text-secondary">
+                                <span>GST (18%)</span>
+                                <span>₹3,320</span>
+                            </div>
+                            <div class="d-flex justify-content-between pt-2 mt-2 border-top fw-bold">
+                                <span>Total Paid</span>
+                                <span>₹21,763</span>
+                            </div>
+                            <div class="payment-method mt-3 d-flex align-items-center gap-2">
+                                <span>💳</span>
+                                <div>
+                                    <div class="text-muted" style="font-size: 10px;">Payment Method</div>
+                                    <div class="fw-semibold" style="font-size: 11px;">Credit Card ending in 4567</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="container product-card">
+            <div class="card-body p-4">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="info-box">
+                            <h3 class="h6 fw-semibold mb-3 d-flex align-items-center gap-2">
+                                <span>🚚</span> Delivery Address
+                            </h3>
+                            <strong class="d-block mb-2 small">John Doe</strong>
+                            <p class="small text-secondary mb-1">House No. 123, Street 45</p>
+                            <p class="small text-secondary mb-1">Sector 17, Near City Mall</p>
+                            <p class="small text-secondary mb-1">Chandigarh, Punjab - 160017</p>
+                            <p class="small text-secondary mb-1">India</p>
+                            <p class="small text-secondary mb-1 mt-2">📞 +91 98765 43210</p>
+                            <p class="small text-secondary mb-0">✉️ your.email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="info-box">
+                            <h3 class="h6 fw-semibold mb-3 d-flex align-items-center gap-2">
+                                <span>📄</span> Billing Information
+                            </h3>
+                            <strong class="d-block mb-2 small">ABC Technologies Pvt Ltd</strong>
+                            <p class="small text-secondary mb-1">GST: 09AADCF1234H1Z5</p>
+                            <p class="small text-secondary mb-1">Invoice No: INV-2024-78954</p>
+                            <p class="small text-secondary mb-1">Date: November 21, 2024</p>
+                            <a href="#" class="small d-inline-flex align-items-center gap-1 mt-2 text-decoration-none" style="color: #6366f1;">
+                                📥 Download Invoice (PDF)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button Section -->
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-body p-4 text-center">
+                <div class="d-flex justify-content-center gap-2">
+                    <button class="btn btn-primary-custom" onclick="trackOrder()">
+                        📍 Track Your Order
+                    </button>
+                    <button class="btn btn-secondary-custom" onclick="continueShopping()">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next Steps Section -->
+        <div class="container product-card">
+            <div class="card-body p-4">
+                <h2 class="h5 fw-semibold mb-4">What Happens Next?</h2>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="step-icon">📧</div>
+                            <h4 class="h6 fw-semibold mb-2">Confirmation Email</h4>
+                            <p class="small text-secondary mb-0">We've sent a detailed order confirmation to your email with invoice and tracking information.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="step-icon">📦</div>
+                            <h4 class="h6 fw-semibold mb-2">Order Processing</h4>
+                            <p class="small text-secondary mb-0">Our team is preparing your order. You'll receive an SMS when your package is shipped.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="step-icon">🚀</div>
+                            <h4 class="h6 fw-semibold mb-2">Fast Delivery</h4>
+                            <p class="small text-secondary mb-0">Your order will be delivered within 2-3 business days. Track real-time status anytime.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pt-4 border-top">
+                    <div class="help-icon">📞</div>
+                    <h4 class="h6 fw-semibold mb-2">Need Help?</h4>
+                    <p class="small text-secondary mb-0">Our support team is available 24/7. Call us at<br>+91 98765 43210 for any assistance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-section text-center">
+            <h2 class="h4 fw-semibold mb-2">Stay Updated with Exclusive Offers!</h2>
+            <p class="small mb-4">Get 15% off on your next purchase. Subscribe to our newsletter for deals and new product launches.</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="d-flex gap-2">
+                        <input type="email" class="form-control form-control-sm" placeholder="Enter your email address">
+                        <button class="btn btn-light btn-sm px-4" onclick="subscribe()">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('progressLine').style.width = '20%';
+            }, 400);
+        });
+
+        function trackOrder() {
+            alert('Redirecting to order tracking page...');
+        }
+
+        function continueShopping() {
+            alert('Redirecting to shopping page...');
+        }
+
+        function subscribe() {
+            const emailInput = document.querySelector('.form-control');
+            if (emailInput.value && emailInput.value.includes('@')) {
+                alert('Thank you for subscribing! Check your email for a 15% discount code.');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Order</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #6B8DD6 0%, #8E54E9 100%);
+            min-height: 100vh;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #6B8DD6 0%, #8E54E9 100%);
+            text-align: center;
+            color: white;
+            padding: 50px 20px 80px;
+        }
+
+        .checkmark {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .checkmark-icon {
+            width: 45px;
+            height: 45px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .order-number {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 18px;
+        }
+
+        .confirmation-text {
+            font-size: 14px;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background: #f5f5f5;
+            padding: 40px 20px 60px;
+            margin-top: -40px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .status-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .status-badge {
+            background: #64B5F6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .progress-container {
+            margin-bottom: 50px;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #e0e0e0;
+            z-index: 0;
+        }
+
+        .progress-line-active {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 33.33%;
+            height: 3px;
+            background: #64B5F6;
+            z-index: 1;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .step-icon.completed {
+            background: #64B5F6;
+            color: white;
+        }
+
+        .step-icon.pending {
+            background: white;
+            border: 3px solid #e0e0e0;
+            color: #999;
+        }
+
+        .step-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 3px;
+        }
+
+        .step-date {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 25px;
+        }
+
+        .items-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .item {
+            background: white;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border: 2px solid #e0e0e0;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-details h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .item-specs {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 3px;
+        }
+
+        .item-price {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .payment-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .summary-label {
+            color: #666;
+        }
+
+        .summary-value {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .summary-value.discount {
+            color: #4CAF50;
+        }
+
+        .summary-value.free {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 2px solid #e0e0e0;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .payment-method {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .payment-method-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .payment-card {
+            font-size: 13px;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-step {
+                flex-direction: column;
+            }
+
+            .step-label {
+                font-size: 11px;
+            }
+
+            .step-date {
+                font-size: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .header-section {
+                padding: 40px 20px 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section - Completely Separate -->
+    <div class="header-section">
+        <div class="checkmark">
+            <div class="checkmark-icon">✓</div>
+        </div>
+        <h1>Thank You for Your Order!</h1>
+        <div class="order-number">Order #FT-2024-78954</div>
+        <div class="confirmation-text">
+            Your order has been successfully placed and is being processed. We've sent a<br>
+            confirmation email to your.email@example.com with all the details.
+        </div>
+    </div>
+
+    <!-- Content Section - Separate White Card -->
+    <div class="content-section">
+        <div class="container">
+            <div class="card">
+                <div class="status-header">
+                    <h2>Order Status</h2>
+                    <span class="status-badge">Processing</span>
+                </div>
+
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-line"></div>
+                        <div class="progress-line-active"></div>
+                        
+                        <div class="progress-step">
+                            <div class="step-icon completed">✓</div>
+                            <div class="step-label">Order Placed</div>
+                            <div class="step-date">Friday, 16:30 AM</div>
+                        </div>
+                        
+                        <div class="progress-step">
+                            <div class="step-icon pending">📦</div>
+                            <div class="step-label">Processing</div>
+                            <div class="step-date">In Progress</div>
+                        </div>
+                        
+                        <div class="progress-step">
+                            <div class="step-icon pending">🚚</div>
+                            <div class="step-label">Shipped</div>
+                            <div class="step-date">Expected Tomorrow</div>
+                        </div>
+                        
+                        <div class="progress-step">
+                            <div class="step-icon pending">📍</div>
+                            <div class="step-label">Delivered</div>
+                            <div class="step-date">Est. 2-3 Days</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="items-section">
+                        <div class="section-title">Items Ordered (3)</div>
+                        
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>TSC Alpha-4 Thermal Printer</h3>
+                                <div class="item-specs">Wireless, Cloud Integration</div>
+                                <div class="item-specs">Qty: 1</div>
+                            </div>
+                            <div class="item-price">₹12,999</div>
+                        </div>
+
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>Premium Barcode Labels</h3>
+                                <div class="item-specs">Water Resistant, 100mm x 50mm</div>
+                                <div class="item-specs">Qty: 5 Rolls</div>
+                            </div>
+                            <div class="item-price">₹4,495</div>
+                        </div>
+
+                        <div class="item">
+                            <div class="item-details">
+                                <h3>Thermal Paper Roll 80mm</h3>
+                                <div class="item-specs">Premium Quality</div>
+                                <div class="item-specs">Qty: 2 Packs</div>
+                            </div>
+                            <div class="item-price">₹2,998</div>
+                        </div>
+                    </div>
+
+                    <div class="payment-section">
+                        <div class="section-title">Payment Summary</div>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">Subtotal</span>
+                            <span class="summary-value">₹20,492</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">Discount (SAVE10)</span>
+                            <span class="summary-value discount">-₹2,049</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">Delivery Charges</span>
+                            <span class="summary-value free">FREE</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span class="summary-label">GST (18%)</span>
+                            <span class="summary-value">₹3,320</span>
+                        </div>
+                        
+                        <div class="total-row">
+                            <span>Total Paid</span>
+                            <span>₹21,763</span>
+                        </div>
+
+                        <div class="payment-method">
+                            <div class="payment-method-label">Payment Method</div>
+                            <div class="payment-card">Credit Card ending in 4567</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

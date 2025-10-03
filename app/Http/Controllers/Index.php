@@ -40,4 +40,7 @@ class Index extends Controller
    function productcheckout(){
     return view('productcheckout');
    }
+   function orderconfirmation(){
+    return view('orderconfirmation');
+   }
 }

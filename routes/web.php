@@ -17,7 +17,7 @@ Route::get('/custombarcode', [Index::class, 'custombarcode'])->name('custombarco
 Route::get('/contactus', [Index::class, 'contactus'])->name('contactus');
 Route::get('/productreview', [Index::class, 'productreview'])->name('productreview');
 Route::get('/productcheckout', [Index::class, 'productcheckout'])->name('productcheckout');
-
+Route::get('orderconfirmation',[Index::class,'orderconfirmation'])->name('orderconfirmation');
 
 
 // Dashboard routes

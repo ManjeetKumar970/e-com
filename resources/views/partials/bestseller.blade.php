@@ -1,5 +1,5 @@
-<section class="best-selling-products container-fluid">
-        <div class="">
+<section class="best-selling-products">
+        <div class="container-fluid">
             <p class="section-subtitle">FEATURED</p>
             <h2 class="section-title">Best Selling Products 1</h2>
             <p class="section-desc">Top-rated equipment trusted by thousands of businesses</p>

@@ -1,4 +1,4 @@
-<div class="hero-section">
+ <div class="hero-section">
         <div class="floating-elements">
             <div class="floating-element"></div>
             <div class="floating-element"></div>

@@ -2,12 +2,6 @@
 <html lang="en">
 <head>
    @include('partials.head1')
-    <style>
-       
-
-     
-
-    </style>
 </head>
 <body>
     @include('partials.header')

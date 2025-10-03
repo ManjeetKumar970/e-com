@@ -2,575 +2,7 @@
 <html lang="en">
 <head>
     @include('partials.head1')
-  <style>
-    
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 60px;
-        }
-
-        .highlight-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-        }
-
-        .icon-wrapper {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        .icon-speed {
-            background-color: #fff3cd;
-            color: #f39c12;
-        }
-
-        .icon-connectivity {
-            background-color: #e3f2fd;
-            color: #2196f3;
-        }
-
-        .icon-reliable {
-            background-color: #e8f5e9;
-            color: #4caf50;
-        }
-
-        .icon-integration {
-            background-color: #fff3e0;
-            color: #ff9800;
-        }
-
-        .highlight-card h3 {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #1a1a1a;
-        }
-
-        .highlight-card p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .box-section {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .box-section h2 {
-            margin-bottom: 40px;
-        }
-
-        .box-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-        }
-
-        .box-item {
-            text-align: center;
-        }
-
-        .box-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: #666;
-        }
-
-        .box-item p {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 768px) {
-            .highlights-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .box-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-
-
-        .breadcrumb-nav {
-            background-color: #f8f9fa;
-            padding: 15px 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .product-image-container {
-            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-            border-radius: 8px;
-            padding: 20px;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .product-image {
-            max-width: 100%;
-            max-height: 350px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-            cursor: zoom-in;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
-        .product-image:hover {
-            transform: scale(1.05);
-        }
-        
-        .thumbnail-container {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .thumbnail {
-            width: 60px;
-            height: 60px;
-            border: 2px solid #dee2e6;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 3px;
-            transition: transform 0.3s ease;
-        }
-        
-        .thumbnail:hover img {
-            transform: scale(1.1);
-        }
-        
-        .thumbnail.active {
-            border-color: #007bff;
-        }
-        
-        .thumbnail:hover {
-            border-color: #007bff;
-        }
-        
-        .thumbnail::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s ease;
-            z-index: 2;
-        }
-        
-        .thumbnail:hover::before {
-            left: 100%;
-        }
-        
-        .rating-stars {
-            color: #28a745;
-            margin-right: 10px;
-        }
-        
-        .rating-info {
-            color: #6c757d;
-            font-size: 0.9rem;
-        }
-        
-        .special-price-badge {
-            background-color: #28a745;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            margin-bottom: 10px;
-            display: inline-block;
-        }
-        
-        .current-price {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .original-price {
-            font-size: 1.2rem;
-            color: #6c757d;
-            text-decoration: line-through;
-            margin-left: 10px;
-        }
-        
-        .discount-badge {
-            background-color: #ff6b35;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
-        
-        .product-specs-table {
-            background-color: #f8f9fa;
-        }
-        
-        .product-specs-table td {
-            border: 1px solid #dee2e6;
-            padding: 12px;
-        }
-        
-        .product-specs-table td:first-child {
-            background-color: #e9ecef;
-            font-weight: 500;
-            width: 30%;
-        }
-        
-        .feature-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        
-        .feature-list li {
-            padding: 5px 0;
-            position: relative;
-            padding-left: 20px;
-        }
-        
-        .feature-list li:before {
-            content: "•";
-            color: #28a745;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .btn-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #dee2e6;
-            background-color: white;
-            color: #6c757d;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-icon:hover {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-        
-        .video-placeholder {
-            border-radius: 8px;
-            text-align: center;
-            color: #6c757d;
-            margin-top: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            position: relative;
-            background-image: url('https://images.unsplash.com/photo-1560472355-536de3962603?w=400&h=250&fit=crop&crop=center');
-            background-size: cover;
-            background-position: center;
-            min-height: 200px;
-        }
-        
-        .video-placeholder:hover {
-            transform: scale(1.02);
-        }
-        
-        .video-overlay {
-            background: rgba(0,0,0,0.6);
-            border-radius: 8px;
-            padding: 40px 20px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #ff6b35, #ff8c42);
-            border: none;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
-            background: linear-gradient(135deg, #ff5722, #ff7043);
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-            background: linear-gradient(135deg, #5a67d8, #6b46c1);
-        }
-        
-        .zoom-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .zoom-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            animation: zoomIn 0.3s ease;
-        }
-        
-        .zoom-modal .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            z-index: 10000;
-        }
-        
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .current-price {
-                font-size: 1.5rem;
-            }
-            
-            .product-image-container {
-                min-height: 250px;
-            }
-            
-            .action-buttons {
-                justify-content: center;
-            }
-        }
-
-
-         .policy-section {
-            width: 100%;
-            max-width: 1200px;
-        }
-
-    
-
-        .policy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .policy-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .policy-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .policy-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-        }
-
-        .policy-card:hover::before {
-            opacity: 1;
-        }
-
-        .policy-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .policy-card:hover .policy-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .return-icon {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-        }
-
-        .exchange-icon {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: #fff;
-        }
-
-        .warranty-icon {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: #fff;
-        }
-
-        .pickup-icon {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-            color: #fff;
-        }
-
-        .policy-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .policy-description {
-            font-size: 0.95rem;
-            color: #4a5568;
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-        }
-
-
-            .policy-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .policy-card {
-                padding: 30px 20px;
-            }
-
-            .policy-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .policy-card {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .policy-card:nth-child(1) { animation-delay: 0.1s; }
-        .policy-card:nth-child(2) { animation-delay: 0.2s; }
-        .policy-card:nth-child(3) { animation-delay: 0.3s; }
-        .policy-card:nth-child(4) { animation-delay: 0.4s; }
-    </style>
+<link rel="stylesheet" href="{{asset('css/productreview.css')}}">
 </head>
 <body>
 @include('partials.header')
@@ -589,7 +21,7 @@
     </div>
 
     <!-- Main Product Section -->
-    <div class="container product-card my-5">
+    <div class="container product-card my-5" >
         <div class="row">
             <!-- Product Images -->
             <div class="col-lg-6 mb-4">
@@ -778,7 +210,7 @@
         </div>
     </div>
         <!-- Product Description -->
-        <div class="container product-card py-5">
+        <div class="container product-card py-5" style="margin-bottom: 10px;">
             <div class="row">
                 <div class="col">
                     <div class="card">
@@ -803,7 +235,7 @@
             </div>
         </div>
         <!-- Product Highlights Section -->
-        <div class="container product-card">
+        <div class="container product-card" style="margin-bottom: 10px;">
         <!-- Product Highlights Section -->
         <h2>Product Highlights</h2>
         <div class="highlights-grid">
@@ -840,7 +272,7 @@
             </div>
         </div>
         </div>
-        <div class="container product-card py-5">
+        <div class="container product-card py-5" style="margin-bottom: 10px;">
         <!-- What's in the Box Section -->
         <div class="box-section">
             <h2>What's in the Box</h2>
@@ -892,7 +324,7 @@
      
         <!-- What's in the Box Section -->
         <!-- View Similar Products Section -->
-        <div class="container   product-card py-5">
+        <div class="container   product-card py-5" style="margin-bottom: 10px;">
             <h3 class="">View Similar Products</h3>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
@@ -952,16 +384,16 @@
 
 
 
-    <div class="container product-card py-4">
+   <div class="container product-card py-4" style="margin-bottom: 10px;">
         <div class="row">
             <div class="col-12">
                 <!-- Customer Reviews Section -->
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5 class="card-title mb-3">Customer Reviews & Ratings</h5>
+                        <h2 class="card-title mb-5">Customer Reviews & Ratings</h2>
                         
                         <!-- Overall Rating -->
-                        <div class="row mb-4">
+                        <div class="row">
                             <div class="col-md-4">
                                 <div class="text-center">
                                     <h2 class="display-4 mb-1">4.6</h2>
@@ -972,7 +404,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star-half-alt"></i>
                                     </div>
-                                    <small class="text-muted">1,647 ratings & 892 reviews</small>
+                                    <small class="text-muted">2,847 ratings & 892 reviews</small>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -980,7 +412,7 @@
                                 <div class="mb-2">
                                     <div class="row align-items-center">
                                         <div class="col-2">
-                                            <small>5 <i class="fas fa-star text-warning"></i></small>
+                                            <small>5★</small>
                                         </div>
                                         <div class="col-8">
                                             <div class="rating-bar">
@@ -995,7 +427,7 @@
                                 <div class="mb-2">
                                     <div class="row align-items-center">
                                         <div class="col-2">
-                                            <small>4 <i class="fas fa-star text-warning"></i></small>
+                                            <small>4★</small>
                                         </div>
                                         <div class="col-8">
                                             <div class="rating-bar">
@@ -1010,7 +442,7 @@
                                 <div class="mb-2">
                                     <div class="row align-items-center">
                                         <div class="col-2">
-                                            <small>3 <i class="fas fa-star text-warning"></i></small>
+                                            <small>3★</small>
                                         </div>
                                         <div class="col-8">
                                             <div class="rating-bar">
@@ -1025,7 +457,7 @@
                                 <div class="mb-2">
                                     <div class="row align-items-center">
                                         <div class="col-2">
-                                            <small>2 <i class="fas fa-star text-warning"></i></small>
+                                            <small>2★</small>
                                         </div>
                                         <div class="col-8">
                                             <div class="rating-bar">
@@ -1040,7 +472,7 @@
                                 <div class="mb-2">
                                     <div class="row align-items-center">
                                         <div class="col-2">
-                                            <small>1 <i class="fas fa-star text-warning"></i></small>
+                                            <small>1★</small>
                                         </div>
                                         <div class="col-8">
                                             <div class="rating-bar">
@@ -1056,14 +488,14 @@
                         </div>
 
                         <!-- Individual Reviews -->
-                        <div class="review-card p-3 mb-3">
+                        <div class="review-card p-3 mb-3 mt-4">
                             <div class="d-flex mb-2">
                                 <div class="reviewer-avatar me-3">R</div>
                                 <div class="flex-grow-1">
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <h6 class="mb-0">Rajesh Kumar</h6>
-                                            <small class="text-muted">Top Reviewer</small>
+                                            <small class="text-muted">15 Aug 2025</small>
                                         </div>
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -1078,12 +510,12 @@
                             <h6 class="mb-2">Excellent printer for restaurant use!</h6>
                             <p class="mb-2 text-muted">I purchased this for my restaurant and it's been working flawlessly for 6 months now. Print quality is crisp, speed is impressive, and the setup was very easy. Handles high volume printing during rush hours without any issues. Highly recommended for commercial use.</p>
                             <div class="d-flex gap-2">
-                                <button class="btn helpful-badge">
-                                    <i class="fas fa-thumbs-up me-1"></i> Helpful (17)
-                                </button>
-                                <button class="btn btn-link text-muted p-0">
-                                    <i class="fas fa-flag me-1"></i> Not Helpful (2)
-                                </button>
+                                <span class="helpful-badge">
+                                    👍 Helpful (47)
+                                </span>
+                                <span class="text-muted" style="font-size: 14px; padding: 4px 12px;">
+                                    👎 Not Helpful (2)
+                                </span>
                             </div>
                         </div>
 
@@ -1094,7 +526,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <h6 class="mb-0">Priya Sharma</h6>
-                                            <small class="text-muted">3 days ago</small>
+                                            <small class="text-muted">12 Aug 2025</small>
                                         </div>
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -1109,12 +541,12 @@
                             <h6 class="mb-2">Great value for money</h6>
                             <p class="mb-2 text-muted">Perfect for our retail store. The ethernet connectivity makes it easy to connect to our POS system. Print speed is fantastic and paper loading is very convenient. FormationTech's customer service was also very helpful during setup.</p>
                             <div class="d-flex gap-2">
-                                <button class="btn helpful-badge">
-                                    <i class="fas fa-thumbs-up me-1"></i> Helpful (14)
-                                </button>
-                                <button class="btn btn-link text-muted p-0">
-                                    <i class="fas fa-flag me-1"></i> Not Helpful (3)
-                                </button>
+                                <span class="helpful-badge">
+                                    👍 Helpful (34)
+                                </span>
+                                <span class="text-muted" style="font-size: 14px; padding: 4px 12px;">
+                                    👎 Not Helpful (1)
+                                </span>
                             </div>
                         </div>
 
@@ -1125,7 +557,7 @@
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <h6 class="mb-0">Suresh Patel</h6>
-                                            <small class="text-muted">1 week ago</small>
+                                            <small class="text-muted">02 July 2025</small>
                                         </div>
                                         <div class="star-rating">
                                             <i class="fas fa-star"></i>
@@ -1140,22 +572,26 @@
                             <h6 class="mb-2">Good printer, minor setup issues</h6>
                             <p class="mb-2 text-muted">Overall satisfied with the printer performance. Print quality and speed are good. Had some initial setup issues with drivers on Windows 11, but FormationTech support helped resolve it quickly. Would recommend having technical support readily available during installation.</p>
                             <div class="d-flex gap-2">
-                                <button class="btn helpful-badge">
-                                    <i class="fas fa-thumbs-up me-1"></i> Helpful (26)
-                                </button>
-                                <button class="btn btn-link text-muted p-0">
-                                    <i class="fas fa-flag me-1"></i> Not Helpful (3)
-                                </button>
+                                <span class="helpful-badge">
+                                    👍 Helpful (28)
+                                </span>
+                                <span class="text-muted" style="font-size: 14px; padding: 4px 12px;">
+                                    👎 Not Helpful (5)
+                                </span>
                             </div>
                         </div>
 
-                        <div class="text-center">
+                        <div class="text-center mt-4">
                             <button class="btn btn-primary">View All Reviews</button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- FAQ Section -->
+<!-- FAQ Section -->
+<div class="container product-card" style="margin-bottom: 10px">
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title mb-3">Frequently Asked Questions</h5>
@@ -1229,11 +665,7 @@
                     </div>
                 </div>
             </div>
-
-            
-        </div>
-    </div>
-    <div class="container product-card py-5">
+    <div class="container product-card py-5" style="margin-bottom: 10px;">
         <div class="col-lg-12">
                 <!-- Technical Specifications -->
                 <div class="card">
@@ -1317,7 +749,7 @@
                 </div>
             </div>
     </div>
-<div class="container py-10 product-card">
+<div class="container py-10 product-card" style="margin-bottom: 10px;">
         <!-- Customers Also Viewed Section -->
         <div class="customers-section">
             <h2 class="customers-title">Customers Also Viewed</h2>
@@ -1370,11 +802,11 @@
         </div>
     </div>
 
-
-<div class="container product-card py-5">
-    <h2 class="section-title">Return & Exchange Policy</h2>
-    <div class="row">
-        <div class="col-3">
+ <div class="container product-card">
+  <div class="policy-section">
+        <h2 class="customers-title">Return & Exchange Policy</h2>
+        
+        <div class="policy-grid">
             <div class="policy-card">
                 <div class="policy-icon return-icon">
                     <i class="fas fa-undo-alt"></i>
@@ -1384,9 +816,7 @@
                     Easy returns within 7 days of delivery. No questions asked for unused items in original packaging.
                 </p>
             </div>
-        </div>
 
-        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon exchange-icon">
                     <i class="fas fa-exchange-alt"></i>
@@ -1396,9 +826,7 @@
                     Exchange facility available for defective products or size/model changes within 7 days.
                 </p>
             </div>
-        </div>
 
-        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon warranty-icon">
                     <i class="fas fa-shield-alt"></i>
@@ -1408,9 +836,7 @@
                     All products are covered under manufacturer warranty. Extended warranty options available.
                 </p>
             </div>
-        </div>
 
-        <div class="col-3">
             <div class="policy-card">
                 <div class="policy-icon pickup-icon">
                     <i class="fas fa-truck"></i>
@@ -1423,6 +849,7 @@
         </div>
     </div>
 </div>
+   
 <center class="py-5">  <button class="btn btn-success">
         <i class="fas fa-share-alt"></i>
         Share
@@ -1435,9 +862,7 @@
         <img src="" alt="Zoomed Image" id="zoomedImage">
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- Bootstrap JS -->    
     <script>
         // Thumbnail click functionality with image switching
         document.querySelectorAll('.thumbnail').forEach(thumbnail => {
