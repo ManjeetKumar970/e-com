@@ -54,8 +54,8 @@
         }
         
         .category-icon {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             background: var(--primary-color);
             border-radius: 50%;
             display: flex;
@@ -222,7 +222,6 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            min-width: 180px;
             position: relative;
             overflow: hidden;
         }

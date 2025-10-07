@@ -1,8 +1,9 @@
 
-<div class="py-5">
-            <div class="product-header-hot">
-            <h1 class="main-title-hot center">Best Selling Products 2</h1>
-        </div>
+<div class=" py-5">
+             <div class="text-center">
+                <h2 class="section-title">Best Selling Products</h2>
+                <p class="text-muted">Specialized technology for food service businesses</p>
+            </div>
 
         <div class="products-grid-hot">
         @foreach($barcodes as $barcode)
@@ -38,7 +39,6 @@
     @endforeach
 </div>
 
-    </div>
 
 
     <!-- hot deel 2 -->

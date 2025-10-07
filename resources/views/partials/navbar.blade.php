@@ -1,6 +1,7 @@
      <!-- Category Navigation -->
-    <nav class="navbar navbar-expand-lg p-0 category-nav" style="background: linear-gradient(135deg, #4285f4, #1a73e8);">
-        <div class="container">
+<nav class="navbar navbar-expand-lg p-0 category-nav" 
+     style="background: linear-gradient(135deg, #4285f4, #1a73e8); z-index: 1000;">
+             <div class="container">
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav w-100 justify-content-lg-center">
                     <li class="nav-item">
