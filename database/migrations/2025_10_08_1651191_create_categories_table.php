@@ -13,9 +13,16 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
         $table->id();
-        $table->string('name');   // Barcode, Printer, Scanner, Thermal
-        $table->string('slug')->unique();
+        $table->string('name', 100);
+        $table->string('slug', 100)->unique();
+        $table->text('description')->nullable();
+        $table->string('image_url', 255)->nullable();
+        $table->unsignedBigInteger('parent_id')->nullable();
+        $table->integer('display_order')->default(0);
+        $table->boolean('is_active')->default(1);
         $table->timestamps();
+
+        $table->foreign('parent_id')->references('id')->on('categories')->onDelete('set null');
     });
     }
 

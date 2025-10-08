@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\Dashboard;
+use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NavBar;
 use App\Http\Controllers\Dashboard\ImgSlides;
 use App\Http\Controllers\Dashboard\PrintersController;
@@ -35,7 +36,9 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/admindashboard', function () {
             return view('dashboard.admindashboard');
         })->name('dashboard.admindashboard');
-        //Billing Rols
+        //home controller
+        Route::get('/home', [HomeController::class, 'home'])->name('dashboard.home');
+        //
         Route::get('/createbillingrols', [BillingRols::class, 'createBillingRols'])->name('dashboard.createbillingrols');
         Route::post('/storebillingrols', [BillingRols::class, 'storeBillingRols'])->name('dashboard.storebillingrols');
         //Barcode Rols
@@ -51,8 +54,6 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/slider', [ImgSlides::class, 'slider'])->name('dashboard.slider');
         Route::post('/slider/store', [ImgSlides::class, 'storeSlider'])->name('dashboard.slider.store');
         //NavBar
-        Route::get('/navcategory', [NavBar::class, 'navcategory'])->name('dashboard.navcategory');
-        Route::post('/navcategory/store', [NavBar::class, 'store'])->name('dashboard.storeCategory');
         Route::post('/logout', [Dashboard::class, 'logout'])->name('dashboard.logout');
     });
 });

@@ -17,9 +17,13 @@
 					<ul id="accordion-menu">
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon bi bi-house"></span
-								><span class="mtext">Home</span>
+								<span class="micon bi bi-house"></span>
+								<span class="mtext">Home</span>
 							</a>
+							<ul class="submenu">
+								<li>
+                                   <a href="{{ route('dashboard.home') }}">Home Controller</a>
+							</ul>
 						</li>
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
@@ -43,7 +47,7 @@
 								><span class="mtext">Creta Category</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="{{route('dashboard.navcategory') }}">Creta Category</a></li>
+								<li><a href="">Creta Category</a></li>
 							</ul>
 						</li>
 						<li>
