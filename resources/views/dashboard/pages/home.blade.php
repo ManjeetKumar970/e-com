@@ -22,4 +22,8 @@
         </div>
 
     </div>
-       
+    	@include('dashboard.partials.messagemode')
+		<!-- welcome modal end -->
+		<!-- js -->
+		@include('dashboard.footer.footer')
+</body>

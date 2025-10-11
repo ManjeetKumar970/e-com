@@ -21,7 +21,6 @@ class AuthController extends Controller
     // Register User
     public function register(Request $request)
     {
-       log('Registering user', ['request' => $request->all()]); 
         $validator = Validator::make($request->all(), [
             'name'           => 'required|string|max:255',
             'email'          => 'required|email|unique:users',
@@ -46,7 +45,7 @@ class AuthController extends Controller
         'if_user_is_prime' => $request->if_user_is_prime ?? false,
         'pancard'          => $request->pancard,
         'stats'            => $request->stats,
-        'usertype'         => 'user', // ✅ explicitly set
+        'usertype'         => 'user',
     ]);
 
         if($user) {
@@ -64,41 +63,44 @@ public function login(Request $request)
 {
     $credentials = $request->only('email', 'password');
 
-   if (Auth::attempt($credentials)) {
-    // Regenerate session to prevent fixation
-    $request->session()->regenerate();
+    if (Auth::attempt($credentials)) {
+        // Regenerate session to prevent fixation
+        $request->session()->regenerate();
 
-    $user = Auth::user();
+        $user = Auth::user();
 
-    if ($user) {
-        if ($user->usertype === 'admin') {
-            return redirect()
-                ->route('dashboard.admindashboard')
-                ->with('message', 'Admin login successful');
-        } elseif ($user->usertype === 'user') {
-            Auth::logout();
-            return redirect()
-                ->back()
-                ->withErrors(['access' => 'Access denied: only admins can log in.']);
-        } else {
-            Auth::logout();
-            return redirect()
-                ->route('login')
-                ->withErrors(['usertype' => 'Invalid user type']);
+        if ($user) {
+            if ($user->usertype === 'admin') {
+                return redirect()
+                    ->route('dashboard.admindashboard')
+                    ->with('message', 'Admin login successful');
+            } elseif ($user->usertype === 'user') {
+                return redirect()
+                    ->route('index') // 👈 redirect to index page for normal users
+                    ->with('message', 'User login successful');
+            } else {
+                Auth::logout();
+                return redirect()
+                    ->route('login')
+                    ->withErrors(['usertype' => 'Invalid user type']);
+            }
         }
+
+        return redirect()
+            ->back()
+            ->withErrors(['session' => 'Login successful, but session could not be set'])
+            ->withInput();
     }
-
-    return redirect()
-        ->back()
-        ->withErrors(['session' => 'Login successful, but session could not be set'])
-        ->withInput();
-}
-
 
     return redirect()->back()->withErrors([
         'email' => 'Login failed: incorrect email or password',
     ])->withInput();
 }
-
-
+// Logout User
+public function userLogout(Request $request){
+     Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('index')->with('message', 'Logged out successfully');      
+}
 }

@@ -9,11 +9,18 @@
     @include('partials.header')
     <!-- Hero Section -->
     <div class="hero-section-pd">
-        <div class="container">
-            <h1>Business Equipment & Solutions</h1>
-            <p>Find the perfect tools to streamline your operations and boost productivity</p>
-        </div>
+    <div class="hero-background">
+        <div class="moving-shape shape-1"></div>
+        <div class="moving-shape shape-2"></div>
+        <div class="moving-shape shape-3"></div>
+        <div class="moving-shape shape-4"></div>
+        <div class="moving-shape shape-5"></div>
     </div>
+    <div class="container">
+        <h1 class="hero-title">Business Equipment & Solutions</h1>
+        <p class="hero-subtitle">Find the perfect tools to streamline your operations and boost productivity</p>
+    </div>
+</div>
 
     <div class="container mt-5">
         <div class="row">

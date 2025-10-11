@@ -8,12 +8,21 @@
     @include('partials.header')
 
    <!-- Hero Section -->
-        <div class="hero-section-pd">
-            <div class="container">
-                <h1>🏷️ Barcode Label Configurator</h1>
-                <p>Design and customize your perfect barcode labels with real-time preview</p>
-            </div>
-        </div>
+        
+
+         <div class="hero-section-pd">
+    <div class="hero-background">
+        <div class="moving-shape shape-1"></div>
+        <div class="moving-shape shape-2"></div>
+        <div class="moving-shape shape-3"></div>
+        <div class="moving-shape shape-4"></div>
+        <div class="moving-shape shape-5"></div>
+    </div>
+    <div class="container">
+        <h1 class="hero-title">🏷️ Barcode Label Configurator</h1>
+        <p class="hero-subtitle">Design and customize your perfect barcode labels with real-time preview</p>
+    </div>
+</div>
     <div class="container-br">
         <div class="config-section">
             

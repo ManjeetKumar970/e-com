@@ -31,14 +31,13 @@
 								><span class="mtext">Products</span>
 							</a>
 							<ul class="submenu">
+								
+								<li><a href="{{ route('dashboard.products') }}">Add Product</a></li>
+								<li><a href="{{ route('dashboard.barcodepage') }}">Barcodes</a></li>
+								<li><a href="{{ route('dashboard.billingprinter') }}">Billing Printer</a></li>
 								<li>
                                    <a href="{{ route('dashboard.createbillingrols') }}">Billing Rolls</a>
 								</li>
-								<li><a href="{{ route('dashboard.barcodepage') }}">Barcodes</a></li>
-								<li><a href="{{ route('dashboard.billingprinter') }}">Billing Printer</a></li>
-								<li><a href="form-pickers.html">Barcode Printer</a></li>
-								<li><a href="image-cropper.html">Custome</a></li>
-								<li><a href="image-dropzone.html">Scanner</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -47,7 +46,7 @@
 								><span class="mtext">Creta Category</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="">Creta Category</a></li>
+								<li><a href="{{ route('dashboard.category')}}">Creta Category</a></li>
 							</ul>
 						</li>
 						<li>

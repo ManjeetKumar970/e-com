@@ -61,20 +61,26 @@
             <div class="col-8 col-lg-3 order-lg-3 ms-lg-auto">
                 <div class="d-flex justify-content-end align-items-center gap-2 gap-lg-3">
                     <!-- Account Dropdown (Desktop Only) -->
-                    <div class="dropdown d-none d-lg-block d-flex align-items-center">
+                  <div class="dropdown d-none d-lg-block d-flex align-items-center">
+                    @if(Auth::check())
                         <a href="#" class="text-decoration-none text-dark dropdown-toggle" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user me-2" style="font-size: 30px;"></i> Manjeet
+                            <i class="fas fa-user me-2" style="font-size: 30px;"></i> {{ Auth::user()->name }}
                         </a>
+
                         <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="accountDropdown">
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-user me-2 text-primary"></i> My Profile</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">2</span></a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-tag me-2 text-success"></i> Coupons</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-bell me-2 text-warning"></i> Notifications</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-sign-out-alt me-2 text-secondary"></i> Logout</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="{{ route('userLogout') }}"><i class="fas fa-sign-out-alt me-2 text-secondary"></i> Logout</a></li>
                         </ul>
-                    </div>
-
+                    @else
+                        <a href="{{ route('login') }}" class="text-decoration-none text-dark">
+                            <i class="fas fa-user me-2" style="font-size: 30px;"></i> Login
+                        </a>
+                    @endif
+                </div>
                     <!-- Account Dropdown (Mobile Only) -->
                     <div class="dropdown d-lg-none">
                         <a href="#" class="text-dark" id="accountDropdownMobile" data-bs-toggle="dropdown" aria-expanded="false">

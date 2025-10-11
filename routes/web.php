@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
+use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Dashboard;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\NavBar;
@@ -19,6 +20,7 @@ Route::get('/contactus', [Index::class, 'contactus'])->name('contactus');
 Route::get('/productreview', [Index::class, 'productreview'])->name('productreview');
 Route::get('/productcheckout', [Index::class, 'productcheckout'])->name('productcheckout');
 Route::get('orderconfirmation',[Index::class,'orderconfirmation'])->name('orderconfirmation');
+Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
 
 
 // Dashboard routes
@@ -38,7 +40,25 @@ Route::prefix('dashboard')->group(function () {
         })->name('dashboard.admindashboard');
         //home controller
         Route::get('/home', [HomeController::class, 'home'])->name('dashboard.home');
-        //
+        //category
+        Route::get('/category', [CategoryController::class, 'category'])->name('dashboard.category');
+        Route::post('/storecategory', [CategoryController::class, 'storecategory'])->name('dashboard.storecategory');
+            // Get category for editing (AJAX)
+        Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])
+            ->name('categories.edit');
+        
+        // Update category
+        Route::post('/categories/{id}/update', [CategoryController::class, 'update'])
+            ->name('categories.update');
+        
+        // Delete category
+        Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])
+            ->name('categories.destroy');
+
+        //Products
+        Route::get('/products', [ProductsController::class, 'products'])->name('dashboard.products');
+        //Billing Rols
+
         Route::get('/createbillingrols', [BillingRols::class, 'createBillingRols'])->name('dashboard.createbillingrols');
         Route::post('/storebillingrols', [BillingRols::class, 'storeBillingRols'])->name('dashboard.storebillingrols');
         //Barcode Rols
