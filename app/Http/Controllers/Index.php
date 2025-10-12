@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dashboard\BarcodeRol;
+use App\Models\Dashboard\Category;
+use App\Models\Dashboard\Product;
+use Illuminate\Support\Facades\Log;
 
 class Index extends Controller
 {
@@ -14,16 +17,18 @@ class Index extends Controller
      */
     public function index()
     {
-         $barcodes = BarcodeRol::all()->map(function($barcode){
-         $barcode->images = json_decode($barcode->images, true); // decode to array
-         return $barcode;
-    });
-
-    return view('index', compact('barcodes')); 
+    $categories = Category::all();
+    $products = Product::with(['primaryImage'])->where('status', 'published')->get();
+    return view('index', compact('categories','products')); 
     }
-    public function product()
+   public function product()
     {
-        return view('product'); 
+        $allProducts = Product::with('primaryImage')
+            ->where('status', 'published')
+            ->latest()  
+            ->get();
+
+        return view('product', compact('allProducts'));
     }
     public function custombarcode()
     {

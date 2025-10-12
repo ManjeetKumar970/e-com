@@ -1,226 +1,44 @@
 
 <div class=" py-5">
              <div class="text-center">
-                <h2 class="section-title">Best Selling Products</h2>
+                <h2 class="section-title">Hot Deals</h2>
                 <p class="text-muted">Specialized technology for food service businesses</p>
             </div>
-
-        <div class="products-grid-hot">
-        @foreach($barcodes as $barcode)
-        <div class="product-card-hot">
-            <div class="product-header-hot">
-                <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            </div>
-
-             {{-- Bootstrap Carousel inside your style wrapper --}}
-                <div class="product-image-hot">
-                    <div id="carousel-{{ $barcode->id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                        <div class="carousel-inner">
-                            @foreach($barcode->images as $index => $image)
-                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100 product-image" alt="{{ $barcode->name }}">
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-            <h3 class="product-title">{{ $barcode->name }}</h3>
-            <p class="product-description">{{ $barcode->description }}</p>
-
-            <div class="product-footer">
-                <div class="price-section">
-                    <div class="current-price">₹{{ $barcode->price }}</div>
-                    <div class="original-price">₹{{ $barcode->price }}</div>
-                </div>
-                <button class="add-btn" onclick="addToCart('{{ $barcode->name }}')">+</button>
-            </div>
-        </div>
-    @endforeach
-</div>
-
-
-
     <!-- hot deel 2 -->
 
      <div class="container-hot-deel py-5">
         <!-- Card 1 -->
+@foreach ($products->slice(0, 4) as $product)
+            
         <div class="product-card-hot-deel card-1">
             <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+
             <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
+                            <a href="{{ route('product.show', ['slug' => $product->slug, 'id' => $product->id]) }}">
+
+                <img src="{{ asset('storage/' .($product->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="" class="product-image-hot-deel">
+</a>
             </div>
+            
             <div class="info-section-hot-deel">
                  <div class="hot-deal-badge">HOT DEAL</div>
                 <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
+                    <h2 class="product-title-hot-deel">{{$product->name}}</h2>
+                    <p class="product-category-hot-deel">{{$product->name}}</p>
                 </div>
                 <div class="pricing-section-hot-deel">
                     <div class="price-container-hot-deel">
                         <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
+                            <span class="currency-hot-deel">₹</span>{{$product->sale_price}}
                         </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
+                        <div class="original-price-hot-deel">₹{{$product->regular_price}}</div>
                     </div>
                     <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
                 </div>
             </div>
         </div>
-         <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
-         <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
-         <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
-        <div class="product-card-hot-deel card-1">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
-            <div class="image-section-hot-deel">
-                <img src="{{asset('images/products/download.png')}}" alt="SmartPOS Pro" class="product-image-hot-deel">
-            </div>
-            <div class="info-section-hot-deel">
-                <div class="hot-deal-badge">HOT DEAL</div>
-                <div>
-                    <h2 class="product-title-hot-deel">SmartPOS Pro</h2>
-                    <p class="product-category-hot-deel">Software</p>
-                </div>
-                <div class="pricing-section-hot-deel">
-                    <div class="price-container-hot-deel">
-                        <div class="current-price-hot-deel">
-                            <span class="currency-hot-deel">₹</span>19,999
-                        </div>
-                        <div class="original-price-hot-deel">₹24,999</div>
-                    </div>
-                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
-                </div>
-            </div>
-        </div>
+@endforeach
+        
 </div>
 
 

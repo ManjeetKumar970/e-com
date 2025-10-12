@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      @include('partials.head1')
         <link rel="stylesheet" href="{{ asset('css/barcode.css') }}">
 </head>
 <body>

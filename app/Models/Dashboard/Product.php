@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Dashboard;
 
 use App\Models\Dashboard\Category;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -109,6 +109,7 @@ class Product extends Model
         'sale_count',
         'average_rating',
         'review_count',
+        'prodcutlabel',
     ];
 
     protected $casts = [
@@ -335,6 +336,17 @@ class Product extends Model
 
         return $this->current_price;
     }
+    public function productImages()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
+    }
+
+    // Primary image
+    public function primaryImage()
+    {
+        return $this->hasOne(ProductImage::class, 'product_id')->where('is_primary', true);
+    }
+
 
     public function canOrder($quantity)
     {

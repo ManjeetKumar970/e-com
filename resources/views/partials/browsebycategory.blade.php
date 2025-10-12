@@ -1,3 +1,4 @@
+ 
  <section class="py-5" >
         <div class="text-center ">
          <h5>Our Products</h5>
@@ -7,63 +8,20 @@
             <p class="text-muted">Explore our comprehensive range of business solutions</p>
         </div>
         <div class="row g-4 justify-content-center">
-            <!-- Item 1 -->
+                    <!-- Item 1 -->
+        @foreach ($categories as $category)
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="category-card text-center p-3 rounded shadow-sm h-100 product-card-hot">
-                   <img src="{{ asset('images/logos/icons/cash-register-box-poster-3.png') }}" alt="Thermal Printers" class="category-icon">
-                    <h6 class="fw-bold">Thermal Printers</h6>
+                    <a href="{{ route('product.show', ['slug' => $category->slug, 'id' => $category->id]) }}">
+                        <img src="{{ asset('storage/' . $category->image_url) }}" 
+                            alt="{{ $category->name }}" 
+                            class="category-icon">
+                    </a>
+                    <h6 class="fw-bold">{{ $category->name }}</h6>
                     <small class="text-muted">45+ Models</small>
                 </div>
             </div>
-
-
-            <!-- Item 2 (duplicate removed for unique entry) -->
-            
-            <!-- Item 3 -->
-            <div class="col-lg-2 col-md-4 col-sm-6 " >
-                <div class="category-card text-center p-3 rounded shadow-sm h-100 product-card-hot">
-                    <img src="{{ asset('images/logos/icons/printer-barcode-2.png') }}" alt="Thermal Printers" class="category-icon">
-                    <h6 class="fw-bold">Barcode Printer</h6>
-                    <small class="text-muted">100+ Types</small>
-                </div>
-            </div>
-
-            <!-- Item 4 -->
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="category-card text-center p-3 rounded shadow-sm h-100 product-card-hot">
-                    <img src="{{ asset('images/logos/icons/cash-register-box-poster-3.png') }}" alt="Thermal Printers" class="category-icon">
-                    <h6 class="fw-bold">POS Systems</h6>
-                    <small class="text-muted">25+ Solutions</small>
-                </div>
-            </div>
-
-            <!-- Item 5 -->
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="category-card text-center p-3 rounded shadow-sm h-100 product-card-hot">
-                    <img src="{{ asset('images/logos/icons/scanner.png') }}" alt="Thermal Printers" class="category-icon">
-                    <h6 class="fw-bold">Scanners</h6>
-                    <small class="text-muted">30+ Models</small>
-                </div>
-            </div>
-
-            <!-- Item 6 -->
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="category-card text-center p-3 rounded shadow-sm h-100 product-card-hot">
-                    <img src="{{ asset('images/logos/icons/barcoderol.png') }}" alt="Thermal Printers" class="category-icon">
-                    <h6 class="fw-bold">Barcode Rols</h6>
-                    <small class="text-muted">15+ Options</small>
-                </div>
-            </div>
-
-            <!-- Item 7 -->
-            <div class="col-lg-2 col-md-4 col-sm-6">
-                <div class="category-card text-center p-3 rounded shadow-sm h-100 product-card-hot">
-                    <img src="{{ asset('images/logos/icons/billingrolls.png') }}" alt="Thermal Printers" class="category-icon">
-                    <h6 class="fw-bold">Billing Rols</h6>
-                    <small class="text-muted">10+ Solutions</small>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     
 </section>

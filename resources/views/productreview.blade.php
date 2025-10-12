@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('partials.head1')
 <link rel="stylesheet" href="{{asset('css/productreview.css')}}">
 </head>
 <body>

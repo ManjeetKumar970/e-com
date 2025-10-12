@@ -6,10 +6,10 @@ use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Dashboard;
 use App\Http\Controllers\Dashboard\HomeController;
-use App\Http\Controllers\Dashboard\NavBar;
 use App\Http\Controllers\Dashboard\ImgSlides;
 use App\Http\Controllers\Dashboard\PrintersController;
 use App\Http\Controllers\Dashboard\ProductsController;
+use App\Http\Controllers\Frontend\ProductreviewController;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +21,25 @@ Route::get('/productreview', [Index::class, 'productreview'])->name('productrevi
 Route::get('/productcheckout', [Index::class, 'productcheckout'])->name('productcheckout');
 Route::get('orderconfirmation',[Index::class,'orderconfirmation'])->name('orderconfirmation');
 Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
+Route::get('/product/{slug}/{id}', [ProductreviewController::class, 'show'])->name('product.show');
+Route::post('/product/update-label', [ProductsController::class, 'updateLabel'])->name('product.updateLabel');
+Route::post('/product/update-status', [ProductsController::class, 'updateStatus'])->name('product.updateStatus');
+
+Route::get('/products/{id}', [Index::class, 'show'])->name('products.show');
+
+// Optional: DataTables AJAX endpoint
+Route::get('/products/data/ajax', [Index::class, 'getProductsData'])->name('products.data');
+
+// Optional: API endpoints for cart/wishlist
+Route::post('/cart/add/{id}', function($id) {
+    // Add to cart logic
+    return response()->json(['success' => true, 'message' => 'Product added to cart']);
+})->name('cart.add');
+
+Route::post('/wishlist/toggle/{id}', function($id) {
+    // Toggle wishlist logic
+    return response()->json(['success' => true, 'message' => 'Wishlist updated']);
+})->name('wishlist.toggle');
 
 
 // Dashboard routes
@@ -57,6 +76,9 @@ Route::prefix('dashboard')->group(function () {
 
         //Products
         Route::get('/products', [ProductsController::class, 'products'])->name('dashboard.products');
+        Route::post('/createproduct', [ProductsController::class, 'createproduct'])->name('dashboard.createproduct');
+         // routes/web.php
+        Route::get('/listproducts', [ProductsController::class, 'productList'])->name('dashboard.listproducts');
         //Billing Rols
 
         Route::get('/createbillingrols', [BillingRols::class, 'createBillingRols'])->name('dashboard.createbillingrols');

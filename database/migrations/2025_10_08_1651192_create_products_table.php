@@ -113,7 +113,7 @@ return new class extends Migration
             $table->integer('sale_count')->default(0);
             $table->decimal('average_rating', 3, 2)->default(0);
             $table->integer('review_count')->default(0);
-            
+             $table->string('prodcutlabel', 255)->nullable();
             $table->timestamps();
             $table->softDeletes(); // For soft deletion
             

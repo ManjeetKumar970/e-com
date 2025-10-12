@@ -4,14 +4,200 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Category;
+use App\Models\Dashboard\Product;
+use App\Models\Dashboard\ProductImage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller
 {
     public function products()
     {
-        $category=Category::all();
-        return view('dashboard.pages.createproduct',compact('category'));
+        $category = Category::all();
+        return view('dashboard.pages.createproduct', compact('category'));
     }
+
+    public function createproduct(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'sku' => 'required|string|unique:products,sku',
+            'category_id' => 'required|exists:categories,id',
+            'brand' => 'required|string|max:255',
+            'regular_price' => 'required|numeric|min:0',
+            'sale_price' => 'nullable|numeric|min:0',
+            'cost_price' => 'nullable|numeric|min:0',
+            'stock_quantity' => 'required|integer|min:0',
+            'low_stock_threshold' => 'nullable|integer|min:1',
+            'status' => 'required|in:draft,published,archived',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'tax_rate' => 'nullable|numeric|min:0',
+            'hsn_code' => 'nullable|string|max:50',
+            'barcode' => 'nullable|string|max:255',
+            'weight' => 'nullable|numeric|min:0',
+            'length' => 'nullable|numeric|min:0',
+            'width' => 'nullable|numeric|min:0',
+            'height' => 'nullable|numeric|min:0',
+            'warranty_period' => 'nullable|integer|min:0',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation failed',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+        $category = Category::find($request->category_id);
+
+        if ($category) {
+            $slug = $category->slug;
+        } else {
+            $slug = null; // or handle error
+        }
+        DB::beginTransaction();
+
+        try {
+            $product = Product::create([
+                'name' => $request->name,
+                'slug' => $slug . '-' . strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->name)),
+                'sku' => $request->sku,
+                'category_id' => $request->category_id,
+                'brand' => $request->brand,
+                'model_number' => $request->model_number,
+                'manufacturer' => $request->manufacturer,
+                'short_description' => $request->short_description,
+                'description' => $request->description,
+                'regular_price' => $request->regular_price,
+                'sale_price' => $request->sale_price,
+                'cost_price' => $request->cost_price,
+                'stock_quantity' => $request->stock_quantity,
+                'low_stock_threshold' => $request->low_stock_threshold ?? 5,
+                'minimum_order_quantity' => $request->minimum_order_quantity ?? 1,
+                'maximum_order_quantity' => $request->maximum_order_quantity,
+                'track_inventory' => $request->boolean('track_inventory'),
+                'allow_backorder' => $request->boolean('allow_backorder'),
+                'weight' => $request->weight,
+                'length' => $request->length,
+                'width' => $request->width,
+                'height' => $request->height,
+                'free_shipping' => $request->boolean('free_shipping'),
+                'hsn_code' => $request->hsn_code,
+                'tax_rate' => $request->tax_rate ?? 18,
+                'is_taxable' => $request->boolean('is_taxable'),
+                'barcode' => $request->barcode,
+                'product_type' => $request->product_type,
+                'warranty_period' => $request->warranty_period,
+                'warranty_type' => $request->warranty_type,
+                'warranty_details' => $request->warranty_details,
+                'product_manual_url' => $request->product_manual_url,
+                'driver_download_url' => $request->driver_download_url,
+                'package_contents' => $request->package_contents,
+                'usage_instructions' => $request->usage_instructions,
+                'status' => $request->status,
+                'visibility' => $request->visibility,
+                'is_active' => $request->boolean('is_active'),
+                'is_featured' => $request->boolean('is_featured'),
+                'is_new_arrival' => $request->boolean('is_new_arrival'),
+                // Technical specifications
+                'connectivity' => $request->connectivity,
+                'interface_type' => $request->interface_type,
+                'print_width' => $request->print_width,
+                'resolution' => $request->resolution,
+                'print_speed' => $request->print_speed,
+                'scan_type' => $request->scan_type,
+                'paper_size' => $request->paper_size,
+                'paper_type' => $request->paper_type,
+                'roll_length' => $request->roll_length,
+                'roll_diameter' => $request->roll_diameter,
+                'core_size' => $request->core_size,
+                'gsm' => $request->gsm,
+                'sheets_per_pack' => $request->sheets_per_pack,
+                'ribbon_type' => $request->ribbon_type,
+                'ribbon_size' => $request->ribbon_size,
+            ]);
+
+            // Images
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $index => $image) {
+                    $path = $image->store('products/' . $product->id, 'public');
+
+                    ProductImage::create([
+                        'product_id' => $product->id,
+                        'image_url' => $path,
+                        'is_primary' => $index === 0,
+                        'alt_text' => $product->name,
+                        'order' => $index
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product created successfully!',
+                'product_id' => $product->id,
+                'redirect_url' => route('dashboard.products')
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to create product: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
+public function productList()
+{
+    $categories = Category::all();
+    
+    // Use the correct relationship name 'productImages'
+    $products = Product::with(['category', 'primaryImage'])->paginate(10);
+    foreach ($products as $product) {
+}
+
+    return view('dashboard.pages.productlist', compact('categories', 'products'));
+}
+
+public function updateLabel(Request $request)
+{
+    // Validate the incoming request
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'label' => 'required|string|max:50', // use the same name as sent from AJAX
+    ]);
+
+    $product = Product::find($request->product_id);
+
+    // Assign the label to your column
+    $product->prodcutlabel = $request->label; // make sure column name is correct
+    $product->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Label updated successfully'
+    ]);
+}
+
+public function updateStatus(Request $request)
+{
+    $request->validate([
+        'product_id' => 'required|exists:products,id',
+        'status' => 'required|in:published,draft,archived',
+    ]);
+
+    $product = Product::find($request->product_id);
+    $product->status = $request->status;
+    $product->save();
+
+    return response()->json(['success' => true, 'message' => 'Status updated successfully']);
 }
 
 
+
+}

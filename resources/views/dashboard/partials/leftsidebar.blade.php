@@ -33,6 +33,7 @@
 							<ul class="submenu">
 								
 								<li><a href="{{ route('dashboard.products') }}">Add Product</a></li>
+								<li><a href="{{ route('dashboard.listproducts')}}">Product List</a></li>
 								<li><a href="{{ route('dashboard.barcodepage') }}">Barcodes</a></li>
 								<li><a href="{{ route('dashboard.billingprinter') }}">Billing Printer</a></li>
 								<li>
