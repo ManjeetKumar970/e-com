@@ -63,7 +63,7 @@
 								><span class="mtext">Sliders Img</span>
 							</a>
                             <ul class="submenu">
-								<li><a href="{{ route('dashboard.slider') }}">View</a></li>
+								<li><a href="{{ route('dashboard.home') }}">View</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

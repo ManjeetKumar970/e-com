@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Dashboard\BarcodeRol;
 use App\Models\Dashboard\Category;
 use App\Models\Dashboard\Product;
+use App\Models\Dashboard\Slider;
 use Illuminate\Support\Facades\Log;
 
 class Index extends Controller
@@ -17,9 +18,10 @@ class Index extends Controller
      */
     public function index()
     {
+    $sliders=Slider::all();    
     $categories = Category::all();
     $products = Product::with(['primaryImage'])->where('status', 'published')->get();
-    return view('index', compact('categories','products')); 
+    return view('index', compact('categories','products','sliders')); 
     }
    public function product()
     {
