@@ -68,7 +68,7 @@ public function login(Request $request)
         $request->session()->regenerate();
 
         $user = Auth::user();
-
+        session()->put('user', $user);
         if ($user) {
             if ($user->usertype === 'admin') {
                 return redirect()

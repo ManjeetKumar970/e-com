@@ -11,47 +11,52 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     
- public function add(Request $request)
-    {
-        if (!Auth::check()) {
+        public function add(Request $request)
+        {
+            if (!Auth::check()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please login to add items to cart',
+                    'redirect' => route('login')
+                ], 401);
+            }
+
+            $request->validate([
+                'product_id' => 'required|exists:products,id',
+                'quantity' => 'integer|min:1'
+            ]);
+
+            $productId = $request->product_id;
+            $quantity = $request->quantity ?? 1;
+            $product = Product::findOrFail($productId);
+            $userId = Auth::id();
+
+            $cartItem = CartItem::where('user_id', $userId)
+                ->where('product_id', $productId)
+                ->first();
+
+            if ($cartItem) {
+                $cartItem->quantity += $quantity;
+                $cartItem->save();
+            } else {
+                CartItem::create([
+                    'user_id' => $userId,
+                    'product_id' => $productId,
+                    'quantity' => $quantity,
+                    'price' => $product->sale_price ?? $product->regular_price
+                ]);
+            }
+
+            $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
+            session()->put('cartItems', $cartItems);
+
             return response()->json([
-                'success' => false,
-                'message' => 'Please login to add items to cart',
-                'redirect' => route('login')
-            ], 401);
-        }
-
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'quantity' => 'integer|min:1'
-        ]);
-
-        $productId = $request->product_id;
-        $quantity = $request->quantity ?? 1;
-        $product = Product::findOrFail($productId);
-        $userId = Auth::id();
-        $cartItem = CartItem::where('user_id', $userId)
-            ->where('product_id', $productId)
-            ->first();
-
-        if ($cartItem) {
-            $cartItem->quantity += $quantity;
-            $cartItem->save();
-        } else {
-            CartItem::create([
-                'user_id' => $userId,
-                'product_id' => $productId,
-                'quantity' => $quantity,
-                'price' => $product->sale_price ?? $product->regular_price
+                'success' => true,
+                'message' => 'Product added to cart successfully',
+                'cart_count' => $cartItems->sum('quantity')
             ]);
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Product added to cart successfully',
-            'cart_count' => $this->getCartCount()
-        ]);
-    }
 
     /**
      * Get cart items count

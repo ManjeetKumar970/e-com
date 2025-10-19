@@ -131,6 +131,7 @@
             <span class="visually-hidden">items in cart</span>
         </span>
         @endif
+         @if(Auth::check())
     <a href="#" 
        class="btn btn-link text-dark text-decoration-none position-relative d-flex align-items-center p-2" 
        id="cartDropdown" 
@@ -139,7 +140,7 @@
         <i class="fas fa-shopping-cart fs-4"></i>
         <span class="d-none d-lg-inline ms-2">Cart</span>
     </a>
-    
+    @endif
     <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-0" style="min-width: 380px;">
         @php
             $cartCollection = collect($cartItems ?? []);
@@ -157,7 +158,8 @@
                 @foreach ($cartItems as $item)
                 <div class="d-flex align-items-center p-3 border-bottom position-relative">
                     <!-- Product Image -->
-                    <a href="productreview/{{ $item->product->slug }}/{{ $item->product->id }}">
+                         <a href="{{ url('productreview/' .  $item->product->slug . '/' . $item->product->id) }}">
+                        
                     <img src="{{ asset('storage/' . ($item->product->primaryImage->image_url ?? 'images/no-image.png')) }}" 
                          alt="{{ $item->product->name }}" 
                          class="rounded me-3 flex-shrink-0"

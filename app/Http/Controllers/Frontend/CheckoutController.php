@@ -20,7 +20,7 @@ class CheckoutController extends Controller
         ->get();
 
     if ($cartItems->isEmpty()) {
-        return redirect()->route('cart')->with('error', 'Your cart is empty.');
+        return redirect()->route('index')->with('error', 'Your cart is empty.');
     }
     $total = $cartItems->sum(function ($item) {
         return $item->product->sale_price * $item->quantity;

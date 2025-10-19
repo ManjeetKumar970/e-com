@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="{{asset('css/productreview.css')}}">
+ <style>
+
+    </style>
 </head>
 <body>
 @include('partials.header')
@@ -18,7 +21,6 @@
             </nav>
         </div>
     </div>
-
     <!-- Main Product Section -->
     <div class="container product-card my-5" >
         <div class="row">
@@ -357,208 +359,194 @@
         <div class="row">
             <div class="col-12">
                 <!-- Customer Reviews Section -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h2 class="card-title mb-5">Customer Reviews & Ratings</h2>
-                        
-                        <!-- Overall Rating -->
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="text-center">
-                                    <h2 class="display-4 mb-1">4.6</h2>
-                                    <div class="star-rating mb-2">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                    <small class="text-muted">2,847 ratings & 892 reviews</small>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <!-- Rating Breakdown -->
-                                <div class="mb-2">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <small>5★</small>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="rating-bar">
-                                                <div class="rating-fill" style="width: 68%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <small class="text-muted">68%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <small>4★</small>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="rating-bar">
-                                                <div class="rating-fill" style="width: 22%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <small class="text-muted">22%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <small>3★</small>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="rating-bar">
-                                                <div class="rating-fill" style="width: 7%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <small class="text-muted">7%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <small>2★</small>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="rating-bar">
-                                                <div class="rating-fill" style="width: 2%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <small class="text-muted">2%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-2">
-                                    <div class="row align-items-center">
-                                        <div class="col-2">
-                                            <small>1★</small>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="rating-bar">
-                                                <div class="rating-fill" style="width: 1%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-2">
-                                            <small class="text-muted">1%</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <h2 class="card-title">Customer Reviews & Ratings</h2>
+            
+            <!-- Overall Rating -->
+            <div class="overall-rating">
+                <div class="rating-summary">
+                    <div class="rating-number">4.6</div>
+                    <div class="star-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="rating-count">2,847 ratings & 892 reviews</div>
+                </div>
+                
+                <div class="rating-breakdown">
+                    <div class="rating-row">
+                        <span class="rating-label">5★</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 68%"></div>
                         </div>
-
-                        <!-- Individual Reviews -->
-                        <div class="review-card p-3 mb-3 mt-4">
-                            <div class="d-flex mb-2">
-                                <div class="reviewer-avatar me-3">R</div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="mb-0">Rajesh Kumar</h6>
-                                            <small class="text-muted">15 Aug 2025</small>
-                                        </div>
-                                        <div class="star-rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h6 class="mb-2">Excellent printer for restaurant use!</h6>
-                            <p class="mb-2 text-muted">I purchased this for my restaurant and it's been working flawlessly for 6 months now. Print quality is crisp, speed is impressive, and the setup was very easy. Handles high volume printing during rush hours without any issues. Highly recommended for commercial use.</p>
-                            <div class="d-flex gap-2">
-                                <span class="helpful-badge">
-                                    👍 Helpful (47)
-                                </span>
-                                <span class="text-muted" style="font-size: 14px; padding: 4px 12px;">
-                                    👎 Not Helpful (2)
-                                </span>
-                            </div>
+                        <span class="rating-percent">68%</span>
+                    </div>
+                    <div class="rating-row">
+                        <span class="rating-label">4★</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 22%"></div>
                         </div>
-
-                        <div class="review-card p-3 mb-3">
-                            <div class="d-flex mb-2">
-                                <div class="reviewer-avatar me-3">P</div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="mb-0">Priya Sharma</h6>
-                                            <small class="text-muted">12 Aug 2025</small>
-                                        </div>
-                                        <div class="star-rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h6 class="mb-2">Great value for money</h6>
-                            <p class="mb-2 text-muted">Perfect for our retail store. The ethernet connectivity makes it easy to connect to our POS system. Print speed is fantastic and paper loading is very convenient. FormationTech's customer service was also very helpful during setup.</p>
-                            <div class="d-flex gap-2">
-                                <span class="helpful-badge">
-                                    👍 Helpful (34)
-                                </span>
-                                <span class="text-muted" style="font-size: 14px; padding: 4px 12px;">
-                                    👎 Not Helpful (1)
-                                </span>
-                            </div>
+                        <span class="rating-percent">22%</span>
+                    </div>
+                    <div class="rating-row">
+                        <span class="rating-label">3★</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 7%"></div>
                         </div>
-
-                        <div class="review-card p-3 mb-3">
-                            <div class="d-flex mb-2">
-                                <div class="reviewer-avatar me-3">S</div>
-                                <div class="flex-grow-1">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <h6 class="mb-0">Suresh Patel</h6>
-                                            <small class="text-muted">02 July 2025</small>
-                                        </div>
-                                        <div class="star-rating">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h6 class="mb-2">Good printer, minor setup issues</h6>
-                            <p class="mb-2 text-muted">Overall satisfied with the printer performance. Print quality and speed are good. Had some initial setup issues with drivers on Windows 11, but FormationTech support helped resolve it quickly. Would recommend having technical support readily available during installation.</p>
-                            <div class="d-flex gap-2">
-                                <span class="helpful-badge">
-                                    👍 Helpful (28)
-                                </span>
-                                <span class="text-muted" style="font-size: 14px; padding: 4px 12px;">
-                                    👎 Not Helpful (5)
-                                </span>
-                            </div>
+                        <span class="rating-percent">7%</span>
+                    </div>
+                    <div class="rating-row">
+                        <span class="rating-label">2★</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 2%"></div>
                         </div>
-
-                        <div class="text-center mt-4">
-                            <button class="btn btn-primary">View All Reviews</button>
+                        <span class="rating-percent">2%</span>
+                    </div>
+                    <div class="rating-row">
+                        <span class="rating-label">1★</span>
+                        <div class="rating-bar">
+                            <div class="rating-fill" style="width: 1%"></div>
                         </div>
+                        <span class="rating-percent">1%</span>
                     </div>
                 </div>
             </div>
+
+            <!-- Individual Reviews -->
+            <div id="reviewsList">
+                <!-- First Review (Always Visible) -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-avatar">R</div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-top">
+                                <div>
+                                    <h6 class="reviewer-name">Rajesh Kumar</h6>
+                                    <small class="review-date">15 Aug 2025</small>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="review-title">Excellent printer for restaurant use!</h6>
+                    <p class="review-text">I purchased this for my restaurant and it's been working flawlessly for 6 months now. Print quality is crisp, speed is impressive, and the setup was very easy. Handles high volume printing during rush hours without any issues. Highly recommended for commercial use.</p>
+                    <div class="review-actions">
+                        <span class="helpful-badge">👍 Helpful (47)</span>
+                        <span class="not-helpful">👎 Not Helpful (2)</span>
+                    </div>
+                </div>
+
+                <!-- Hidden Reviews -->
+                <div class="review-card hidden" data-hidden-review>
+                    <div class="review-header">
+                        <div class="reviewer-avatar">P</div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-top">
+                                <div>
+                                    <h6 class="reviewer-name">Priya Sharma</h6>
+                                    <small class="review-date">12 Aug 2025</small>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="review-title">Great value for money</h6>
+                    <p class="review-text">Perfect for our retail store. The ethernet connectivity makes it easy to connect to our POS system. Print speed is fantastic and paper loading is very convenient. FormationTech's customer service was also very helpful during setup.</p>
+                    <div class="review-actions">
+                        <span class="helpful-badge">👍 Helpful (34)</span>
+                        <span class="not-helpful">👎 Not Helpful (1)</span>
+                    </div>
+                </div>
+
+                <div class="review-card hidden" data-hidden-review>
+                    <div class="review-header">
+                        <div class="reviewer-avatar">S</div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-top">
+                                <div>
+                                    <h6 class="reviewer-name">Suresh Patel</h6>
+                                    <small class="review-date">02 July 2025</small>
+                                </div>
+                                <div class="star-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="review-title">Good printer, minor setup issues</h6>
+                    <p class="review-text">Overall satisfied with the printer performance. Print quality and speed are good. Had some initial setup issues with drivers on Windows 11, but FormationTech support helped resolve it quickly. Would recommend having technical support readily available during installation.</p>
+                    <div class="review-actions">
+                        <span class="helpful-badge">👍 Helpful (28)</span>
+                        <span class="not-helpful">👎 Not Helpful (5)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="showMoreBtn" onclick="showMoreReviews()">Show More Reviews</button>
+                <button class="btn btn-info" onclick="openReviewModal()">Write a Review</button>
+            </div>
+     
+            </div>
         </div>
     </div>
+   <!-- Review Modal -->
+    <div class="modal" id="reviewModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Write Your Review</h3>
+                <button class="close-btn" onclick="closeReviewModal()">×</button>
+            </div>
+            
+            <form onsubmit="submitReview(event)">
+                <div class="form-group">
+                    <label class="form-label">Your Name *</label>
+                    <input type="text" class="form-input" id="reviewerName" placeholder="Enter your name" required>
+                </div>
 
+                <div class="form-group">
+                    <label class="form-label">Rating *</label>
+                    <div class="rating-input" id="ratingInput">
+                        <i class="far fa-star" data-rating="1" onclick="setRating(1)"></i>
+                        <i class="far fa-star" data-rating="2" onclick="setRating(2)"></i>
+                        <i class="far fa-star" data-rating="3" onclick="setRating(3)"></i>
+                        <i class="far fa-star" data-rating="4" onclick="setRating(4)"></i>
+                        <i class="far fa-star" data-rating="5" onclick="setRating(5)"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Review Title *</label>
+                    <input type="text" class="form-input" id="reviewTitle" placeholder="Sum up your experience" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Your Review *</label>
+                    <textarea class="form-textarea" id="reviewText" placeholder="Share your experience with this product..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Review</button>
+            </form>
+        </div>
+    </div>
 <!-- FAQ Section -->
 <div class="container product-card" style="margin-bottom: 10px">
                 <div class="card mb-4">
@@ -1060,7 +1048,115 @@
     </script>
 
 
- 
+ <script>
+        let selectedRating = 0;
+        let reviewsVisible = false;
+
+        function showMoreReviews() {
+            const hiddenReviews = document.querySelectorAll('[data-hidden-review]');
+            const btn = document.getElementById('showMoreBtn');
+            
+            if (!reviewsVisible) {
+                hiddenReviews.forEach(review => {
+                    review.classList.remove('hidden');
+                });
+                btn.textContent = 'Show Less';
+                reviewsVisible = true;
+            } else {
+                hiddenReviews.forEach(review => {
+                    review.classList.add('hidden');
+                });
+                btn.textContent = 'Show More Reviews';
+                reviewsVisible = false;
+            }
+        }
+
+        function openReviewModal() {
+            document.getElementById('reviewModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReviewModal() {
+            document.getElementById('reviewModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetForm();
+        }
+
+        function setRating(rating) {
+            selectedRating = rating;
+            const stars = document.querySelectorAll('#ratingInput i');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas', 'active');
+                } else {
+                    star.classList.remove('fas', 'active');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        function submitReview(event) {
+            event.preventDefault();
+            
+            if (selectedRating === 0) {
+                alert('Please select a rating!');
+                return;
+            }
+
+            const name = document.getElementById('reviewerName').value;
+            const title = document.getElementById('reviewTitle').value;
+            const text = document.getElementById('reviewText').value;
+
+            // Create new review element
+            const reviewCard = document.createElement('div');
+            reviewCard.className = 'review-card';
+            
+            const initial = name.charAt(0).toUpperCase();
+            const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+            
+            const stars = Array(5).fill(0).map((_, i) => 
+                i < selectedRating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>'
+            ).join('');
+
+            reviewCard.innerHTML = `
+                <div class="review-header">
+                    <div class="reviewer-avatar">${initial}</div>
+                    <div class="reviewer-info">
+                        <div class="reviewer-top">
+                            <div>
+                                <h6 class="reviewer-name">${name}</h6>
+                                <small class="review-date">${today}</small>
+                            </div>
+                            <div class="star-rating">${stars}</div>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="review-title">${title}</h6>
+                <p class="review-text">${text}</p>
+                <div class="review-actions">
+                    <span class="helpful-badge">👍 Helpful (0)</span>
+                    <span class="not-helpful">👎 Not Helpful (0)</span>
+                </div>
+            `;
+            const reviewsList = document.getElementById('reviewsList');
+            reviewsList.insertBefore(reviewCard, reviewsList.firstChild);
+            alert('Thank you for your review!');
+            closeReviewModal();
+        }
+
+        function resetForm() {
+            document.getElementById('reviewerName').value = '';
+            document.getElementById('reviewTitle').value = '';
+            document.getElementById('reviewText').value = '';
+            setRating(0);
+        }
+        document.getElementById('reviewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeReviewModal();
+            }
+        });
+    </script>
 </body>
     @include('partials.footer')
 </html>
