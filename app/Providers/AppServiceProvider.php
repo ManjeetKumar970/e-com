@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('partials.navbar', NavbarComposer::class);
+        // View::composer('partials.navbar', NavbarComposer::class);
+        View::composer(['partials.header', 'partials.footer','partials.navbar'], \App\Http\ViewComposers\NavbarComposer::class);
+
     }
     
 }

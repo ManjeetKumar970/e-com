@@ -5,12 +5,13 @@ use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\Dashboard;
-use App\Http\Controllers\Dashboard\HomeController;
-use App\Http\Controllers\Dashboard\ImgSlides;
 use App\Http\Controllers\Dashboard\PrintersController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Frontend\ProductreviewController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -18,27 +19,37 @@ Route::get('/', [Index::class, 'index'])->name('index');
 Route::get('/product', [Index::class, 'product'])->name('product');
 Route::get('/custombarcode', [Index::class, 'custombarcode'])->name('custombarcode');
 Route::get('/contactus', [Index::class, 'contactus'])->name('contactus');
-Route::get('/productreview', [Index::class, 'productreview'])->name('productreview');
-Route::get('/productcheckout', [Index::class, 'productcheckout'])->name('productcheckout');
-Route::get('orderconfirmation',[Index::class,'orderconfirmation'])->name('orderconfirmation');
+Route::get('/productreview/{slug}/{id}', [Index::class, 'productreview'])->name('productreview');
+
+// checkout route
+Route::get('/productcheckout', [CheckoutController::class, 'productcheckout'])->name('productcheckout');
+
+Route::get('orderconfirmation', [Index::class, 'orderconfirmation'])->name('orderconfirmation');
 Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
 Route::get('/product/{slug}/{id}', [ProductreviewController::class, 'show'])->name('product.show');
 Route::post('/product/update-label', [ProductsController::class, 'updateLabel'])->name('product.updateLabel');
 Route::post('/product/update-status', [ProductsController::class, 'updateStatus'])->name('product.updateStatus');
+//cart routes
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
+Route::delete('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+// Wishlist Routes
+Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+Route::delete('/wishlist/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
+Route::delete('/wishlist/clear', [WishlistController::class, 'clear'])->name('wishlist.clear');
+Route::post('/wishlist/check', [WishlistController::class, 'check'])->name('wishlist.check');
+
 
 Route::get('/products/{id}', [Index::class, 'show'])->name('products.show');
-
-// Optional: DataTables AJAX endpoint
 Route::get('/products/data/ajax', [Index::class, 'getProductsData'])->name('products.data');
-
-// Optional: API endpoints for cart/wishlist
-Route::post('/cart/add/{id}', function($id) {
-    // Add to cart logic
+Route::post('/cart/add/{id}', function ($id) {
     return response()->json(['success' => true, 'message' => 'Product added to cart']);
 })->name('cart.add');
 
-Route::post('/wishlist/toggle/{id}', function($id) {
-    // Toggle wishlist logic
+Route::post('/wishlist/toggle/{id}', function ($id) {
     return response()->json(['success' => true, 'message' => 'Wishlist updated']);
 })->name('wishlist.toggle');
 
@@ -54,7 +65,7 @@ Route::prefix('dashboard')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('dashboard.register');
     Route::post('/login', [AuthController::class, 'login'])->name('dashboard.login');
     Route::get('/login', function () {
-    return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard.index');
     })->name('login');
 
 
@@ -67,14 +78,14 @@ Route::prefix('dashboard')->group(function () {
         //category
         Route::get('/category', [CategoryController::class, 'category'])->name('dashboard.category');
         Route::post('/storecategory', [CategoryController::class, 'storecategory'])->name('dashboard.storecategory');
-            // Get category for editing (AJAX)
+        // Get category for editing (AJAX)
         Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])
             ->name('categories.edit');
-        
+
         // Update category
         Route::post('/categories/{id}/update', [CategoryController::class, 'update'])
             ->name('categories.update');
-        
+
         // Delete category
         Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])
             ->name('categories.destroy');
@@ -82,7 +93,7 @@ Route::prefix('dashboard')->group(function () {
         //Products
         Route::get('/products', [ProductsController::class, 'products'])->name('dashboard.products');
         Route::post('/createproduct', [ProductsController::class, 'createproduct'])->name('dashboard.createproduct');
-         // routes/web.php
+        // routes/web.php
         Route::get('/listproducts', [ProductsController::class, 'productList'])->name('dashboard.listproducts');
         //Billing Rols
 
@@ -91,7 +102,7 @@ Route::prefix('dashboard')->group(function () {
         //Barcode Rols
         Route::get('/barcodepage', [BarcodeRolController::class, 'barcodepage'])->name('dashboard.barcodepage');
         Route::post('/storeProduct', [ProductsController::class, 'storeProduct'])->name('dashboard.storeProduct');
-        
+
         //Billing Printer
         Route::get('/billingprinter', [PrintersController::class, 'billingPrinter'])->name('dashboard.billingprinter');
         Route::get('/storegprinter', [PrintersController::class, 'storePrinter'])->name('dashboard.storeprinter');
@@ -101,4 +112,3 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/logout', [Dashboard::class, 'logout'])->name('dashboard.logout');
     });
 });
-

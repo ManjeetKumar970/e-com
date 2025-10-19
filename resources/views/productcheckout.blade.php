@@ -3,10 +3,6 @@
 <head>
 
     <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        }
         .checkout-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -566,153 +562,115 @@
                 </div>
             </div>
 
-            <div class="col-lg-5">
-                <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    
-                    <div class="product-item">
-                        <div class="product-details">
-                            <h5>TSC Alpha-4 Thermal Printer</h5>
-                            <p>Wireless, Cloud Integration</p>
-                            <p>Qty: 1</p>
-                        </div>
-                        <div class="product-price">₹12,999</div>
-                    </div>
-                    
-                    <div class="product-item">
-                        <div class="product-details">
-                            <h5>Premium Barcode Labels</h5>
-                            <p>Water Resistant, 100mm x 50mm</p>
-                            <p>Qty: 5 Rolls</p>
-                        </div>
-                        <div class="product-price">₹4,495</div>
-                    </div>
-                    
-                    <div class="product-item">
-                        <div class="product-details">
-                            <h5>Thermal Paper Roll 80mm</h5>
-                            <p>Premium Quality</p>
-                            <p>Qty: 2 Packs</p>
-                        </div>
-                        <div class="product-price">₹2,998</div>
-                    </div>
+           <div class="col-lg-5">
+    <div class="order-summary">
+        <h3>Order Summary</h3>
 
-                    <div class="promo-section">
-                        <input type="text" class="form-control" placeholder="Enter promo code">
-                        <button class="btn-apply">Apply</button>
-                    </div>
+        {{-- Loop through Cart Items --}}
+        @forelse ($cartItems as $cartItem)
+            <div class="product-item d-flex justify-content-between align-items-start mb-3">
+                <div class="product-details">
+                    <h5>{{ $cartItem->product->name }}</h5>
+                    <p>{{ $cartItem->product->interface_type ?? $cartItem->product->paper_size }}</p>
+                    <p>Qty: {{ $cartItem->quantity }}</p>
+                </div>
+                <div class="product-price text-end">
+                    ₹{{ number_format($cartItem->product->sale_price * $cartItem->quantity, 2) }}
+                </div>
+            </div>
+        @empty
+            <p class="text-muted">Your cart is empty.</p>
+        @endforelse
 
-                    <div class="order-totals">
-                        <div class="row">
-                            <div class="col">Subtotal</div>
-                            <div class="col text-end">₹20,492</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">Discount (SAVE10)</div>
-                            <div class="col text-end discount-amount">-₹2,049</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">Delivery Charges</div>
-                            <div class="col text-end text-success fw-semibold">FREE</div>
-                        </div>
-                        <div class="row">
-                            <div class="col">GST (18%)</div>
-                            <div class="col text-end">₹3,320</div>
-                        </div>
-                        <div class="row total-amount">
-                            <div class="col">Total Amount</div>
-                            <div class="col text-end">₹21,763</div>
-                        </div>
-                    </div>
+        {{-- Promo Code --}}
+        <div class="promo-section mt-3">
+            <input type="text" class="form-control mb-2" placeholder="Enter promo code">
+            <button class="btn-apply">Apply</button>
+        </div>
 
-                    <button class="btn-place-order" onclick="placeOrder()">Place Order • ₹21,763</button>
+        {{-- Order Totals --}}
+        <div class="order-totals mt-4">
+            <div class="row">
+                <div class="col">Subtotal</div>
+                <div class="col text-end">₹{{ number_format($regularPrice, 2) }}</div>
+            </div>
+            <div class="row">
+                <div class="col">Discount</div>
+                <div class="col text-end text-success">-₹{{ number_format($discount, 2) }}</div>
+            </div>
+            <div class="row">
+                <div class="col">Delivery Charges</div>
+                <div class="col text-end text-success fw-semibold">FREE</div>
+            </div>
+            <div class="row">
+                <div class="col">GST ({{ $gstRate }}%)</div>
+                <div class="col text-end">₹{{ number_format($gstAmount, 2) }}</div>
+            </div>
+            <hr>
+            <div class="row total-amount fw-bold">
+                <div class="col">Total Amount</div>
+                <div class="col text-end">₹{{ number_format($grandTotal, 2) }}</div>
+            </div>
+        </div>
 
-                    <div class="trust-badges">
-                        <div class="trust-badge">
-                            <i class="fas fa-lock"></i>
-                            <div>Secure Payment</div>
-                        </div>
-                        <div class="trust-badge">
-                            <i class="fas fa-shield-halved"></i>
-                            <div>SSL Encrypted</div>
-                        </div>
-                        <div class="trust-badge">
-                            <i class="fas fa-check-circle"></i>
-                            <div>100% Safe</div>
-                        </div>
-                    </div>
+        {{-- Place Order Button --}}
+        <button class="btn-place-order mt-3 w-100" onclick="placeOrder()">
+            Place Order • ₹{{ number_format($grandTotal, 2) }}
+        </button>
 
-                    <div class="features-section">
-                        <div class="feature-item">
-                            <i class="fas fa-truck"></i>
-                            <div>
-                                <h6>Free Delivery</h6>
-                                <p>On orders above ₹999</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-undo"></i>
-                            <div>
-                                <h6>Easy Returns</h6>
-                                <p>7 day return policy</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-file-invoice"></i>
-                            <div>
-                                <h6>GST Invoice</h6>
-                                <p>Business ready billing</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-headset"></i>
-                            <div>
-                                <h6>24/7 Support</h6>
-                                <p>Dedicated customer care</p>
-                            </div>
-                        </div>
-                    </div>
+        {{-- Trust Badges --}}
+        <div class="trust-badges mt-4 d-flex justify-content-between">
+            <div class="trust-badge text-center">
+                <i class="fas fa-lock"></i>
+                <div>Secure Payment</div>
+            </div>
+            <div class="trust-badge text-center">
+                <i class="fas fa-shield-halved"></i>
+                <div>SSL Encrypted</div>
+            </div>
+            <div class="trust-badge text-center">
+                <i class="fas fa-check-circle"></i>
+                <div>100% Safe</div>
+            </div>
+        </div>
+
+        {{-- Extra Features --}}
+        <div class="features-section mt-4">
+            <div class="feature-item d-flex align-items-center mb-2">
+                <i class="fas fa-truck me-2"></i>
+                <div>
+                    <h6>Free Delivery</h6>
+                    <p>On orders above ₹999</p>
+                </div>
+            </div>
+            <div class="feature-item d-flex align-items-center mb-2">
+                <i class="fas fa-undo me-2"></i>
+                <div>
+                    <h6>Easy Returns</h6>
+                    <p>7 day return policy</p>
+                </div>
+            </div>
+            <div class="feature-item d-flex align-items-center mb-2">
+                <i class="fas fa-file-invoice me-2"></i>
+                <div>
+                    <h6>GST Invoice</h6>
+                    <p>Business ready billing</p>
+                </div>
+            </div>
+            <div class="feature-item d-flex align-items-center">
+                <i class="fas fa-headset me-2"></i>
+                <div>
+                    <h6>24/7 Support</h6>
+                    <p>Dedicated customer care</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function selectPayment(element) {
-            document.querySelectorAll('.payment-method-card').forEach(card => {
-                card.classList.remove('active');
-            });
-            element.classList.add('active');
-            element.querySelector('input[type="radio"]').checked = true;
-        }
+        </div>
+    </div>
 
-        function placeOrder() {
-            const form = document.getElementById('checkoutForm');
-            if (form.checkValidity()) {
-                alert('Order placed successfully! Thank you for your purchase.');
-            } else {
-                form.reportValidity();
-            }
-        }
-
-        // Express payment buttons
-        document.querySelectorAll('.payment-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                alert('Redirecting to ' + this.textContent.trim() + ' payment gateway...');
-            });
-        });
-
-        // Apply promo code
-        document.querySelector('.btn-apply').addEventListener('click', function() {
-            const promoInput = document.querySelector('.promo-section input');
-            if (promoInput.value.trim()) {
-                alert('Promo code "' + promoInput.value + '" applied!');
-            } else {
-                alert('Please enter a promo code');
-            }
-        });
-    </script>
     @include('partials.footer')
 </body>
 </html>

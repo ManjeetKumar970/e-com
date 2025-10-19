@@ -32,7 +32,7 @@ class ProductsController extends Controller
             'stock_quantity' => 'required|integer|min:0',
             'low_stock_threshold' => 'nullable|integer|min:1',
             'status' => 'required|in:draft,published,archived',
-            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
             'tax_rate' => 'nullable|numeric|min:0',
             'hsn_code' => 'nullable|string|max:50',
             'barcode' => 'nullable|string|max:255',

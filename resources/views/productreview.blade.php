@@ -22,30 +22,27 @@
     <!-- Main Product Section -->
     <div class="container product-card my-5" >
         <div class="row">
+            @if($product)                
+  
             <!-- Product Images -->
             <div class="col-lg-6 mb-4">
                 <div class="product-image-container" id="main-product-image">
-                    <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&h=400&fit=crop&crop=center" 
-                         alt="EPSON TM-T20III Thermal Printer" 
-                         class="product-image" 
-                         id="mainProductImage">
-                </div>
+                <img src="{{ asset('storage/' . ($product->primaryImage->image_url ?? 'images/no-image.png')) }}" 
+                    alt="{{ $product->name }}" 
+                    class="product-image-pv" 
+                    id="mainProductImage">
+            </div>
                 
-                <!-- Thumbnails -->
-                <div class="thumbnail-container">
-                    <div class="thumbnail active" data-image="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500&h=400&fit=crop&crop=center">
-                        <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=60&h=60&fit=crop&crop=center" alt="Main Printer View">
+              <!-- Thumbnails -->
+            <div class="thumbnail-container">
+                @foreach ($product->productImages as $image)
+                    <div class="thumbnail {{ $loop->first ? 'active' : '' }}" 
+                        data-image="{{ asset('storage/' . $image->image_url) }}">
+                        <img src="{{ asset('storage/' . $image->image_url) }}" 
+                            alt="{{ $product->name }} image {{ $loop->iteration }}">
                     </div>
-                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=500&h=400&fit=crop&crop=center">
-                        <img src="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=60&h=60&fit=crop&crop=center" alt="Control Panel">
-                    </div>
-                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop&crop=center">
-                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60&h=60&fit=crop&crop=center" alt="Connectivity">
-                    </div>
-                    <div class="thumbnail" data-image="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=500&h=400&fit=crop&crop=center">
-                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=60&h=60&fit=crop&crop=center" alt="Setup Guide">
-                    </div>
-                </div>
+                @endforeach
+            </div>
                 
                 <!-- Video Section -->
                 <div class="video-placeholder">
@@ -56,11 +53,10 @@
                     </div>
                 </div>
             </div>
-            
             <!-- Product Details -->
             <div class="col-lg-6">
-                <h1 class="h2 mb-3">EPSON TM-T20III Thermal Receipt Printer</h1>
-                <p class="text-muted mb-3">High Speed Business Printer (Black)</p>
+                <h1 class="h2 mb-3">{{$product->name }}</h1>
+                <p class="text-muted mb-3">{{$product->short_description}}</p>
                 
                 <!-- Rating -->
                 <div class="d-flex align-items-center mb-3">
@@ -79,9 +75,9 @@
                 <div class="mb-4">
                     <div class="special-price-badge">Special Price</div>
                     <div>
-                        <span class="current-price">₹8,450</span>
-                        <span class="original-price">₹12,999</span>
-                        <span class="discount-badge">35% off</span>
+                        <span class="current-price">₹{{ $product->sale_price }}</span>
+                        <span class="original-price">₹{{ $product->regular_price }}</span>
+                        <span class="discount-badge">{{ round(100 - ($product->sale_price / $product->regular_price * 100)) }}% off</span>
                     </div>
                 </div>
                 
@@ -90,47 +86,47 @@
                     <table class="table table-sm product-specs-table">
                         <tr>
                             <td>Category</td>
-                            <td>THERMAL POS ROLLS</td>
+                            <td>{{$product->category->name}}</td>
                         </tr>
                         <tr>
                             <td>Product Model</td>
-                            <td>SW-TR79X50</td>
+                            <td>{{$product->model_number ??0}}</td>
                         </tr>
                         <tr>
                             <td>Height</td>
-                            <td>79mm</td>
+                            <td>{{$product->model_number ??0}}mm</td>
                         </tr>
                         <tr>
                             <td>Diameter</td>
-                            <td>60mm</td>
+                            <td>{{$product->model_number ??0}}mm</td>
                         </tr>
                         <tr>
                             <td>Core</td>
-                            <td>1/2" Inch</td>
+                            <td>{{$product->model_number ??0}}" Inch</td>
                         </tr>
                         <tr>
                             <td>Unit</td>
-                            <td>Roll</td>
+                            <td>{{$product->model_number ??0}}</td>
                         </tr>
                         <tr>
                             <td>Standard Packing</td>
-                            <td>16 Rolls Packing</td>
+                            <td>{{$product->model_number ??0}}</td>
                         </tr>
                         <tr>
                             <td>Product Weight</td>
-                            <td>200gm</td>
+                            <td>{{$product->print_width ??0}}gm</td>
                         </tr>
                         <tr>
                             <td>Min Order Limit</td>
-                            <td>1 Roll</td>
+                            <td>{{$product->model_number ??0}}</td>
                         </tr>
                         <tr>
                             <td>Roll Length</td>
-                            <td>50Mtr</td>
+                            <td>{{$product->model_number ??0}}</td>
                         </tr>
                     </table>
                 </div>
-                
+                @if(isset($product->paper_type))
                 <!-- Material Selection -->
                 <div class="mb-3">
                     <label class="form-label fw-bold">Material:</label>
@@ -165,7 +161,7 @@
                         <option>1" Inch</option>
                     </select>
                 </div>
-                
+                @endif
                 <!-- Action Buttons -->
                 <div class="action-buttons">
                     <button class="btn btn-primary btn-lg flex-fill me-2 add-to-cart-btn">
@@ -206,9 +202,12 @@
                     </a>
                 </div>
             </div>
+            @endif
         </div>
     </div>
         <!-- Product Description -->
+    @if(!isset($product->paper_type)) 
+
         <div class="container product-card py-5" style="margin-bottom: 10px;">
             <div class="row">
                 <div class="col">
@@ -217,22 +216,19 @@
                             <h3>Product Description</h3>
                         </div>
                         <div class="card-body">
-                            <p>The EPSON TM-T20III is a high-performance thermal receipt printer designed for modern business environments. With its sleek design and robust functionality, this printer delivers exceptional print quality and reliability for retail, hospitality, and service industries.</p>
+                           
+                            <p> {{$product->short_description     ??''}}</p>
                             
                             <h5 class="mt-4 mb-3">Key Features:</h5>
                             <ul class="feature-list">
-                                <li>Print speed up to 250mm/sec for fast customer service</li>
-                                <li>Multiple connectivity options: USB, Ethernet, and Serial ports</li>
-                                <li>Compact design perfect for space-constrained counters</li>
-                                <li>ENERGY STAR qualified for reduced power consumption</li>
-                                <li>Easy drop-in paper loading mechanism</li>
-                                <li>Reliable partial cut function</li>
+                                 <p> {{$product->description     ??''}}</p>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- Product Highlights Section -->
         <div class="container product-card" style="margin-bottom: 10px;">
         <!-- Product Highlights Section -->
@@ -320,60 +316,34 @@
             </div>
         </div>
      </div>
-     
+     @endif
         <!-- What's in the Box Section -->
         <!-- View Similar Products Section -->
         <div class="container   product-card py-5" style="margin-bottom: 10px;">
             <h3 class="">View Similar Products</h3>
             <div class="row g-4">
+                @foreach ($relatedProducts as $relatedProduct)
+            
                 <div class="col-md-6 col-lg-3">
+                     <a href="{{ route('product.show', ['slug' => $relatedProduct->slug, 'id' => $relatedProduct->id]) }}" style="text-decoration: none; color: inherit;">
                     <div class="product-card">
+                      
                         <div class="product-image">
-                            EPSON TM series
+                          <img src="{{ asset('storage/' .($relatedProduct->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="" class="img-fluid">
                         </div>
+                        
                         <div class="p-3">
-                            <h6 class="fw-bold mb-2">EPSON TM-U220 Dot Matrix Printer</h6>
-                            <div class="price">₹7,250</div>
-                            <div class="original-price">₹8,500</div>
+                            <h6 class="fw-bold mb-2">{{$relatedProduct->name}}</h6>
+                            <div class="price">₹{{$relatedProduct->sale_price}}</div>
+                            <div class="original-price">₹{{$relatedProduct->regular_price}}</div>
                         </div>
+                    </a>
+
                     </div>
+                    
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="product-card">
-                        <div class="product-image">
-                            TSC TTP series
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-2">TSC TTP-244 Plus Label Printer</h6>
-                            <div class="price">₹12,999</div>
-                            <div class="original-price">₹15,000</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="product-card">
-                        <div class="product-image">
-                            Honeywell 1250g
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-2">Honeywell 1250g Barcode Scanner</h6>
-                            <div class="price">₹4,850</div>
-                            <div class="original-price">₹5,500</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="product-card">
-                        <div class="product-image">
-                            POS Terminal
-                        </div>
-                        <div class="p-3">
-                            <h6 class="fw-bold mb-2">All-in-One POS Terminal System</h6>
-                            <div class="price">₹24,999</div>
-                            <div class="original-price">₹28,000</div>
-                        </div>
-                    </div>
-                </div>
+                
+                 @endforeach
             </div>
         </div>
   

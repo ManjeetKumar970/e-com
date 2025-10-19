@@ -1,12 +1,15 @@
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+
     <title>Formatter Tech - Transform Your Business</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
 </head>
 <style>
     /* Mobile Search Improvements */
@@ -92,7 +95,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="accountDropdown">
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-user me-2 text-primary"></i> My Profile</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">2</span></a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">{{$wishlistCount}}</span></a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-tag me-2 text-success"></i> Coupons</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-bell me-2 text-warning"></i> Notifications</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -111,7 +114,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="accountDropdownMobile">
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-user me-2 text-primary"></i> My Profile</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">2</span></a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">0</span></a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-tag me-2 text-success"></i> Coupons</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-bell me-2 text-warning"></i> Notifications</a></li>
                             <li><hr class="dropdown-divider"></li>
@@ -120,27 +123,107 @@
                     </div>
 
                     <!-- Cart Dropdown -->
-                    <div class="dropdown position-relative d-flex align-items-center">
-                        <a href="#" class="text-decoration-none text-dark" id="cartDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-shopping-cart" style="font-size: 24px;"></i>
-                            <span class="d-none d-lg-inline ms-1">Cart</span>
-                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle rounded-pill badge-cart">3</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="cartDropdown" style="min-width: 250px;">
-                            <li class="px-3 py-2">
-                                <div class="d-flex align-items-center mb-2">
-                                    <img src="https://via.placeholder.com/50" alt="Product" class="me-2 rounded">
-                                    <div class="flex-grow-1">
-                                        <small class="d-block">Thermal Printer</small>
-                                        <small class="text-muted">₹5,999</small>
-                                    </div>
-                                </div>
-                            </li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-center fw-bold text-primary" href="#">View Cart (3 items)</a></li>
-                            <li><a class="dropdown-item text-center btn btn-primary text-white" href="#">Checkout</a></li>
-                        </ul>
+                   <!-- Cart Dropdown -->
+<div class="dropdown">
+     @if($cartCount > 0)
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ $cartCount }}
+            <span class="visually-hidden">items in cart</span>
+        </span>
+        @endif
+    <a href="#" 
+       class="btn btn-link text-dark text-decoration-none position-relative d-flex align-items-center p-2" 
+       id="cartDropdown" 
+       data-bs-toggle="dropdown" 
+       aria-expanded="false">
+        <i class="fas fa-shopping-cart fs-4"></i>
+        <span class="d-none d-lg-inline ms-2">Cart</span>
+    </a>
+    
+    <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-0" style="min-width: 380px;">
+        @php
+            $cartCollection = collect($cartItems ?? []);
+        @endphp
+
+        @if($cartCollection->isEmpty())
+            <!-- Empty Cart State -->
+            <div class="text-center py-5 px-3">
+                <i class="fas fa-shopping-cart text-muted mb-3" style="font-size: 3rem; opacity: 0.3;"></i>
+                <p class="text-muted mb-0">Your cart is empty</p>
+            </div>
+        @else
+            <!-- Cart Items -->
+            <div class="overflow-auto" style="max-height: 350px;">
+                @foreach ($cartItems as $item)
+                <div class="d-flex align-items-center p-3 border-bottom position-relative">
+                    <!-- Product Image -->
+                    <a href="productreview/{{ $item->product->slug }}/{{ $item->product->id }}">
+                    <img src="{{ asset('storage/' . ($item->product->primaryImage->image_url ?? 'images/no-image.png')) }}" 
+                         alt="{{ $item->product->name }}" 
+                         class="rounded me-3 flex-shrink-0"
+                         style="width: 70px; height: 70px; object-fit: cover;"> </a>
+                    
+                    <!-- Product Details -->
+                    <div class="flex-grow-1">
+                        <h6 class="mb-1 fw-bold text-dark" style="font-size: 0.95rem;">
+                            {{ $item->product->name }}
+                        </h6>
+                        <p class="mb-0 fw-semibold" style="color: #9ca3af; font-size: 0.9rem;">
+                            ₹{{ number_format($item->product->sale_price, 2) }}
+                        </p>
                     </div>
+                    
+                    <!-- Quantity Controls & Delete -->
+                    <div class="d-flex flex-column align-items-end gap-2">
+                        <!-- Quantity Selector -->
+                        <div class="d-flex align-items-center border rounded" style="background: #f8f9fa;">
+                            <button class="btn btn-sm border-0 px-2 py-1" style="font-size: 0.75rem; color: #9ca3af;">
+                                <i class="fas fa-chevron-up"></i>
+                            </button>
+                            <span class="px-3 py-1 fw-semibold" style="font-size: 0.9rem; min-width: 30px; text-align: center;">
+                                {{ $item->quantity }}
+                            </span>
+                            <button class="btn btn-sm border-0 px-2 py-1" style="font-size: 0.75rem; color: #9ca3af;">
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Delete Button -->
+                        <form method="POST" action="{{ route('cart.remove') }}">
+                            @csrf
+                            @method('DELETE')
+                            <input type="hidden" name="product_id" value="{{ $item->product->id }}">
+                        <button class="btn btn-sm border-0 p-1" style="color: #9ca3af;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        </form>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            
+            <!-- Cart Footer -->
+            <div class="p-4">
+                <!-- Subtotal -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="fw-semibold" style="color: #60a5fa; font-size: 1.1rem;">Subtotal:</span>
+                    <span class="fw-bold" style="color: #60a5fa; font-size: 1.3rem;">
+                        ₹{{ number_format($cartItems->sum(fn($item) => $item->product->sale_price * $item->quantity), 2) }}
+                    </span>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="d-grid gap-2">
+                    <a href="/productcheckout" 
+                       class="btn text-white fw-semibold py-2 rounded-3 border-0" 
+                       style="background: #60a5fa; font-size: 1rem;">
+                        Checkout
+                    </a>
+                </div>
+            </div>
+        @endif
+    </div>
+</div>
 
                     <!-- Mobile Hamburger -->
                     <button class="navbar-toggler border-0 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -205,5 +288,211 @@
         });
     });
 </script>
+{{-- add to card and wishlist function script --}}
 
+<script>
+// Check if user is logged in
+const isLoggedIn = {{ auth()->check() ? 'true' : 'false' }};
+const loginUrl = "{{ route('login') }}";
+
+function toggleHeart(element) {
+    // Check if user is logged in
+    if (!isLoggedIn) {
+        if (confirm('Please login to add items to wishlist. Redirect to login page?')) {
+            window.location.href = loginUrl;
+        }
+        return;
+    }
+
+    // Get product ID
+        const card = element.closest('.product-card-hot-deel, .product-card-hot ,.product-card-pd');
+
+    const productId = card.dataset.productId;
+    
+    if (!productId) {
+        alert('Product ID not found');
+        return;
+    }
+
+    // Get CSRF token
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+    if (!csrfToken) {
+        alert('Security token missing. Please refresh the page.');
+        return;
+    }
+
+    // Disable during request
+    const currentBg = element.style.background;
+    element.style.transform = 'scale(1.3)';
+
+    // Make AJAX request
+    fetch('/wishlist/toggle', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken.getAttribute('content')
+        },
+        body: JSON.stringify({
+            product_id: productId
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Toggle heart color based on wishlist status
+            if (data.in_wishlist) {
+                element.style.background = '#dc3545'; // Red - in wishlist
+                element.setAttribute('data-in-wishlist', 'true');
+            } else {
+                element.style.background = '#ff6b4a'; // Orange - not in wishlist
+                element.setAttribute('data-in-wishlist', 'false');
+            }
+
+            // Update wishlist count in header (if you have one)
+            const wishlistCount = document.querySelector('.wishlist-count');
+            if (wishlistCount) {
+                wishlistCount.textContent = data.wishlist_count;
+            }
+
+            // Animation
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 200);
+        } else {
+            throw new Error(data.message || 'Failed to update wishlist');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to update wishlist. Please try again.');
+        element.style.background = currentBg;
+        element.style.transform = 'scale(1)';
+    });
+}
+
+function addToCart(element) {
+    // Check if user is logged in
+    if (!isLoggedIn) {
+        if (confirm('Please login to add items to cart. Redirect to login page?')) {
+            window.location.href = loginUrl;
+        }
+        return;
+    }
+
+    // Try to find the nearest card (supports both types)
+    const card = element.closest('.product-card-hot-deel, .product-card-hot ,.product-card-pd');
+    if (!card) {
+        alert('Product card not found.');
+        return;
+    }
+
+    const productId = card.dataset.productId;
+    if (!productId) {
+        alert('Product ID not found');
+        return;
+    }
+
+    // Get CSRF token
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+    if (!csrfToken) {
+        console.error('CSRF token not found. Add <meta name="csrf-token" content="{{ csrf_token() }}"> to your layout.');
+        alert('Security token missing. Please refresh the page.');
+        return;
+    }
+
+    element.disabled = true;
+    const originalText = element.innerHTML;
+    element.innerHTML = '⏳';
+
+    fetch('/cart/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken.getAttribute('content')
+        },
+        body: JSON.stringify({ product_id: productId, quantity: 1 })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            element.innerHTML = '✓';
+            element.style.background = '#28a745';
+            element.style.transform = 'scale(1.2)';
+
+            const cartCount = document.querySelector('.cart-count');
+            if (cartCount) cartCount.textContent = data.cart_count;
+
+            // Animate card
+            card.style.transform = 'translateY(-15px) scale(1.02)';
+            card.style.boxShadow = '0 30px 60px rgba(40, 167, 69, 0.2)';
+
+            setTimeout(() => {
+                element.innerHTML = originalText;
+                element.style.background = 'linear-gradient(135deg, #ff6b4a 0%, #ff8a65 100%)';
+                element.style.transform = 'scale(1)';
+                element.disabled = false;
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            }, 1500);
+        } else {
+            throw new Error(data.message || 'Failed to add to cart');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Failed to add product to cart. Please try again.');
+        element.innerHTML = originalText;
+        element.style.background = 'linear-gradient(135deg, #ff6b4a 0%, #ff8a65 100%)';
+        element.disabled = false;
+    });
+}
+
+// Add stagger animation on load
+window.addEventListener('load', () => {
+    const cards = document.querySelectorAll('.product-card-hot-deel');
+    cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        setTimeout(() => {
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 200);
+    });
+
+    // Load wishlist status for logged-in users
+    if (isLoggedIn) {
+        loadWishlistStatus();
+    }
+});
+
+// Load wishlist status for all products
+function loadWishlistStatus() {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]');
+    if (!csrfToken) return;
+
+    const cards = document.querySelectorAll('.product-card-hot-deel');
+    cards.forEach(card => {
+        const productId = card.dataset.productId;
+        const heartIcon = card.querySelector('.heart-icon-hot-deel');
+
+        fetch('/wishlist/check', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken.getAttribute('content')
+            },
+            body: JSON.stringify({ product_id: productId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.in_wishlist) {
+                heartIcon.style.background = '#dc3545';
+                heartIcon.setAttribute('data-in-wishlist', 'true');
+            }
+        })
+        .catch(error => console.error('Error loading wishlist status:', error));
+    });
+}
+</script>
 @include('partials.navbar')

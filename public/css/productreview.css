@@ -1,3 +1,12 @@
+    .product-image-pv {
+        max-width: 100%;
+        max-height: 350px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+        cursor: zoom-in;
+        border-radius: 8px;
+        background: transparent;
+    }
 
         .highlights-grid {
             display: grid;
@@ -578,14 +587,6 @@
             }
         }
 
-        .policy-card {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .policy-card:nth-child(1) { animation-delay: 0.1s; }
-        .policy-card:nth-child(2) { animation-delay: 0.2s; }
-        .policy-card:nth-child(3) { animation-delay: 0.3s; }
-        .policy-card:nth-child(4) { animation-delay: 0.4s; }
 
 
         /* costomer review */

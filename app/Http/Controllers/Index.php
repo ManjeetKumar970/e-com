@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Models\Dashboard\BarcodeRol;
 use App\Models\Dashboard\Category;
 use App\Models\Dashboard\Product;
 use App\Models\Dashboard\Slider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Index extends Controller
@@ -40,13 +42,25 @@ class Index extends Controller
     {
         return view('contactus'); 
         
-    } function productreview(){
-     return view('productreview'); 
-  }
+    } 
+ public function productReview($slug, $id)
+{
+    $userId = Auth::id();
 
-   function productcheckout(){
-    return view('productcheckout');
-   }
+    $product = Product::with(['primaryImage','productImages', 'category'])
+        ->findOrFail($id);
+    $relatedProducts = Product::with('primaryImage')
+        ->where('category_id', $product->category_id)
+        ->where('id', '!=', $product->id)
+        ->take(4)
+        ->get();
+
+    return view('productreview', compact('product', 'relatedProducts'));
+}
+
+
+
+
    function orderconfirmation(){
     return view('orderconfirmation');
    }

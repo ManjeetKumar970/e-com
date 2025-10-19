@@ -14,9 +14,11 @@
         <div class="products-grid-hot">
             @if(isset($products) && $products->count() > 0)
           @foreach ($products->slice(0, 5) as $product)
-            <div class="product-card-hot">
-                <div class="product-header-hot">
-            <div class="heart-icon-hot-deel" onclick="toggleHeart(this)"></div>
+            <div class="product-card-hot" data-product-id="{{ $product->id }}">               
+                <div class="heart-icon-hot-deel" 
+                    onclick="toggleHeart(this)"
+                    data-in-wishlist="false"
+                    style="background: #ff6b4a">
                 </div>
                 <a href="{{ route('product.show', ['slug' => $product->slug, 'id' => $product->id]) }}">
                 <div class="product-image-hot">
@@ -32,7 +34,9 @@
                         <div class="current-price">₹{{ $product->sale_price }}</div>
                         <div class="original-price">{{ $product->regular_price }}</div>
                     </div>
-                    <button class="add-btn" onclick="addToCart('TSC Alpha-4')">+</button>
+                    <button class="add-button-hot-deel" onclick="addToCart(this)">+</button>
+
+
                 </div>
             </div>
         @endforeach

@@ -148,7 +148,7 @@ class Product extends Model
     // Relationships
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     // public function orderItems()
@@ -368,4 +368,6 @@ class Product extends Model
 
         return true;
     }
+
+ 
 }
