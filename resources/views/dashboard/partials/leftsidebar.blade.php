@@ -34,11 +34,11 @@
 								
 								<li><a href="{{ route('dashboard.products') }}">Add Product</a></li>
 								<li><a href="{{ route('dashboard.listproducts')}}">Product List</a></li>
-								<li><a href="{{ route('dashboard.barcodepage') }}">Barcodes</a></li>
-								<li><a href="{{ route('dashboard.billingprinter') }}">Billing Printer</a></li>
-								<li>
+								{{-- <li><a href="{{ route('dashboard.barcodepage') }}">Barcodes</a></li> --}}
+								{{-- <li><a href="{{ route('dashboard.billingprinter') }}">Billing Printer</a></li> --}}
+								{{-- <li>
                                    <a href="{{ route('dashboard.createbillingrols') }}">Billing Rolls</a>
-								</li>
+								</li> --}}
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -50,13 +50,7 @@
 								<li><a href="{{ route('dashboard.category')}}">Creta Category</a></li>
 							</ul>
 						</li>
-						<li>
-							<a href="calendar.html" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-calendar4-week"></span
-								><span class="mtext">Best Seller Product</span>
-							</a>
-						</li>
-
+						
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-command"></span
@@ -69,10 +63,10 @@
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-pie-chart"></span
-								><span class="mtext">Footer</span>
+								><span class="mtext">Order </span>
 							</a>
 							<ul class="submenu">
-								<li><a href="highchart.html">View</a></li>
+								<li><a href="{{route('order.show')}}">Order List</a></li>
 							</ul>
 						</li>
 						

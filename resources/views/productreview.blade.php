@@ -47,12 +47,35 @@
             </div>
                 
                 <!-- Video Section -->
-                <div class="video-placeholder">
-                    <div class="video-overlay">
-                        <i class="fas fa-play-circle fa-3x mb-3 text-white"></i>
-                        <h5 class="text-white">Play</h5>
-                        <p class="mb-0 text-white">Product demonstration video</p>
-                    </div>
+                <div class="video-container position-relative" style="padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                    @if(!empty($product->product_video_url))
+                        @php
+                            // Extract YouTube video ID from URL
+                            preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/', $product->product_video_url, $matches);
+                            $videoId = $matches[1] ?? null;
+                        @endphp
+
+                        @if($videoId)
+                            <div id="video-placeholder-{{ $videoId }}" class="video-placeholder position-absolute top-0 start-0 w-100 h-100" 
+                                style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); cursor: pointer;"
+                                onclick="playVideo('{{ $videoId }}')">
+                                <div class="video-overlay d-flex flex-column justify-content-center align-items-center h-100">
+                                    <i class="fas fa-play-circle fa-3x mb-3 text-white" style="opacity: 0.9;"></i>
+                                    <h5 class="text-white mb-2">Watch Product Demo</h5>
+                                    <p class="mb-0 text-white small">Click to play</p>
+                                </div>
+                            </div>
+                            
+                            <div id="video-iframe-{{ $videoId }}" class="position-absolute top-0 start-0 w-100 h-100" style="display: none;">
+                                <!-- YouTube iframe will be inserted here -->
+                            </div>
+
+                            <!-- Optional: Button to open on YouTube -->
+                            <a href="{{ $product->product_video_url }}" target="_blank" 
+                             style="top: 10px; right: 10px; z-index: 1000; opacity: 0.9;">
+                            </a>
+                        @endif
+                    @endif
                 </div>
             </div>
             <!-- Product Details -->
@@ -165,13 +188,13 @@
                 </div>
                 @endif
                 <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button class="btn btn-primary btn-lg flex-fill me-2 add-to-cart-btn">
+                <div class="action-buttons productview" data-product-id="{{ $product->id }}">
+                    <button class="btn btn-primary btn-lg flex-fill me-2 add-to-cart-btn"  onclick="addToCart(this)">
                         <i class="fas fa-shopping-cart me-2"></i>ADD TO CART
                     </button>
-                    <button class="btn btn-success btn-lg flex-fill buy-now-btn">
+                    <a href="/productcheckout" class="btn btn-success btn-lg flex-fill buy-now-btn">
                         <i class="fas fa-bolt me-2"></i>BUY NOW
-                    </button>
+                    </a>
                 </div>
                 
                 <!-- Download Link -->
@@ -927,28 +950,7 @@
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }, 1500);
-        });
-        
-        // Additional Add to Cart buttons functionality (in description section)
-        document.querySelectorAll('button[style*="background-color: #ff6b47"]').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Adding...';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    this.innerHTML = '<i class="fas fa-check me-2"></i>Added!';
-                    this.style.backgroundColor = '#28a745';
-                    
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.style.backgroundColor = '#ff6b47';
-                        this.disabled = false;
-                    }, 2000);
-                }, 1000);
-            });
-        });
-        
+        });    
         // Additional Buy Now buttons functionality (in description section)
         document.querySelectorAll('button[style*="background-color: #6c5ce7"]').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -980,17 +982,6 @@
                     alert(`${title} functionality would be implemented here.`);
                 }, 500);
             });
-        });
-        
-        // Video placeholder click
-        document.querySelector('.video-placeholder').addEventListener('click', function() {
-            const overlay = this.querySelector('.video-overlay');
-            overlay.style.background = 'rgba(0,0,0,0.8)';
-            
-            setTimeout(() => {
-                alert('Video player would open here.');
-                overlay.style.background = 'rgba(0,0,0,0.6)';
-            }, 200);
         });
         
         // Download Product Catalog functionality
@@ -1157,6 +1148,45 @@
             }
         });
     </script>
+<script>
+function playVideo(videoId) {
+    const placeholder = document.getElementById('video-placeholder-' + videoId);
+    const iframeContainer = document.getElementById('video-iframe-' + videoId);
+    
+    // Hide placeholder
+    placeholder.style.display = 'none';
+    
+    // Create and insert YouTube iframe
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    
+    iframeContainer.appendChild(iframe);
+    iframeContainer.style.display = 'block';
+}
+</script>
+
+<style>
+.video-placeholder {
+    transition: transform 0.3s ease;
+}
+
+.video-placeholder:hover {
+    transform: scale(1.02);
+}
+
+.video-placeholder:hover .video-overlay i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+</style>
 </body>
     @include('partials.footer')
 </html>

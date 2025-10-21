@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
+   
 </head>
 <style>
     /* Mobile Search Improvements */
@@ -71,6 +71,7 @@
             </div>
         </div>
     </div>
+    @include('partials.alert')
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
     <div class="container">
         <div class="row w-100 g-0 align-items-center">
@@ -95,10 +96,12 @@
 
                         <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="accountDropdown">
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-user me-2 text-primary"></i> My Profile</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">{{$wishlistCount}}</span></a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="{{ route('wishlist.index') }}"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">{{$wishlistCount}}</span></a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-tag me-2 text-success"></i> Coupons</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-bell me-2 text-warning"></i> Notifications</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <a class="dropdown-item d-flex align-items-center" 
+                                href="{{ route('orderconfirmation', Auth::user()->id) }}">
+                                <i class="fas fa-cart-shopping me-2 text-warning"></i> Order list
+                            </a>                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="{{ route('userLogout') }}"><i class="fas fa-sign-out-alt me-2 text-secondary"></i> Logout</a></li>
                         </ul>
                     @else
@@ -116,8 +119,7 @@
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-user me-2 text-primary"></i> My Profile</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-heart me-2 text-danger"></i> Wishlist <span class="badge bg-secondary ms-auto">0</span></a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-tag me-2 text-success"></i> Coupons</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-bell me-2 text-warning"></i> Notifications</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="as fa-cart-shopping me-2 text-warning"></i> Order list</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="fas fa-sign-out-alt me-2 text-secondary"></i> Logout</a></li>
                         </ul>
                     </div>
@@ -182,7 +184,7 @@
                             <button class="btn btn-sm border-0 px-2 py-1" style="font-size: 0.75rem; color: #9ca3af;">
                                 <i class="fas fa-chevron-up"></i>
                             </button>
-                            <span class="px-3 py-1 fw-semibold" style="font-size: 0.9rem; min-width: 30px; text-align: center;">
+                            <span class="px-3 py-1 fw-semibold " style="font-size: 0.9rem; min-width: 30px; text-align: center;">
                                 {{ $item->quantity }}
                             </span>
                             <button class="btn btn-sm border-0 px-2 py-1" style="font-size: 0.75rem; color: #9ca3af;">
@@ -262,10 +264,8 @@
     document.addEventListener('DOMContentLoaded', function() {
         let lastScrollTop = 0;
         const searchBar = document.querySelector('.search-bar-wrapper');
-        const scrollThreshold = 50; // Minimum scroll distance to trigger hide/show
-        
-        // Only apply on mobile screens
-        if (window.innerWidth <= 991) {
+        const scrollThreshold = 50; 
+                if (window.innerWidth <= 991) {
             window.addEventListener('scroll', function() {
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 
@@ -374,61 +374,78 @@ function toggleHeart(element) {
 
 function addToCart(element) {
     // Check if user is logged in
-    if (!isLoggedIn) {
+    if (typeof isLoggedIn !== "undefined" && !isLoggedIn) {
         if (confirm('Please login to add items to cart. Redirect to login page?')) {
             window.location.href = loginUrl;
         }
         return;
     }
 
-    // Try to find the nearest card (supports both types)
-    const card = element.closest('.product-card-hot-deel, .product-card-hot ,.product-card-pd');
+    // Find the nearest product card (supports multiple layouts)
+    const card = element.closest('.product-card-hot-deel, .product-card-hot, .product-card-pd, .productview, .card-actions-ws');
     if (!card) {
         alert('Product card not found.');
         return;
     }
 
+    // Get product ID
     const productId = card.dataset.productId;
     if (!productId) {
-        alert('Product ID not found');
+        alert('Product ID not found.');
         return;
     }
 
+    // Detect quantity (from visible quantity span or dataset)
+    const qtyElement = card.querySelector('.quantity-ws');
+    const quantity = qtyElement 
+        ? parseInt(qtyElement.textContent) || 1 
+        : parseInt(card.dataset.qty) || 1;
+
     // Get CSRF token
-    const csrfToken = document.querySelector('meta[name="csrf-token"]');
-    if (!csrfToken) {
+    const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    if (!csrfMeta) {
         console.error('CSRF token not found. Add <meta name="csrf-token" content="{{ csrf_token() }}"> to your layout.');
         alert('Security token missing. Please refresh the page.');
         return;
     }
+    const csrfToken = csrfMeta.getAttribute('content');
 
+    // Button animation start
     element.disabled = true;
     const originalText = element.innerHTML;
     element.innerHTML = '⏳';
 
+    // Send request
     fetch('/cart/add', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken.getAttribute('content')
+            'X-CSRF-TOKEN': csrfToken
         },
-        body: JSON.stringify({ product_id: productId, quantity: 1 })
+        body: JSON.stringify({
+            product_id: productId,
+            quantity: quantity ?? 1
+        })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            // Success UI feedback
             element.innerHTML = '✓';
             element.style.background = '#28a745';
             element.style.transform = 'scale(1.2)';
 
             const cartCount = document.querySelector('.cart-count');
-            if (cartCount) cartCount.textContent = data.cart_count;
+            if (cartCount && data.cart_count) {
+                cartCount.textContent = data.cart_count;
+            }
 
-            // Animate card
+            // Animate card glow
             card.style.transform = 'translateY(-15px) scale(1.02)';
             card.style.boxShadow = '0 30px 60px rgba(40, 167, 69, 0.2)';
 
             setTimeout(() => {
+                // Reset after success
                 element.innerHTML = originalText;
                 element.style.background = 'linear-gradient(135deg, #ff6b4a 0%, #ff8a65 100%)';
                 element.style.transform = 'scale(1)';
@@ -449,9 +466,10 @@ function addToCart(element) {
     });
 }
 
+
 // Add stagger animation on load
 window.addEventListener('load', () => {
-    const cards = document.querySelectorAll('.product-card-hot-deel');
+    const cards = document.querySelectorAll('.product-card-hot-deel,product-card-hot ,.product-card-pd ,.productview');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(50px)';

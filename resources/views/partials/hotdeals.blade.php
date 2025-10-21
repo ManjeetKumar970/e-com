@@ -6,7 +6,7 @@
 
     <div class="container-hot-deel py-5">
         @foreach ($products->slice(0, 4) as $product)
-            
+         
         <div class="product-card-hot-deel card-1" data-product-id="{{ $product->id }}">
             <div class="heart-icon-hot-deel" 
                  onclick="toggleHeart(this)"

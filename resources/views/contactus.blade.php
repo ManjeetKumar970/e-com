@@ -118,57 +118,60 @@
                 <h2>Send Us a Message</h2>
                 <p>Fill out the form below and we'll get back to you within 24 hours</p>
 
-                <form>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="firstName">First Name <span class="required">*</span></label>
-                            <input type="text" id="firstName" class="form-control" placeholder="Enter your first name">
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name <span class="required">*</span></label>
-                            <input type="text" id="lastName" class="form-control" placeholder="Enter your last name">
-                        </div>
-                    </div>
+                <form method="POST" action="{{ route('contact-message.store') }}">
+                @csrf
 
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="email">Email Address <span class="required">*</span></label>
-                            <input type="email" id="email" class="form-control" placeholder="your.email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+91 98765 43210">
-                        </div>
-                    </div>
-
+                <div class="form-grid">
                     <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" class="form-control" placeholder="Your company name">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Enter your first name" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="subject">Subject <span class="required">*</span></label>
-                        <select id="subject" class="form-control">
-                            <option>Select a subject</option>
-                            <option>Product Inquiry</option>
-                            <option>Technical Support</option>
-                            <option>Partnership</option>
-                            <option>General Question</option>
-                        </select>
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Enter your last name" required>
                     </div>
+                </div>
 
+                <div class="form-grid">
                     <div class="form-group">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <textarea id="message" class="form-control" placeholder="Tell us how we can help you..."></textarea>
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="your.email@example.com" required>
                     </div>
-
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="newsletter">
-                        <label for="newsletter">Subscribe to our newsletter for updates and offers</label>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="+91 98765 43210">
                     </div>
+                </div>
 
-                    <button type="submit" class="btn-send">Send Message</button>
-                </form>
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" name="company" id="company" class="form-control" placeholder="Your company name">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject <span class="required">*</span></label>
+                    <select name="subject" id="subject" class="form-control" required>
+                        <option value="">Select a subject</option>
+                        <option>Product Inquiry</option>
+                        <option>Technical Support</option>
+                        <option>Partnership</option>
+                        <option>General Question</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message <span class="required">*</span></label>
+                    <textarea name="message" id="message" class="form-control" placeholder="Tell us how we can help you..." required></textarea>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" name="newsletter" id="newsletter" value="1">
+                    <label for="newsletter">Subscribe to our newsletter for updates and offers</label>
+                </div>
+
+                <button type="submit" class="btn-send">Send Message</button>
+            </form>
+
             </div>
 
             <div class="sidebar-card">

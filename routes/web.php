@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Dasgboard\OrderHandleController;
 use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\CategoryController;
@@ -11,104 +12,145 @@ use App\Http\Controllers\Dashboard\SliderController;
 use App\Http\Controllers\Frontend\ProductreviewController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\ContactMessageController;
+use App\Http\Controllers\Frontend\Customebarcods;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Index;
 use Illuminate\Support\Facades\Route;
 
+// =======================
+// 🌐 PUBLIC ROUTES
+// =======================
 Route::get('/', [Index::class, 'index'])->name('index');
 Route::get('/product', [Index::class, 'product'])->name('product');
 Route::get('/custombarcode', [Index::class, 'custombarcode'])->name('custombarcode');
 Route::get('/contactus', [Index::class, 'contactus'])->name('contactus');
+
+// Product Review & Order Confirmation
 Route::get('/productreview/{slug}/{id}', [Index::class, 'productreview'])->name('productreview');
+Route::get('/orderconfirmation/{user_id}', [Index::class, 'orderconfirmation'])->name('orderconfirmation');
 
-// checkout route
+// =======================
+// 🛒 CHECKOUT & ORDERS
+// =======================
 Route::get('/productcheckout', [CheckoutController::class, 'productcheckout'])->name('productcheckout');
+Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+Route::get('/orderconfirmationbyid/{orderId}', [OrderController::class, 'orderconfirmationbyid'])->name('orderconfirmations');
 
-Route::get('orderconfirmation', [Index::class, 'orderconfirmation'])->name('orderconfirmation');
+// =======================
+// 🔐 AUTHENTICATION
+// =======================
 Route::get('/userLogout', [AuthController::class, 'userLogout'])->name('userLogout');
+
+// =======================
+// 🧾 PRODUCTS
+// =======================
 Route::get('/product/{slug}/{id}', [ProductreviewController::class, 'show'])->name('product.show');
 Route::post('/product/update-label', [ProductsController::class, 'updateLabel'])->name('product.updateLabel');
 Route::post('/product/update-status', [ProductsController::class, 'updateStatus'])->name('product.updateStatus');
-//cart routes
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
-Route::post('/cart/update', [CartController::class, 'updateCart'])->name('cart.update');
-Route::delete('/cart/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
-Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
-// Wishlist Routes
-Route::post('/wishlist/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
-Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-Route::delete('/wishlist/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
-Route::delete('/wishlist/clear', [WishlistController::class, 'clear'])->name('wishlist.clear');
-Route::post('/wishlist/check', [WishlistController::class, 'check'])->name('wishlist.check');
 
-
+// Product listing and AJAX data
 Route::get('/products/{id}', [Index::class, 'show'])->name('products.show');
 Route::get('/products/data/ajax', [Index::class, 'getProductsData'])->name('products.data');
-Route::post('/cart/add/{id}', function ($id) {
-    return response()->json(['success' => true, 'message' => 'Product added to cart']);
-})->name('cart.add');
 
-Route::post('/wishlist/toggle/{id}', function ($id) {
-    return response()->json(['success' => true, 'message' => 'Wishlist updated']);
-})->name('wishlist.toggle');
+// =======================
+// 🛍️ CART ROUTES
+// =======================
+Route::prefix('cart')->group(function () {
+    Route::post('/add', [CartController::class, 'add'])->name('cart.add');
+    Route::get('/', [CartController::class, 'viewCart'])->name('cart.view');
+    Route::post('/update', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::delete('/remove', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::delete('/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+});
 
-//silder route
+// =======================
+// 💖 WISHLIST ROUTES
+// =======================
+Route::prefix('wishlist')->group(function () {
+    Route::post('/toggle', [WishlistController::class, 'toggle'])->name('wishlist.toggle');
+    Route::get('/', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::delete('/remove', [WishlistController::class, 'remove'])->name('wishlist.remove');
+    Route::delete('/clear', [WishlistController::class, 'clear'])->name('wishlist.clear');
+    Route::post('/check', [WishlistController::class, 'check'])->name('wishlist.check');
+});
 
-Route::post('/slider/upload', [SliderController::class, 'upload'])->name('slider.upload');
-Route::delete('/slider/{id}', [SliderController::class, 'delete'])->name('slider.delete');
+// =======================
+// 🖼️ SLIDER ROUTES
+// =======================
+Route::prefix('slider')->group(function () {
+    Route::post('/upload', [SliderController::class, 'upload'])->name('slider.upload');
+    Route::delete('/{id}', [SliderController::class, 'delete'])->name('slider.delete');
+});
 
-// Dashboard routes
+// =======================
+// 🧾 CUSTOM BARCODE
+// =======================
+Route::prefix('barcode-orders')->group(function () {
+    Route::get('/{id}', [Customebarcods::class, 'show'])->name('barcode-orders.show');
+    Route::post('/', [Customebarcods::class, 'store'])->name('barcode-orders.store');
+    Route::delete('/{id}', [Customebarcods::class, 'destroy'])->name('barcode-orders.destroy');
+});
+
+// =======================
+// ✉️ CONTACT US
+// =======================
+Route::post('/contact-message', [ContactMessageController::class, 'store'])->name('contact-message.store');
+
+// =======================
+// 🧠 DASHBOARD (ADMIN SECTION)
+// =======================
 Route::prefix('dashboard')->group(function () {
 
+    // --- Login & Register ---
     Route::get('/', [AuthController::class, 'index'])->name('dashboard.index');
     Route::post('/register', [AuthController::class, 'register'])->name('dashboard.register');
     Route::post('/login', [AuthController::class, 'login'])->name('dashboard.login');
-    Route::get('/login', function () {
-        return redirect()->route('dashboard.index');
-    })->name('login');
+    Route::get('/login', fn() => redirect()->route('dashboard.index'))->name('login');
 
-
+    // --- Protected Admin Routes ---
     Route::middleware('auth')->group(function () {
-        Route::get('/admindashboard', function () {
-            return view('dashboard.admindashboard');
-        })->name('dashboard.admindashboard');
-        //home controller
+
+        // Dashboard pages
+        Route::get('/admindashboard', fn() => view('dashboard.admindashboard'))->name('dashboard.admindashboard');
         Route::get('/home', [SliderController::class, 'home'])->name('dashboard.home');
-        //category
+
+        // --- Category Management ---
         Route::get('/category', [CategoryController::class, 'category'])->name('dashboard.category');
         Route::post('/storecategory', [CategoryController::class, 'storecategory'])->name('dashboard.storecategory');
-        // Get category for editing (AJAX)
-        Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])
-            ->name('categories.edit');
+        Route::get('/categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::post('/categories/{id}/update', [CategoryController::class, 'update'])->name('categories.update');
+        Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-        // Update category
-        Route::post('/categories/{id}/update', [CategoryController::class, 'update'])
-            ->name('categories.update');
-
-        // Delete category
-        Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])
-            ->name('categories.destroy');
-
-        //Products
+        // --- Products ---
         Route::get('/products', [ProductsController::class, 'products'])->name('dashboard.products');
         Route::post('/createproduct', [ProductsController::class, 'createproduct'])->name('dashboard.createproduct');
-        // routes/web.php
         Route::get('/listproducts', [ProductsController::class, 'productList'])->name('dashboard.listproducts');
-        //Billing Rols
+        Route::post('/storeProduct', [ProductsController::class, 'storeProduct'])->name('dashboard.storeProduct');
+        // --- Order  ---
+        Route::get('/showorder', [OrderHandleController::class, 'orderview'])->name('order.show');
 
+        // --- Billing Roles ---
         Route::get('/createbillingrols', [BillingRols::class, 'createBillingRols'])->name('dashboard.createbillingrols');
         Route::post('/storebillingrols', [BillingRols::class, 'storeBillingRols'])->name('dashboard.storebillingrols');
-        //Barcode Rols
-        Route::get('/barcodepage', [BarcodeRolController::class, 'barcodepage'])->name('dashboard.barcodepage');
-        Route::post('/storeProduct', [ProductsController::class, 'storeProduct'])->name('dashboard.storeProduct');
 
-        //Billing Printer
+        // --- Barcode Roles ---
+        Route::get('/barcodepage', [BarcodeRolController::class, 'barcodepage'])->name('dashboard.barcodepage');
+
+        // --- Printers ---
         Route::get('/billingprinter', [PrintersController::class, 'billingPrinter'])->name('dashboard.billingprinter');
         Route::get('/storegprinter', [PrintersController::class, 'storePrinter'])->name('dashboard.storeprinter');
-        //Sidebar
+
+        // --- UI Components ---
         Route::get('/sidebar', [Dashboard::class, 'sidebar'])->name('dashboard.sidebar');
-        //NavBar
+
+        // --- Logout ---
         Route::post('/logout', [Dashboard::class, 'logout'])->name('dashboard.logout');
     });
 });
+
+// =======================
+// 🚨 FALLBACK (404 PAGE)
+// =======================
+Route::fallback(fn() => view('errors.404'));

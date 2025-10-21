@@ -8,6 +8,8 @@ use App\Models\Dashboard\BarcodeRol;
 use App\Models\Dashboard\Category;
 use App\Models\Dashboard\Product;
 use App\Models\Dashboard\Slider;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -19,12 +21,22 @@ class Index extends Controller
      * @return \Illuminate\View\View
      */
     public function index()
-    {
-    $sliders=Slider::all();    
+{
+    $sliders = Slider::all();    
     $categories = Category::all();
-    $products = Product::with(['primaryImage'])->where('status', 'published')->get();
-    return view('index', compact('categories','products','sliders')); 
+    $products = Product::with(['primaryImage'])
+        ->where('status', 'published')
+        ->get();
+
+    // Fetch orders for the logged-in user
+    $orderDetails = [];
+    if (Auth::check()) {
+        $orderDetails = Order::where('user_id', Auth::id())->get();
     }
+
+    return view('index', compact('categories', 'products', 'sliders', 'orderDetails'));
+}
+
    public function product()
     {
         $allProducts = Product::with('primaryImage')
@@ -57,11 +69,25 @@ class Index extends Controller
 
     return view('productreview', compact('product', 'relatedProducts'));
 }
+    public function orderConfirmation($userId)
+    {
+        $authUserId = Auth::id();
+
+        if ($authUserId != $userId) {
+            return redirect()->route('index')->with('error', 'Unauthorized access.');
+        }
+
+        $orderDetails = Order::with('orderItems')
+                            ->where('user_id', $userId)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        if ($orderDetails->isEmpty()) {
+            return view('orderconfirmation')->with('warning', 'There are no orders.');
+        }
+
+        return view('orderconfirmation', compact('orderDetails'));
+    }
 
 
-
-
-   function orderconfirmation(){
-    return view('orderconfirmation');
-   }
 }

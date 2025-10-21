@@ -18,7 +18,7 @@
                 <div class="col-lg-4">
                     <div class="experience-card">
                         <div class="category-icon mb-3" style="background: var(--primary-color);">
-                            <i class="fas fa-shield-check"></i>
+                            <i class="fas fa-shield"></i>
                         </div>
                         <h5 class="text-white fw-bold">Warranty Protection</h5>
                         <p class="text-white-50">Comprehensive warranty coverage and dedicated support</p>
@@ -43,8 +43,8 @@
             <h2 class="fw-bold mb-4">Need Custom Solutions for Your Business?</h2>
             <p class="mb-4">Get personalized recommendations and pricing for your specific needs</p>
             <div class="d-flex justify-content-center gap-3">
-                <button class="btn btn-light btn-lg">Contact Sales</button>
-                <button class="btn btn-outline-light btn-lg">Request Demo</button>
+                <a href="/contactus" class="btn btn-light btn-lg">Contact Sales</a>
+                <a href="/contactus" class="btn btn-secondary">Request Demo</a>
             </div>
         </div>
     </section>

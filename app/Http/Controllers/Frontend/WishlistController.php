@@ -67,11 +67,12 @@ class WishlistController extends Controller
             return redirect()->route('login')->with('message', 'Please login to view your wishlist');
         }
 
-        $wishlistItems = Wishlist::with('product')
-            ->where('user_id', Auth::id())
-            ->get();
+       $wishlistItems = Wishlist::with('product.productImages')
+        ->where('user_id', Auth::id())
+        ->get();
 
-        return view('wishlist.index', compact('wishlistItems'));
+
+        return view('wishlist', compact('wishlistItems'));
     }
 
     /**

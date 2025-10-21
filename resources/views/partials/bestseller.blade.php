@@ -1,3 +1,4 @@
+
 <section class="best-selling-products">
         <div class="container-fluid">
             <p class="section-subtitle">FEATURED</p>
@@ -8,38 +9,40 @@
         
                 <div class="product-card large">
                     <div class="product-info">
-                        <h3>TSC Alpha-4<br>Thermal Printer</h3>
-                        <a href="#" class="explore-btn">Explore Products</a>
+                        <h3>{{ $products->get(0)->name }}
+                        <a href="{{ route('product.show', ['slug' => $products->get(0)->slug, 'id' => $products->get(0)->id]) }}" class="explore-btn">Explore Products</a>
                     </div>
-                    <img src="{{asset('images/products/download.png')}}" alt="POS System with Tablet">
+                    <img 
+                        src="{{ asset('storage/' . ($products->get(0)->primaryImage->image_url ?? 'images/no-image.png')) }}" 
+                        alt="{{ $products->get(0)->name }}">
                 </div>
 
                
                 <div class="right-grid">
           
                     <div class="product-card-mid beige">
-                        <img src="{{asset('images/products/2pd.png')}}" alt="Desktop POS Terminal">
+                        <img src="{{ asset('storage/' . ($products->get(1)->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="{{ $products->get(1)->name }}">
                         <div>
-                            <h4>TSC Alpha-4<br>Thermal Printer</h4>
-                            <a href="#" class="explore-btn">Explore Products</a>
+                            <h4>{{ $products->get(1)->name }}</h4>
+                            <a href="{{ route('product.show', ['slug' => $products->get(1)->slug, 'id' => $products->get(1)->id]) }}" class="explore-btn">Explore Products</a>
                         </div>
                     </div>
                     
                    
-                    <div class="product-card small gray">
-                        <img src="{{asset('images/products/3pd.png')}}" alt="Receipt Printer">
+                    <div class="product-card small gray" >
+                        <img src="{{ asset('storage/' . ($products->get(2)->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="{{ $products->get(2)->name }}" class="image-content">
                         <div>
-                            <h4>TSC Alpha-4<br>Thermal Printer</h4>
-                            <a href="#" class="explore-btn">Explore Products</a>
+                            <h4>{{ $products->get(2)->name }}</h4>
+                            <a href="{{ route('product.show', ['slug' => $products->get(2)->slug, 'id' => $products->get(2)->id]) }}" class="explore-btn">Explore Products</a>
                         </div>
                     </div>
                     
             
                     <div class="product-card small dark">
-                        <img src="{{asset('images/products/4pd.png')}}" alt="Compact Thermal Printer">
+                        <img src="{{ asset('storage/' . ($products->get(3)->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="{{ $products->get(3)->name }}">
                         <div>
-                            <h4>TSC Alpha-4<br>Thermal Printer</h4>
-                            <a href="#" class="explore-btn">Explore Products</a>
+                            <h4>{{ $products->get(3)->name }}</h4>
+                            <a href="{{ route('product.show', ['slug' => $products->get(3)->slug, 'id' => $products->get(3)->id]) }}" class="explore-btn">Explore Products</a>
                         </div>
                     </div>
                 </div>
@@ -51,170 +54,120 @@
 
  <section class="container-fluid" >
  
-    <div class="main-container">
+<div class="main-container">
         <!-- Left Static Section -->
         <div class="static-section">
             <div class="static-content">
-                <h1>TSC Alpha-4</h1>
-                <h2>Thermal Printer</h2>
-                <p>Professional thermal printing solution designed for high-volume label printing. Features advanced thermal transfer technology for reliable performance in demanding business environments.</p>
-                <button class="explore-btn" onclick="exploreProducts()">Explore Products</button>
+                <h1>{{ $products->get(4)->name ??"" }}</h1>
+                <p>{{ $products->get(4)->short_description ??"best product" }}</p>
+                <a href="{{ route('product.show', ['slug' => $products->get(4)->slug, 'id' => $products->get(4)->id]) }}" class="explore-btn" >Explore Products</a>
             </div>
-            
             <!-- Office workplace illustration -->
-            <svg class="workplace-image" viewBox="0 0 300 200" fill="none">
-                <rect x="20" y="50" width="80" height="100" fill="rgba(255,255,255,0.2)" rx="4"/>
-                <rect x="120" y="60" width="60" height="80" fill="rgba(255,255,255,0.15)" rx="4"/>
-                <rect x="200" y="40" width="70" height="110" fill="rgba(255,255,255,0.1)" rx="4"/>
-                <circle cx="50" cy="30" r="15" fill="rgba(255,255,255,0.3)"/>
-                <circle cx="150" cy="25" r="12" fill="rgba(255,255,255,0.2)"/>
-                <circle cx="230" cy="20" r="18" fill="rgba(255,255,255,0.25)"/>
-            </svg>
+            <img src="{{ asset('storage/' . ($products->get(3)->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="{{ $products->get(3)->name }}" class="img-fluid" style="width: 500px;height: 350px;">
+
         </div>
 
         <!-- Right Slider Section -->
-        <div class="slider-section">
-            <div class="slider-container">
-                <div class="slider-wrapper" id="sliderWrapper">
-                    <!-- Slide 1 -->
-                    <div class="slide">
-                        <svg class="product-image" viewBox="0 0 250 200" fill="none">
-                            <rect x="25" y="70" width="200" height="100" fill="#1a1a1a" rx="8"/>
-                            <rect x="35" y="80" width="180" height="70" fill="#2a2a2a" rx="4"/>
-                            <rect x="45" y="90" width="160" height="50" fill="#333" rx="2"/>
-                            <rect x="55" y="45" width="140" height="30" fill="#1a1a1a" rx="6"/>
-                            <rect x="65" y="55" width="120" height="15" fill="#4CAF50" rx="2"/>
-                            <rect x="85" y="25" width="80" height="20" fill="#2196F3" rx="4"/>
-                            <circle cx="90" cy="180" r="8" fill="#444"/>
-                            <circle cx="160" cy="180" r="8" fill="#444"/>
-                        </svg>
-                        <div class="product-info">
-                            <h3>TSC Alpha-4</h3>
-                            <h4>Thermal Printer</h4>
-                            <div class="price-container">
-                                <span class="current-price">₹12,999</span>
-                                <span class="old-price">₹15,999</span>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="action-btn" title="Add to Cart">+</button>
-                                <button class="action-btn" title="Compare">⚖</button>
-                            </div>
-                        </div>
+<div class="slider-section">
+    <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper">
+            @foreach ($products as $index => $product)
+            <div class="slide">
+                <img 
+                    src="{{ asset('storage/' . ($product->primaryImage->image_url ?? 'images/no-image.png')) }}" 
+                    alt="{{ $product->name }}"
+                    class="img-fluid" style="width: 500px;height: 350px;">
+                
+                <div class="product-info" style="text-align: center">
+                    <h3>{{ $product->name }}</h3>
+                    <h4>{{ $product->category->name ?? 'Product' }}</h4>
+                    
+                    @if($product->regular_price)
+                    <div class="price-container">
+                        <span class="current-price">₹{{ number_format($product->sale_price, 0) }}</span>
+                        @if($product->sale_price && $product->regular_price > $product->sale_price)
+                        <span class="old-price">₹{{ number_format($product->regular_price, 0) }}</span>
+                        @endif
                     </div>
-
-                    <!-- Slide 2 -->
-                    <div class="slide">
-                        <svg class="product-image" viewBox="0 0 250 200" fill="none">
-                            <rect x="25" y="70" width="200" height="100" fill="#0d0d0d" rx="8"/>
-                            <rect x="35" y="80" width="180" height="70" fill="#1a1a1a" rx="4"/>
-                            <rect x="45" y="90" width="160" height="50" fill="#444" rx="2"/>
-                            <rect x="55" y="45" width="140" height="30" fill="#0d0d0d" rx="6"/>
-                            <rect x="65" y="55" width="120" height="15" fill="#2196F3" rx="2"/>
-                            <rect x="85" y="25" width="80" height="20" fill="#FF9800" rx="4"/>
-                            <circle cx="90" cy="180" r="8" fill="#333"/>
-                            <circle cx="160" cy="180" r="8" fill="#333"/>
-                            <rect x="75" y="10" width="100" height="12" fill="#E91E63" rx="2"/>
-                        </svg>
-                        <div class="product-info">
-                            <h3>TSC Alpha-4 Pro</h3>
-                            <h4>Advanced Thermal Printer</h4>
-                            <div class="price-container">
-                                <span class="current-price">₹15,999</span>
-                                <span class="old-price">₹18,999</span>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="action-btn" title="Add to Cart">+</button>
-                                <button class="action-btn" title="Compare">⚖</button>
-                            </div>
-                        </div>
+                    @endif
+                    
+                    <div class="action-buttons" style="text-align: center">
+                  <a href="{{ route('product.show', ['slug' => $product->slug, 'id' => $product->id]) }}" class="explore-btn" >Explore Products</a>
+                        
                     </div>
-
-                    <!-- Slide 3 -->
-                    <div class="slide">
-                        <svg class="product-image" viewBox="0 0 250 200" fill="none">
-                            <rect x="50" y="80" width="150" height="80" fill="#4a4a4a" rx="8"/>
-                            <rect x="60" y="90" width="130" height="50" fill="#2a2a2a" rx="4"/>
-                            <rect x="70" y="100" width="110" height="30" fill="#555" rx="2"/>
-                            <rect x="75" y="55" width="100" height="25" fill="#4a4a4a" rx="6"/>
-                            <rect x="85" y="65" width="80" height="12" fill="#8BC34A" rx="2"/>
-                            <circle cx="110" cy="170" r="6" fill="#666"/>
-                            <circle cx="140" cy="170" r="6" fill="#666"/>
-                        </svg>
-                        <div class="product-info">
-                            <h3>TSC Alpha-4 Lite</h3>
-                            <h4>Compact Thermal Printer</h4>
-                            <div class="price-container">
-                                <span class="current-price">₹9,999</span>
-                                <span class="old-price">₹11,999</span>
-                            </div>
-                            <div class="action-buttons">
-                                <button class="action-btn" title="Add to Cart">+</button>
-                                <button class="action-btn" title="Compare">⚖</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slider-arrows">
-                    <button class="arrow" id="prevBtn">‹</button>
-                    <button class="arrow" id="nextBtn">›</button>
-                </div>
-
-                <div class="slider-nav" id="sliderNav">
-                    <div class="nav-dot active" onclick="goToSlide(0)"></div>
-                    <div class="nav-dot" onclick="goToSlide(1)"></div>
-                    <div class="nav-dot" onclick="goToSlide(2)"></div>
                 </div>
             </div>
+            @endforeach
         </div>
+
+        <div class="slider-arrows">
+            <button class="arrow" id="prevBtn">‹</button>
+            <button class="arrow" id="nextBtn">›</button>
+        </div>
+
+        <div class="slider-nav" id="sliderNav">
+            @foreach ($products->take(10) as $index => $product)
+            <div class="{{ $index === 0 ? 'active' : '' }}" onclick="goToSlide({{ $index }})"></div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+</div>
     </div>
  </section>
 
-    <script>
-        let currentSlide = 0;
-        const totalSlides = 3;
-        const sliderWrapper = document.getElementById('sliderWrapper');
-        const navDots = document.querySelectorAll('.nav-dot');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
+<script>
+    // Dynamic slider based on product count
+    const totalSlides = {{ $products->take(10)->count() }};
+    let currentSlide = 0;
+    const sliderWrapper = document.getElementById('sliderWrapper');
+    const navDots = document.querySelectorAll('.nav-dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-        function updateSlider() {
-            const translateX = -currentSlide * 100;
-            sliderWrapper.style.transform = `translateX(${translateX}%)`;
-            
-            navDots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        }
+    function updateSlider() {
+        const translateX = -currentSlide * 100;
+        sliderWrapper.style.transform = `translateX(${translateX}%)`;
+        
+        navDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+    }
 
-        function goToSlide(slideIndex) {
-            currentSlide = slideIndex;
-            updateSlider();
-        }
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlider();
+    }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
 
-        function exploreProducts() {
-            alert('Exploring all TSC Alpha-4 products...');
-        }
+    function compareProduct(productId) {
+        // Your compare logic here
+        console.log('Comparing product:', productId);
+        alert('Product added to comparison!');
+    }
 
-        // Event listeners
+    // Event listeners
+    if (prevBtn && nextBtn) {
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
+    }
 
-        // Auto-slide functionality
-        let autoSlideInterval = setInterval(nextSlide, 4000);
+    // Auto-slide functionality
+    let autoSlideInterval = setInterval(nextSlide, 4000);
 
-        // Pause auto-slide on hover
-        const sliderContainer = document.querySelector('.slider-container');
+    // Pause auto-slide on hover
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
         sliderContainer.addEventListener('mouseenter', () => {
             clearInterval(autoSlideInterval);
         });
@@ -242,16 +195,17 @@
                 prevSlide();
             }
         });
+    }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-            }
-        });
-    </script>
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+</script>
 </body>
 </html>
 

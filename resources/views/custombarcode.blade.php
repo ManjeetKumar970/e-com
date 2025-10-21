@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        @include('partials.head')
+
         <link rel="stylesheet" href="{{ asset('css/barcode.css') }}">
+
 </head>
 <body>
     @include('partials.header')
 
-   <!-- Hero Section -->
-        
 
          <div class="hero-section-pd">
-    <div class="hero-background">
-        <div class="moving-shape shape-1"></div>
-        <div class="moving-shape shape-2"></div>
-        <div class="moving-shape shape-3"></div>
-        <div class="moving-shape shape-4"></div>
-        <div class="moving-shape shape-5"></div>
-    </div>
-    <div class="container">
-        <h1 class="hero-title">🏷️ Barcode Label Configurator</h1>
-        <p class="hero-subtitle">Design and customize your perfect barcode labels with real-time preview</p>
-    </div>
-</div>
+            <div class="hero-background">
+                <div class="moving-shape shape-1"></div>
+                <div class="moving-shape shape-2"></div>
+                <div class="moving-shape shape-3"></div>
+                <div class="moving-shape shape-4"></div>
+                <div class="moving-shape shape-5"></div>
+            </div>
+            <div class="container">
+                <h1 class="hero-title">🏷️ Barcode Label Configurator</h1>
+                <p class="hero-subtitle">Design and customize your perfect barcode labels with real-time preview</p>
+            </div>
+        </div>
     <div class="container-br">
         <div class="config-section">
             
@@ -452,7 +453,22 @@
             };
             
             // In a real application, this would save to a database
-            console.log('Configuration saved:', config);
+            fetch('{{ route('barcode-orders.store') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify(config),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
             showToast('Configuration saved successfully! 💾');
         }
 
@@ -468,10 +484,22 @@
                 options: Array.from(document.querySelectorAll('.checkbox-item input:checked')).map(cb => cb.id),
                 totalPrice: document.getElementById('totalPrice').textContent
             };
-            
-            // In a real application, this would submit to a server
-            console.log('Quote requested:', formData);
-            showToast('Quote request submitted successfully! 🚀 We\'ll contact you within 24 hours.');
+            fetch('{{ route('barcode-orders.store') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            showToast('Quote request submitted successfully! 🚀 We\'ll contact you within 42 hours.');
         }
 
         function showToast(message) {
@@ -483,10 +511,7 @@
                 toast.classList.remove('show');
             }, 4000);
         }
-
-        // Add some interactive enhancements
         document.addEventListener('DOMContentLoaded', function() {
-            // Add smooth scrolling for any internal links
             const links = document.querySelectorAll('a[href^="#"]');
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -501,7 +526,6 @@
                 });
             });
 
-            // Add loading animation for buttons
             const buttons = document.querySelectorAll('.btn');
             buttons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -514,7 +538,6 @@
                 });
             });
 
-            // Add ripple effect to buttons
             buttons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     const ripple = document.createElement('span');
@@ -537,7 +560,6 @@
             });
         });
 
-        // Add CSS for ripple effect
         const style = document.createElement('style');
         style.textContent = `
             .btn {
