@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Container\Attributes\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -76,7 +75,7 @@ public function login(Request $request)
                     ->with('message', 'Admin login successful');
             } elseif ($user->usertype === 'user') {
                 return redirect()
-                    ->route('index') // 👈 redirect to index page for normal users
+                    ->route('index')
                     ->with('message', 'User login successful');
             } else {
                 Auth::logout();

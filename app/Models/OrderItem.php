@@ -36,4 +36,17 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+
+    /**
+     * Calculate subtotal before saving
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($orderItem) {
+            $orderItem->total_price = $orderItem->quantity * $orderItem->unit_price;
+        });
+    }
 }

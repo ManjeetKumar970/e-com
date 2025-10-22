@@ -1,14 +1,15 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Dasgboard\OrderHandleController;
+use App\Http\Controllers\Dashboard\OrderHandleController;
 use App\Http\Controllers\Dashboard\BarcodeRolController;
 use App\Http\Controllers\Dashboard\BillingRols;
 use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\Dashboard;
+use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PrintersController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\SliderController;
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\Frontend\ProductreviewController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
@@ -115,6 +116,8 @@ Route::prefix('dashboard')->group(function () {
         // Dashboard pages
         Route::get('/admindashboard', fn() => view('dashboard.admindashboard'))->name('dashboard.admindashboard');
         Route::get('/home', [SliderController::class, 'home'])->name('dashboard.home');
+        Route::get('/admindashboard', [DashboardController::class, 'adminDashboard'])
+        ->name('dashboard.admindashboard');
 
         // --- Category Management ---
         Route::get('/category', [CategoryController::class, 'category'])->name('dashboard.category');
@@ -130,6 +133,12 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/storeProduct', [ProductsController::class, 'storeProduct'])->name('dashboard.storeProduct');
         // --- Order  ---
         Route::get('/showorder', [OrderHandleController::class, 'orderview'])->name('order.show');
+        Route::get('/order/{id}/details', [OrderHandleController::class, 'getOrderDetails'])->name('order.details');
+        Route::post('/order/update', [OrderHandleController::class, 'updateOrder'])->name('order.update');
+        Route::get('/order/track/{trackingId}', [OrderHandleController::class, 'trackOrder'])->name('order.track');
+        Route::get('/order/{id}/download-bill', [OrderHandleController::class, 'downloadBill'])->name('order.download.bill');
+        Route::post('/order/{id}/cancel', [OrderHandleController::class, 'cancelOrder'])->name('order.cancel');
+        Route::get('/order/stats', [OrderHandleController::class, 'getOrderStats'])->name('order.stats');
 
         // --- Billing Roles ---
         Route::get('/createbillingrols', [BillingRols::class, 'createBillingRols'])->name('dashboard.createbillingrols');
@@ -143,14 +152,17 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/storegprinter', [PrintersController::class, 'storePrinter'])->name('dashboard.storeprinter');
 
         // --- UI Components ---
-        Route::get('/sidebar', [Dashboard::class, 'sidebar'])->name('dashboard.sidebar');
+        Route::get('/sidebar', [DashboardController::class, 'sidebar'])->name('dashboard.sidebar');
 
         // --- Logout ---
-        Route::post('/logout', [Dashboard::class, 'logout'])->name('dashboard.logout');
+        Route::post('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
     });
 });
 
 // =======================
 // 🚨 FALLBACK (404 PAGE)
 // =======================
-Route::fallback(fn() => view('errors.404'));
+// In routes/web.php
+Route::fallback(function () {
+    return response()->view('404', [], 404);
+});

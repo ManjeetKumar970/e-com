@@ -17,7 +17,7 @@
 		<div class="main-container">
 			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="title pb-20">
-					<h2 class="h3 mb-0">Hospital Overview</h2>
+					<h2 class="h3 mb-0">Overview</h2>
 				</div>
 
 				<div class="row pb-10">
@@ -25,9 +25,9 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">75</div>
+									<div class="weight-700 font-24 text-dark">{{ $totalOrders??0}}</div>
 									<div class="font-14 text-secondary weight-500">
-										Appointment
+										Orders
 									</div>
 								</div>
 								<div class="widget-icon">
@@ -42,9 +42,9 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">124,551</div>
+									<div class="weight-700 font-24 text-dark">{{$pendingOrders}}</div>
 									<div class="font-14 text-secondary weight-500">
-										Total Patient
+										pending Orders
 									</div>
 								</div>
 								<div class="widget-icon">
@@ -59,9 +59,9 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">400+</div>
+									<div class="weight-700 font-24 text-dark">{{$shippedOrders}}</div>
 									<div class="font-14 text-secondary weight-500">
-										Total Doctor
+										Shipped Orders
 									</div>
 								</div>
 								<div class="widget-icon">
@@ -79,8 +79,8 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">$50,000</div>
-									<div class="font-14 text-secondary weight-500">Earning</div>
+									<div class="weight-700 font-24 text-dark">{{$deliveredOrders}}</div>
+									<div class="font-14 text-secondary weight-500">Delivered Orders</div>
 								</div>
 								<div class="widget-icon">
 									<div class="icon" data-color="#09cc06">
@@ -98,7 +98,7 @@
 							<div
 								class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3"
 							>
-								<div class="h5 mb-md-0">Hospital Activities</div>
+								<div class="h5 mb-md-0">Order Activities</div>
 								<div class="form-group mb-md-0">
 									<select class="form-control form-control-sm selectpicker">
 										<option value="">Last Week</option>
@@ -128,8 +128,8 @@
 							</div>
 							<div class="d-flex justify-content-between align-items-end">
 								<div class="text-white">
-									<div class="font-14">Appointment</div>
-									<div class="font-24 weight-500">1865</div>
+									<div class="font-14">Sale</div>
+									<div class="font-24 weight-500">{{ number_format($totalSales, 2) }}</div>
 								</div>
 								<div class="max-width-150">
 									<div id="appointment-chart"></div>
@@ -148,8 +148,8 @@
 							</div>
 							<div class="d-flex justify-content-between align-items-end">
 								<div class="text-white">
-									<div class="font-14">Surgery</div>
-									<div class="font-24 weight-500">250</div>
+									<div class="font-14">Order</div>
+									<div class="font-24 weight-500">{{$totalOrders }}</div>
 								</div>
 								<div class="max-width-150">
 									<div id="surgery-chart"></div>
@@ -163,7 +163,7 @@
 					<div class="col-lg-4 col-md-6 mb-20">
 						<div class="card-box height-100-p pd-20 min-height-200px">
 							<div class="d-flex justify-content-between pb-10">
-								<div class="h5 mb-0">Top Doctors</div>
+								<div class="h5 mb-0">Top Sale Product</div>
 								<div class="dropdown">
 									<a
 										class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
@@ -318,7 +318,7 @@
 					<div class="col-lg-4 col-md-6 mb-20">
 						<div class="card-box height-100-p pd-20 min-height-200px">
 							<div class="d-flex justify-content-between">
-								<div class="h5 mb-0">Diseases Report</div>
+								<div class="h5 mb-0">Sale Report</div>
 								<div class="dropdown">
 									<a
 										class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
@@ -361,23 +361,23 @@
 								>
 									You can enjoy all our features by upgrading to pro.
 								</div>
-								<a href="#" class="btn btn-primary btn-lg">Upgrade</a>
+								<a href="#" class="btn btn-primary btn-lg">Upgrade User</a>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="card-box pb-10">
-					<div class="h5 pd-20 mb-0">Recent Patient</div>
+					<div class="h5 pd-20 mb-0">Recent Order</div>
 					<table class="data-table table nowrap">
 						<thead>
 							<tr>
 								<th class="table-plus">Name</th>
-								<th>Gender</th>
+								<th>Qty</th>
 								<th>Weight</th>
-								<th>Assigned Doctor</th>
-								<th>Admit Date</th>
-								<th>Disease</th>
+								<th>Price</th>
+								<th>Order Date</th>
+								<th>Status</th>
 								<th class="datatable-nosort">Actions</th>
 							</tr>
 						</thead>
@@ -448,7 +448,7 @@
 										class="badge badge-pill"
 										data-bgcolor="#e7ebf5"
 										data-color="#265ed7"
-										>Dengue</span
+										>Scanner</span
 									>
 								</td>
 								<td>
@@ -488,7 +488,7 @@
 										class="badge badge-pill"
 										data-bgcolor="#e7ebf5"
 										data-color="#265ed7"
-										>Infection</span
+										>Barcode</span
 									>
 								</td>
 								<td>
@@ -528,7 +528,7 @@
 										class="badge badge-pill"
 										data-bgcolor="#e7ebf5"
 										data-color="#265ed7"
-										>Covid 19</span
+										>Billing Roll</span
 									>
 								</td>
 								<td>
@@ -707,7 +707,7 @@
 				</div>
 
 				<div class="title pb-20 pt-20">
-					<h2 class="h3 mb-0">Quick Start</h2>
+					<h2 class="h3 mb-0">Online Payments</h2>
 				</div>
 
 				<div class="row">
@@ -717,7 +717,7 @@
 								<img src="vendors/images/medicine-bro.svg" alt="" />
 							</div>
 							<div class="content">
-								<h3 class="h4">Services</h3>
+								<h3 class="h4">COD</h3>
 								<p class="max-width-200">
 									We provide superior health care in a compassionate maner
 								</p>
@@ -730,7 +730,7 @@
 								<img src="vendors/images/remedy-amico.svg" alt="" />
 							</div>
 							<div class="content">
-								<h3 class="h4">Medications</h3>
+								<h3 class="h4">UPI</h3>
 								<p class="max-width-200">
 									Look for prescription and over-the-counter drug information.
 								</p>
@@ -743,7 +743,7 @@
 								<img src="vendors/images/paper-map-cuate.svg" alt="" />
 							</div>
 							<div class="content">
-								<h3 class="h4">Locations</h3>
+								<h3 class="h4">CARD</h3>
 								<p class="max-width-200">
 									Convenient locations when and where you need them.
 								</p>

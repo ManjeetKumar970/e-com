@@ -63,6 +63,8 @@ return new class extends Migration
             // Tracking information
             $table->string('tracking_number')->nullable();
             $table->string('courier_name')->nullable();
+            $table->string('bill_document')->nullable();
+            $table->date('estimated_delivery')->nullable();
             
             $table->timestamps();
             $table->softDeletes();

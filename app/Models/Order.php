@@ -37,6 +37,8 @@ class Order extends Model
         'promo_code',
         'order_status',
         'notes',
+        'bill_document',
+        'estimated_delivery',
         'order_date',
     ];
 
@@ -107,4 +109,17 @@ class Order extends Model
     {
         return $query->where('payment_status', $status);
     }
+
+     public function history()
+    {
+        return $this->hasMany(OrderHistory::class)->orderBy('created_at', 'desc');
+    }
+
+    public static function generateOrderNumber()
+    {
+        return 'ORD-' . date('Ymd') . '-' . str_pad(self::count() + 1, 5, '0', STR_PAD_LEFT);
+    }
+
+
+    
 }

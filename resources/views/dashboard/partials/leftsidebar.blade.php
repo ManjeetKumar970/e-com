@@ -1,12 +1,12 @@
 <div class="left-side-bar">
-			<div class="brand-logo">
-				<a href="index.html">
-					<img src="vendors/images/deskapp-logo.svg" alt="" class="dark-logo" />
+			<div class="brand-logo" >
+				<a href="{{route ('dashboard.admindashboard')}}">
+					<img src="{{asset('images/logos/ftplfulllogo.png')}}" alt="" class="dark-logo" style="width: auto ;height: 50px;"/>
 					<img
-						src="vendors/images/deskapp-logo-white.svg"
+						src="{{asset('images/logos/ftplfulllogo.png')}}"
 						alt=""
 						class="light-logo"
-					/>
+					style="width: auto ;height: 50px;"/>
 				</a>
 				<div class="close-sidebar" data-toggle="left-sidebar-close">
 					<i class="ion-close-round"></i>

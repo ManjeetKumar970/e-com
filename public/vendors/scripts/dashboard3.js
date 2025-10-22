@@ -1,11 +1,11 @@
 var options = {
 	series: [
 	{
-		name: "Patients",
+		name: "Order",
 		data: [10, 15, 12, 20, 18, 26, 24, 25, 20, 25, 22, 30]
 	},
 	{
-		name: "Consultations",
+		name: "Sales",
 		data: [15, 10, 17, 15, 23, 21, 30, 20, 26, 20, 28, 25]
 	}
 	],
@@ -256,7 +256,7 @@ var options4 = {
 			}
 		}
 	},
-	labels: ['Flu', 'Covid-19', 'Pheumoniae', 'Diabeties'],
+	labels: ['Billing roll', 'Printer', 'Scanner', 'Barcode'],
 };
 
 var chart = new ApexCharts(document.querySelector("#activities-chart"), options);
