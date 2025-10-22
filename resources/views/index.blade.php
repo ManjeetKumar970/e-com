@@ -29,4 +29,5 @@
     @include('partials.experience')
     <!-- Footer -->
 </body>
+@include('partials.notificationbell')
     @include('partials.footer')

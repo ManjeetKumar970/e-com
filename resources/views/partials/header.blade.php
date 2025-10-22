@@ -58,19 +58,41 @@
     }
 </style>
 <!-- Main Navigation -->
- <div class="top-bar d-none d-lg-block bg-dark text-white py-2">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <i class="fas fa-phone me-2"></i> +91 98765 43210
-                    <i class="fas fa-envelope ms-3 me-2"></i> info@formattertech.com
-                </div>
-                <div>
-                    GST: 09AADCF1234H1Z5
+<div class="top-bar d-none d-lg-block bg-dark text-white py-2">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <!-- Left Side: Contact Info -->
+            <div>
+                <i class="fas fa-phone me-2"></i> +91 7631569915
+                <i class="fas fa-envelope ms-3 me-2"></i> wizeprimeroll@gmail.com
+            </div>
+
+            <!-- Right Side: GST and Social Icons -->
+            <div class="d-flex align-items-center">
+                <span class="me-3">GST: 10AAECF5366M1ZK</span>
+
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/formatter_tech/" target="_blank" class="text-white me-3">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/formattertech/" target="_blank" class="text-white me-3">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/" target="_blank" class="text-white me-3">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@TheFormatter" target="_blank" class="text-white me-3">
+                       <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+
     @include('partials.alert')
 <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
     <div class="container">

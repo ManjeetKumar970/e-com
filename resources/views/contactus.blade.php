@@ -24,25 +24,25 @@
             <div class="contact-card">
                 <div class="contact-icon phone">📞</div>
                 <h3>Call Us</h3>
-                <div class="contact-info">+91 919199191</div>
-                <div class="contact-details">+91 92929292</div>
+                <div class="contact-info">+91 7631569915</div>
+                <div class="contact-details">+91 7631569915</div>
                 <div class="contact-details">Mon-Sat: 9:00 AM - 7:00 PM</div>
             </div>
 
             <div class="contact-card">
                 <div class="contact-icon email">✉️</div>
                 <h3>Email Us</h3>
-                <div class="contact-info">info@formattertech.com</div>
-                <div class="contact-details">support@formattertech.com</div>
+                <div class="contact-info">wizeprimeroll@gmail.com</div>
+                <div class="contact-details">wizeprimeroll@gmail.com</div>
                 <div class="contact-details">24/7 Support Available</div>
             </div>
 
             <div class="contact-card">
                 <div class="contact-icon location">📍</div>
                 <h3>Visit Us</h3>
-                <div class="contact-info">Industrial Area, Phase 2</div>
-                <div class="contact-details">Chandigarh 160002</div>
-                <div class="contact-details">Mon-Sat: 10:00 AM - 6:00 PM</div>
+                <div class="contact-info">Anand Palace, Alpana Market</div>
+                <div class="contact-details">Patna, Bihar 800013</div>
+                <div class="contact-details">Mon-Sat: 10:00 AM - 7:00 PM</div>
             </div>
 
             <div class="contact-card">
@@ -50,7 +50,7 @@
                 <h3>Live Chat</h3>
                 <div class="contact-info">Instant Support</div>
                 <div class="contact-details">Average response: 2 mins</div>
-                <a href="#" class="btn btn-primary">Start Chat</a>
+                <a href="/underprocess.html" class="btn btn-primary">Start Chat</a>
             </div>
         </div>
 
@@ -91,7 +91,7 @@
                     <div class="marketplace-stats">4.7/5 Rating • 15,000+ Reviews</div>
                     <div class="marketplace-stats">Amazon's Choice Products</div>
                     <div class="marketplace-stats">Prime Delivery Available</div>
-                    <a href="#" class="btn btn-amazon btn-marketplace">Shop on Amazon</a>
+                    <a href="https://www.amazon.in/PRIME-Thermal-Billing-Machine-FT-POS7950/dp/B0DSVNHF6P?ref_=v_sp_product_dpx&th=1" class="btn btn-amazon btn-marketplace">Shop on Amazon</a>
                 </div>
 
                 <div class="marketplace-card">
@@ -107,7 +107,7 @@
                     <div class="marketplace-stats">4.9/5 Rating • Verified Supplier</div>
                     <div class="marketplace-stats">GST Registered • TrustSEAL</div>
                     <div class="marketplace-stats">Bulk Orders Welcome</div>
-                    <a href="#" class="btn btn-indiamart btn-marketplace">Get Quotes</a>
+                    <a href="https://www.indiamart.com/theformatter/?srsltid=AfmBOor0n_rocpATh4fSyXx_A5XZIQLcmjh8jHJ0_Z1sFBkxkNZy1d80" class="btn btn-indiamart btn-marketplace">Get Quotes</a>
                 </div>
             </div>
         </div>
@@ -220,50 +220,40 @@
 
         <!-- Find Our Office Section -->
         <div class="office-section">
-            <h2 class="section-title">Find Our Office</h2>
-            <div class="office-content">
-                <div class="map-container">
-                    <div class="map-placeholder">
-                        <div class="map-marker">📍</div>
-                        <div class="map-controls">
-                            <button class="map-control zoom-in">+</button>
-                            <button class="map-control zoom-out">−</button>
+                <h2 class="section-title">Find Our Office</h2>
+                <div class="office-content">
+                    <!-- Google Map for Patna Office -->
+                    <div class="map-container" style="width:100%; height:400px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d115116.30361957189!2d85.02807368197587!3d25.625361694106264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x39ed59d2fe575cff%3A0xb433bf70d7cdcf7a!2sOpp.%20Anand%20Palace%2C%20Alpana%20Market%2C%2013%2C%20Patliputra%20Colony%2C%20Patna%2C%20Bihar%20800013!3m2!1d25.6253848!2d85.1104752!5e0!3m2!1sen!2sin!4v1761127992607!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <!-- Optional Directions Card -->
+                    <div class="directions-card">
+                        <h3>How to Reach Us</h3>
+                        <div class="direction-item">
+                            <div class="direction-icon car">🚗</div>
+                            <div class="direction-content">
+                                <h4>By Car:</h4>
+                                <p>Parking available nearby. Located in Patliputra Colony, close to Alpana Market.</p>
+                            </div>
                         </div>
-                        <div class="map-overlay">
-                            <div class="map-info">
-                                <strong>FormatterTech</strong><br>
-                                Industrial Area, Phase 2<br>
-                                Chandigarh 160002
+                        <div class="direction-item">
+                            <div class="direction-icon bus">🚌</div>
+                            <div class="direction-content">
+                                <h4>By Public Transport:</h4>
+                                <p>Local buses stop near Patliputra Colony. 2–5 minute walk to the office.</p>
+                            </div>
+                        </div>
+                        <div class="direction-item">
+                            <div class="direction-icon plane">✈️</div>
+                            <div class="direction-content">
+                                <h4>From Airport:</h4>
+                                <p>Approx. 12 km from Patna Airport. About 25 minutes by taxi.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="directions-card">
-                    <h3>How to Reach Us</h3>
-                    <div class="direction-item">
-                        <div class="direction-icon car">🚗</div>
-                        <div class="direction-content">
-                            <h4>By Car:</h4>
-                            <p>Free parking available at our premises. Located near Industrial Area Phase 2 main entrance.</p>
-                        </div>
-                    </div>
-                    <div class="direction-item">
-                        <div class="direction-icon bus">🚌</div>
-                        <div class="direction-content">
-                            <h4>By Public Transport:</h4>
-                            <p>Bus routes 21, 45, and 67 stop at Industrial Area. 5-minute walk from the bus stop.</p>
-                        </div>
-                    </div>
-                    <div class="direction-item">
-                        <div class="direction-icon plane">✈️</div>
-                        <div class="direction-content">
-                            <h4>From Airport:</h4>
-                            <p>25 km from Chandigarh International Airport. Approximately 40 minutes by taxi.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
 
         <!-- FAQ Section -->
         <div class="faq-section">

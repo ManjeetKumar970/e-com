@@ -363,7 +363,7 @@
     @include('dashboard.partials.messagemode')
     <!-- js -->
     
-    {{-- @include('dashboard.footer.footer') --}}
+    @include('dashboard.footer.footer')
 
     <script>
         // Filter orders by status

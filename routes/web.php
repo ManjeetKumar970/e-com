@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\ContactMessageController;
 use App\Http\Controllers\Frontend\Customebarcods;
+use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Index;
@@ -66,6 +67,11 @@ Route::prefix('cart')->group(function () {
     Route::delete('/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 });
 
+    Route::middleware('auth')->group(function() {
+    Route::post('/notifications/mark-read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markRead');
+    Route::post('/notifications/mark-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAll');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+});
 // =======================
 // 💖 WISHLIST ROUTES
 // =======================
@@ -153,7 +159,7 @@ Route::prefix('dashboard')->group(function () {
 
         // --- UI Components ---
         Route::get('/sidebar', [DashboardController::class, 'sidebar'])->name('dashboard.sidebar');
-
+        
         // --- Logout ---
         Route::post('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
     });

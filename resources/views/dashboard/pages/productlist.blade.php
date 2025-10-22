@@ -444,7 +444,7 @@
     <!-- welcome modal end -->
 
     <!-- js -->
-      {{-- @include('dashboard.footer.footer') --}} 
+      @include('dashboard.footer.footer') 
 
 </html>
 <script>
