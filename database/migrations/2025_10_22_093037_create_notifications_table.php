@@ -11,24 +11,34 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 1️⃣ Create notifications table first
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // the user who receives the notification
-            $table->string('title');               // notification title
-            $table->text('message');               // notification message
-            $table->boolean('is_read')->default(false); // read/unread status
+            $table->unsignedBigInteger('user_id')->nullable(); // user receiving notification
+            $table->string('title');
+            $table->text('message');
+            $table->boolean('is_global')->default(false);
             $table->timestamps();
 
-            // foreign key constraint
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+        });
+
+        // 2️⃣ Create pivot table for per-user read status
+        Schema::create('notification_user', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('notification_id');
+            $table->unsignedBigInteger('user_id');
+            $table->boolean('is_read')->default(false);
+            $table->timestamps();
+
+            $table->foreign('notification_id')->references('id')->on('notifications')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
+        Schema::dropIfExists('notification_user');
         Schema::dropIfExists('notifications');
     }
 };

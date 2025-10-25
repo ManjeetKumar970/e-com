@@ -16,21 +16,7 @@
                         </a>
                     </li>
                     @endforeach
-                      {{-- <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3 py-3" href="/product">
-                            <i class="fas fa-barcode me-1"></i> Barcode Labels
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3 py-3" href="/product">
-                            <i class="fas fa-cash-register me-1"></i> Billing Machines
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fw-medium px-3 py-3" href="/product">
-                            <i class="fas fa-desktop me-1"></i> POS Software
-                        </a>
-                    </li> --}}
+                    
                     <li class="nav-item">
                         <a class="nav-link text-white fw-medium px-3 py-3" href="/contactus">
                             <i class="fas fa-boxes me-1"></i> Bulk Orders

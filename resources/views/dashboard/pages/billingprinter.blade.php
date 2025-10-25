@@ -57,12 +57,14 @@
         </div>
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('dashboard.storeprinter') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('dashboard.storeprinter') }}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-4 md-2">
                         <div class="form-floating form-group">
-                            <input name="name" class="form-control" type="text" placeholder="Printer Name " required />
+                            <input name="name" class="form-control" type="text" placeholder="Printer Name "
+                                required />
                             <label>Printer Name *</label>
                         </div>
                     </div>
@@ -74,7 +76,8 @@
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-group">
-                            <select class="custom-select2 form-control select2-hidden-accessible" name="printer_type" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <select class="custom-select2 form-control select2-hidden-accessible" name="printer_type"
+                                style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                 <optgroup label="Printer" data-select2-id="6">
                                     <option value="billing_printer" data-select2-id="5">Billing Printer</option>
                                     <option value="barcode_printer" data-select2-id="4">Barcode Printer</option>
@@ -89,7 +92,8 @@
                 <div class="row">
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="model_number" class="form-control" type="text" placeholder="Page Thickness" required />
+                            <input name="model_number" class="form-control" type="text" placeholder="Page Thickness"
+                                required />
                             <label>Model Mumber *</label>
                         </div>
                     </div>
@@ -101,7 +105,8 @@
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-group">
-                            <select class="custom-select2 form-control select2-hidden-accessible" name="connectivity" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <select class="custom-select2 form-control select2-hidden-accessible" name="connectivity"
+                                style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                 <optgroup label="Connectivity" data-select2-id="6">
                                     <option value="windows" data-select2-id="5">Windows</option>
                                     <option value="mac" data-select2-id="4">Mac</option>
@@ -116,19 +121,22 @@
                 <div class="row">
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="print_speed" class="form-control" type="text" placeholder="Printer Speed" required />
+                            <input name="print_speed" class="form-control" type="text" placeholder="Printer Speed"
+                                required />
                             <label>Print Speed *</label>
                         </div>
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="price" class="form-control" type="number" step="0.01" placeholder="Price" required />
+                            <input name="price" class="form-control" type="number" step="0.01" placeholder="Price"
+                                required />
                             <label>Price *</label>
                         </div>
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="warranty" class="form-control" type="number" step="0.01" placeholder="Warranty" required />
+                            <input name="warranty" class="form-control" type="number" step="0.01"
+                                placeholder="Warranty" required />
                             <label>Warranty *</label>
                         </div>
                     </div>
@@ -156,18 +164,18 @@
                 </div>
             </form>
         </div>
-          <!-- welcome modal start -->
-    @include('dashboard.partials.messagemode')
-    <!-- welcome modal end -->
+        <!-- welcome modal start -->
+        @include('dashboard.partials.messagemode')
+        <!-- welcome modal end -->
 
-    <!-- js -->
-    @include('dashboard.footer.footer')
+        <!-- js -->
+        @include('dashboard.footer.footer')
     </div>
 
-  
+
 
     <!-- Add Dropzone JS -->
-   <script>
+    <script>
         Dropzone.autoDiscover = false;
         var myDropzone = new Dropzone("#myDropzone", {
             url: "{{ route('dashboard.storeprinter') }}", // Not used directly
@@ -314,9 +322,9 @@
 
                     myDropzone.removeAllFiles();
                     form.reset();
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         window.location.reload()
-                    },3000)
+                    }, 3000)
                 })
                 .catch(error => {
                     const Toast = Swal.mixin({

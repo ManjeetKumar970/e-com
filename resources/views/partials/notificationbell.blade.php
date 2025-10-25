@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <style>
-       
         /* Floating Bell */
         .notification-bell {
             position: fixed;
@@ -222,6 +222,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -243,11 +244,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Notification Bell -->
     <div class="notification-bell">
         <button class="bell-button" id="bellBtn">🔔</button>
-        <div class="notification-badge" id="badge">4</div>
+        <div class="notification-badge" id="badge">
+            {{ $notification->where(function ($n) {return $n->is_global || $n->user_id === Auth::id();})->count() }}
+        </div>
 
         <!-- Notification Panel -->
         <div class="notification-panel" id="panel">
@@ -257,75 +261,80 @@
             </div>
 
             <div class="notifications-list" id="notificationsList">
-    @if ($notification && $notification->count() > 0)
-        @foreach ($notification as $notifi)
-            <div class="notification-item {{ !$notifi->is_read ? 'unread' : '' }}" data-id="{{ $notifi->id }}">
-                <div class="notification-content">
-                    <div class="notification-message">{{ $notifi->message }}</div>
-                    <div class="notification-time">{{ $notifi->created_at ?? '00:00:00' }}</div>
-                </div>
-                <div class="notification-actions">
-                    @if (!$notifi->is_read)
-                        <button class="icon-btn mark-read" data-id="{{ $notifi->id }}" title="Mark as read">✓</button>
-                    @endif
-                    <button class="icon-btn delete" data-id="{{ $notifi->id }}" title="Delete">✕</button>
-                </div>
-            </div>
-        @endforeach
-    @else
-        <div class="notification-item unread">
-            <div class="notification-content">
-                <div class="notification-message">NO NOTIFICATION</div>
-                <div class="notification-time">--- -- --</div>
-            </div>
-        </div>
-    @endif
-</div>
+                @php
+                    $userNotifications = $notification->filter(function ($notifi) {
+                        return $notifi->is_global || $notifi->user_id === Auth::id();
+                    });
+                @endphp
 
-
+                @if ($userNotifications->count() > 0)
+                    @foreach ($userNotifications as $notifi)
+                        <div class="notification-item {{ !$notifi->is_read ? 'unread' : '' }}"
+                            data-id="{{ $notifi->id }}">
+                            <div class="notification-content">
+                                <div class="notification-message">{{ $notifi->message }}</div>
+                                <div class="notification-time">{{ $notifi->created_at->format('M d, Y h:i A') }}</div>
+                            </div>
+                            <div class="notification-actions">
+                                @if (!$notifi->is_read)
+                                    <button class="icon-btn mark-read" data-id="{{ $notifi->id }}"
+                                        title="Mark as read">✓</button>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="notification-item unread">
+                        <div class="notification-content">
+                            <div class="notification-message">NO NOTIFICATION</div>
+                        </div>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 
     <script>
-       const bellBtn = document.getElementById('bellBtn');
-const closeBtn = document.getElementById('closeBtn');
-const panel = document.getElementById('panel');
-const badge = document.getElementById('badge');
-const markAllBtn = document.querySelector('.mark-all-btn');
-const footer = document.getElementById('footer');
-const notificationsList = document.getElementById('notificationsList');
+        const bellBtn = document.getElementById('bellBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const panel = document.getElementById('panel');
+        const badge = document.getElementById('badge');
+        const markAllBtn = document.querySelector('.mark-all-btn');
+        const footer = document.getElementById('footer');
+        const notificationsList = document.getElementById('notificationsList');
 
-// Toggle panel
-bellBtn.addEventListener('click', () => {
-    panel.classList.toggle('active');
-});
-
-// Close panel
-closeBtn.addEventListener('click', () => panel.classList.remove('active'));
-document.addEventListener('click', e => {
-    if (!e.target.closest('.notification-bell')) panel.classList.remove('active');
-});
-
-// CSRF token
-const csrf = '{{ csrf_token() }}';
-
-// Mark single notification as read
-notificationsList.addEventListener('click', e => {
-    if (e.target.classList.contains('mark-read')) {
-        const id = e.target.dataset.id;
-        fetch(`/notifications/mark-read/${id}`, {
-            method: 'POST',
-            headers: {'X-CSRF-TOKEN': csrf},
-        }).then(() => {
-            const item = e.target.closest('.notification-item');
-            item.classList.remove('unread');
-            e.target.remove();
-            updateBadge();
+        // Toggle panel
+        bellBtn.addEventListener('click', () => {
+            panel.classList.toggle('active');
         });
-    }
-});
 
+        // Close panel
+        closeBtn.addEventListener('click', () => panel.classList.remove('active'));
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.notification-bell')) panel.classList.remove('active');
+        });
 
+        // CSRF token
+        const csrf = '{{ csrf_token() }}';
+
+        // Mark single notification as read
+        notificationsList.addEventListener('click', e => {
+            if (e.target.classList.contains('mark-read')) {
+                const id = e.target.dataset.id;
+                fetch(`/notifications/mark-read/${id}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrf
+                    },
+                }).then(() => {
+                    const item = e.target.closest('.notification-item');
+                    item.classList.remove('unread');
+                    e.target.remove();
+                    updateBadge();
+                });
+            }
+        });
     </script>
 </body>
+
 </html>

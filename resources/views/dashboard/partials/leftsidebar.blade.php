@@ -74,13 +74,12 @@
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-hdd-stack"></span
-								><span class="mtext">Multi Level Menu</span>
+								><span class="mtext">Notifications</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="javascript:;">Level 1</a></li>
-								<li><a href="javascript:;">Level 1</a></li>
-								<li><a href="javascript:;">Level 1</a></li>
-								<li class="dropdown">
+								<li><a href="">Notificatons List</a></li>
+								<li><a href="{{route('dashboard.notifications.create')}}">Create Notifications</a></li>
+								{{-- <li class="dropdown">
 									<a href="javascript:;" class="dropdown-toggle">
 										<span class="micon fa fa-plug"></span
 										><span class="mtext">Level 2</span>
@@ -92,7 +91,7 @@
 								</li>
 								<li><a href="javascript:;">Level 1</a></li>
 								<li><a href="javascript:;">Level 1</a></li>
-								<li><a href="javascript:;">Level 1</a></li>
+								<li><a href="javascript:;">Level 1</a></li> --}}
 							</ul>
 						</li>
 						

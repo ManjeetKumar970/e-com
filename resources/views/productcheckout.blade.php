@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     @include('partials.head')
     <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
     <style>
-.quantity-control {
-    display: flex;
+        .quantity-control {
+            display: flex;
             align-items: center;
             gap: 10px;
             background: #f5f5f5;
             border-radius: 25px;
             padding: 5px;
-}
-             .qty-btn {
-                    background: white;
-                    border: none;
-                    width: 35px;
-                    height: 35px;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-weight: bold;
-                    transition: all 0.3s ease;
-                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-             }
+        }
+
+        .qty-btn {
+            background: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
         .qty-input {
             font-weight: 600;
             width: 100px;
@@ -36,8 +39,9 @@
             height: 38px;
             min-width: 30px;
         }
-</style>
+    </style>
 </head>
+
 <body>
     @include('partials.header')
 
@@ -69,7 +73,7 @@
     </div>
 
     <div class="checkout-container">
-        <form id="checkoutForm" method="POST" action="{{route('checkout.store')}}">
+        <form id="checkoutForm" method="POST" action="{{ route('checkout.store') }}">
             @csrf
             <div class="row">
                 <div class="col-lg-7">
@@ -94,16 +98,19 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">First Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="first_name" placeholder="Enter first name" required>
+                                <input type="text" class="form-control" name="first_name"
+                                    placeholder="Enter first name" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Last Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="last_name" placeholder="Enter last name" required>
+                                <input type="text" class="form-control" name="last_name"
+                                    placeholder="Enter last name" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Company Name (Optional)</label>
-                            <input type="text" class="form-control" name="company_name" placeholder="Enter company name">
+                            <input type="text" class="form-control" name="company_name"
+                                placeholder="Enter company name">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">GST Number (Optional)</label>
@@ -112,11 +119,13 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" name="email" placeholder="your.email@example.com" required>
+                                <input type="email" class="form-control" name="email"
+                                    placeholder="your.email@example.com" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Phone Number <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control" name="phone" placeholder="+91 98765 43210" required>
+                                <input type="tel" class="form-control" name="phone" placeholder="+91 98765 43210"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -124,23 +133,27 @@
                     <div class="billing-section">
                         <h3>Shipping Address</h3>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="sameAddress" name="same_as_billing" disabled>
+                            <input class="form-check-input" type="checkbox" id="sameAddress" name="same_as_billing"
+                                disabled>
                             <label class="form-check-label" for="sameAddress">
                                 Same as billing address
                             </label>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Street Address <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="street_address" placeholder="House no, Building, Street" required>
+                            <input type="text" class="form-control" name="street_address"
+                                placeholder="House no, Building, Street" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Address Line 2</label>
-                            <input type="text" class="form-control" name="address_line_2" placeholder="Apartment, suite, unit etc. (optional)">
+                            <input type="text" class="form-control" name="address_line_2"
+                                placeholder="Apartment, suite, unit etc. (optional)">
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">City <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="city" placeholder="Enter city" required>
+                                <input type="text" class="form-control" name="city" placeholder="Enter city"
+                                    required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">State <span class="text-danger">*</span></label>
@@ -158,7 +171,8 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">PIN Code <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="pin_code" placeholder="6-digit PIN" maxlength="6" required>
+                                <input type="text" class="form-control" name="pin_code" placeholder="6-digit PIN"
+                                    maxlength="6" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Country <span class="text-danger">*</span></label>
@@ -225,11 +239,12 @@
                                     <h5>{{ $cartItem->product->name }}</h5>
                                     <p>{{ $cartItem->product->interface_type ?? $cartItem->product->paper_size }}</p>
                                     <div class="container">
-                                    <div class="quantity-control" data-product-id="{{ $cartItem->product->id }}">
-                                        <button type="button" class="qty-btn decrease">-</button>
-                                        <input type="number" class="qty-input" min="1" value="{{ $cartItem->quantity }}">
-                                        <button type="button" class="qty-btn increase">+</button>
-                                    </div>
+                                        <div class="quantity-control" data-product-id="{{ $cartItem->product->id }}">
+                                            <button type="button" class="qty-btn decrease">-</button>
+                                            <input type="number" class="qty-input" min="1"
+                                                value="{{ $cartItem->quantity }}">
+                                            <button type="button" class="qty-btn increase">+</button>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -242,7 +257,8 @@
                         @endforelse
 
                         <div class="promo-section">
-                            <input type="text" class="form-control" name="promo_code" id="promoCode" placeholder="Enter promo code">
+                            <input type="text" class="form-control" name="promo_code" id="promoCode"
+                                placeholder="Enter promo code">
                             <button type="button" class="btn-apply" onclick="applyPromo()">Apply</button>
                         </div>
 
@@ -347,63 +363,67 @@
     </script>
 
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const csrfToken = '{{ csrf_token() }}';
+        document.addEventListener('DOMContentLoaded', function() {
+            const csrfToken = '{{ csrf_token() }}';
 
-    document.querySelectorAll('.quantity-control').forEach(control => {
-        const productId = control.dataset.productId;
-        const input = control.querySelector('.qty-input');
-        const decreaseBtn = control.querySelector('.decrease');
-        const increaseBtn = control.querySelector('.increase');
+            document.querySelectorAll('.quantity-control').forEach(control => {
+                const productId = control.dataset.productId;
+                const input = control.querySelector('.qty-input');
+                const decreaseBtn = control.querySelector('.decrease');
+                const increaseBtn = control.querySelector('.increase');
 
-        // Handle increase
-        increaseBtn.addEventListener('click', () => {
-            input.value = parseInt(input.value) + 1;
-            updateCart(productId, input.value);
-        });
+                // Handle increase
+                increaseBtn.addEventListener('click', () => {
+                    input.value = parseInt(input.value) + 1;
+                    updateCart(productId, input.value);
+                });
 
-        // Handle decrease
-        decreaseBtn.addEventListener('click', () => {
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-                updateCart(productId, input.value);
+                // Handle decrease
+                decreaseBtn.addEventListener('click', () => {
+                    if (parseInt(input.value) > 1) {
+                        input.value = parseInt(input.value) - 1;
+                        updateCart(productId, input.value);
+                    }
+                });
+
+                // Handle manual typing
+                input.addEventListener('change', () => {
+                    const newQty = parseInt(input.value);
+                    if (newQty >= 1) {
+                        updateCart(productId, newQty);
+                    } else {
+                        input.value = 1;
+                    }
+                });
+            });
+
+            function updateCart(productId, quantity) {
+                fetch('{{ route('cart.update') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            product_id: productId,
+                            quantity: quantity
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Cart updated');
+                            // Optional: Reload totals dynamically
+                            location.reload();
+                        } else {
+                            alert(data.message || 'Error updating cart');
+                        }
+                    })
+                    .catch(err => console.error('Error:', err));
             }
         });
-
-        // Handle manual typing
-        input.addEventListener('change', () => {
-            const newQty = parseInt(input.value);
-            if (newQty >= 1) {
-                updateCart(productId, newQty);
-            } else {
-                input.value = 1;
-            }
-        });
-    });
-
-    function updateCart(productId, quantity) {
-        fetch('{{ route("cart.update") }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: JSON.stringify({ product_id: productId, quantity: quantity })
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Cart updated');
-                // Optional: Reload totals dynamically
-                location.reload(); 
-            } else {
-                alert(data.message || 'Error updating cart');
-            }
-        })
-        .catch(err => console.error('Error:', err));
-    }
-});
-</script>
+    </script>
 
 </body>
+
 </html>

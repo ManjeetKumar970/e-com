@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        @include('partials.head')
+    @include('partials.head')
 
 </head>
+
 <body>
     @include('partials.header')
     <!-- Hero Section -->
     <div class="hero-section-pd">
-    <div class="hero-background">
-        <div class="moving-shape shape-1"></div>
-        <div class="moving-shape shape-2"></div>
-        <div class="moving-shape shape-3"></div>
-        <div class="moving-shape shape-4"></div>
-        <div class="moving-shape shape-5"></div>
+        <div class="hero-background">
+            <div class="moving-shape shape-1"></div>
+            <div class="moving-shape shape-2"></div>
+            <div class="moving-shape shape-3"></div>
+            <div class="moving-shape shape-4"></div>
+            <div class="moving-shape shape-5"></div>
+        </div>
+        <div class="container">
+            <h1 class="hero-title">Business Equipment & Solutions</h1>
+            <p class="hero-subtitle">Find the perfect tools to streamline your operations and boost productivity</p>
+        </div>
     </div>
-    <div class="container">
-        <h1 class="hero-title">Business Equipment & Solutions</h1>
-        <p class="hero-subtitle">Find the perfect tools to streamline your operations and boost productivity</p>
-    </div>
-</div>
 
     <div class="container mt-5">
         <div class="row">
@@ -36,40 +38,41 @@
                 <!-- Product Grid -->
                 <div class="row">
                     <!-- Product 1 -->
-              @if(isset($products) && $products->count() > 0)
-          @foreach ($products as $product)
-        <div class="col-lg-4 col-md-6 py-2">
-            <div class="product-card-pd position-relative" data-product-id="{{ $product->id }}">
-                @php
-                    $labelClass = strtolower(str_replace(' ', '', $product->prodcutlabel ?? ''));
-                @endphp
+                    @if (isset($products) && $products->count() > 0)
+                        @foreach ($products as $product)
+                            <div class="col-lg-4 col-md-6 py-2">
+                                <div class="product-card-pd position-relative" data-product-id="{{ $product->id }}">
+                                    @php
+                                        $labelClass = strtolower(str_replace(' ', '', $product->prodcutlabel ?? ''));
+                                    @endphp
 
-                @if(!empty($product->prodcutlabel))
-                    <div class="product-badge badge-{{ $labelClass }}">
-                        {{ $product->prodcutlabel }}
-                    </div>
-                @endif
- 
-             <a href="{{ url('productreview/' . $product->slug . '/' . $product->id) }}">
-                <div class="product-image-pd">
-                    <img src="{{ asset('storage/' . ($product->primaryImage->image_url ?? 'images/no-image.png')) }}" 
-                         alt="{{ $product->name }}" 
-                         class="img-fluid">
-                </div>
-                    </a>
-                <div class="product-category">{{ $product->category->name ?? 'Uncategorized' }}</div>
-                <h6 class="product-title">{{ $product->name }}</h6>
+                                    @if (!empty($product->prodcutlabel))
+                                        <div class="product-badge badge-{{ $labelClass }}">
+                                            {{ $product->prodcutlabel }}
+                                        </div>
+                                    @endif
 
-                <ul class="product-features">
-                    <li>High-speed printing</li>
-                    <li>Wireless connectivity</li>
-                    <li>Multiple size support</li>
-                </ul>
+                                    <a href="{{ url('productreview/' . $product->slug . '/' . $product->id) }}">
+                                        <div class="product-image-pd">
+                                            <img src="{{ asset('storage/' . ($product->primaryImage->image_url ?? 'images/no-image.png')) }}"
+                                                alt="{{ $product->name }}" class="img-fluid">
+                                        </div>
+                                    </a>
+                                    <div class="product-category">{{ $product->category->name ?? 'Uncategorized' }}
+                                    </div>
+                                    <h6 class="product-title">{{ $product->name }}</h6>
 
-                <div class="price-section-pd">
-                    <span class="current-price">₹{{ $product->sale_price }}</span>
-                    <span class="original-price">₹{{ $product->regular_price }}</span>
-                    <span class="discount-badge" style="display: inline-block;
+                                    <ul class="product-features">
+                                        <li>High-speed printing</li>
+                                        <li>Wireless connectivity</li>
+                                        <li>Multiple size support</li>
+                                    </ul>
+
+                                    <div class="price-section-pd">
+                                        <span class="current-price">₹{{ $product->sale_price }}</span>
+                                        <span class="original-price">₹{{ $product->regular_price }}</span>
+                                        <span class="discount-badge"
+                                            style="display: inline-block;
                                     padding: 2px 6px;
                                     font-size: 0.8rem;
                                     font-weight: bold;
@@ -79,47 +82,52 @@
                                     white-space: nowrap;
                                     overflow: hidden;
                                     text-overflow: ellipsis;">
-                        {{ round(100 - ($product->sale_price / $product->regular_price * 100)) }}% OFF
-                    </span>
-                </div>
+                                            {{ round(100 - ($product->sale_price / $product->regular_price) * 100) }}%
+                                            OFF
+                                        </span>
+                                    </div>
 
-                <div class="d-flex">
-                    <button class="btn-add-cart" onclick="addToCart(this)">Add to Cart</button>
-                    <button class="btn-wishlist-pd" onclick="toggleHeart(this)"><i class="far fa-heart"></i></button>
-                </div>
-            </div>
-        </div>
-    @endforeach
-@else
-@endif
+                                    <div class="d-flex">
+                                        <button class="btn-add-cart" onclick="addToCart(this)">Add to Cart</button>
+                                        <button class="btn-wishlist-pd" onclick="toggleHeart(this)"><i
+                                                class="far fa-heart"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                    @endif
 
                     <!-- Product 2 -->
 
                     @foreach ($allProducts as $allProduct)
-                      @php
+                        @php
                             $labelClass = strtolower(str_replace(' ', '', $allProduct->prodcutlabel));
                         @endphp
-                         <div class="col-lg-4 col-md-6 py-2">
+                        <div class="col-lg-4 col-md-6 py-2">
                             <div class="product-card-pd position-relative" data-product-id="{{ $allProduct->id }}">
 
-                            <div class="product-badge badge-{{$labelClass}}">{{$allProduct->prodcutlabel}}</div>
-                                         <a href="{{ url('productreview/' . $allProduct->slug . '/' . $allProduct->id) }}">
+                                <div class="product-badge badge-{{ $labelClass }}">{{ $allProduct->prodcutlabel }}
+                                </div>
+                                <a href="{{ url('productreview/' . $allProduct->slug . '/' . $allProduct->id) }}">
 
-                             <div class="product-image-pd">
-                                <img src="{{ asset('storage/' .($allProduct->primaryImage->image_url ?? 'images/no-image.png')) }}" alt="" class="img-fluid">
-                            </div>
-                                         </a>
-                            <div class="product-category">{{ $allProduct->name}}</div>
-                            <h6 class="product-title">{{ $allProduct->name}}</h6>
-                            <ul class="product-features">
-                                <li>2D barcode support</li>
-                                <li>Lightning fast scanning</li>
-                                <li>Durable design</li>
-                            </ul>
-                            <div class="price-section-pd">
-                                <span class="current-price">₹{{ $allProduct->sale_price}}</span>
-                                <span class="original-price">₹{{ $allProduct->regular_price}}</span>
-                                <span class="discount-badge" style="display: inline-block;
+                                    <div class="product-image-pd">
+                                        <img src="{{ asset('storage/' . ($allProduct->primaryImage->image_url ?? 'images/no-image.png')) }}"
+                                            alt="" class="img-fluid">
+                                    </div>
+                                </a>
+                                <div class="product-category">{{ $allProduct->name }}</div>
+                                <h6 class="product-title">{{ $allProduct->name }}</h6>
+                                <ul class="product-features">
+                                    <li>2D barcode support</li>
+                                    <li>Lightning fast scanning</li>
+                                    <li>Durable design</li>
+                                </ul>
+                                <div class="price-section-pd">
+                                    <span class="current-price">₹{{ $allProduct->sale_price }}</span>
+                                    <span class="original-price">₹{{ $allProduct->regular_price }}</span>
+                                    <span class="discount-badge"
+                                        style="display: inline-block;
                                     padding: 2px 6px;
                                     font-size: 0.8rem;
                                     font-weight: bold;
@@ -128,16 +136,18 @@
                                     border-radius: 4px;
                                     white-space: nowrap;
                                     overflow: hidden;
-                                    text-overflow: ellipsis;">{{ round(100 - ($allProduct->sale_price / $allProduct->regular_price * 100)) }}% OFF</span>
-                            </div>
-                            <div class="d-flex">
-                                <button class="btn-add-cart" onclick="addToCart(this)">Add to Cart</button>
-                                <button class="btn-wishlist-pd" onclick="toggleHeart(this)"><i class="far fa-heart"></i></button>
+                                    text-overflow: ellipsis;">{{ round(100 - ($allProduct->sale_price / $allProduct->regular_price) * 100) }}%
+                                        OFF</span>
+                                </div>
+                                <div class="d-flex">
+                                    <button class="btn-add-cart" onclick="addToCart(this)">Add to Cart</button>
+                                    <button class="btn-wishlist-pd" onclick="toggleHeart(this)"><i
+                                            class="far fa-heart"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-             @endforeach
-                   
+                    @endforeach
+
                 </div>
 
                 <!-- Pagination -->
@@ -182,5 +192,5 @@
     <!-- Experience the Difference -->
     @include('partials.experience')
 </body>
-    <!-- Footer -->
-  @include('partials.footer')
+<!-- Footer -->
+@include('partials.footer')

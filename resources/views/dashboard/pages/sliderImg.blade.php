@@ -23,7 +23,8 @@
 
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('dashboard.slider.store') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('dashboard.slider.store') }}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-4 md-2">
@@ -35,22 +36,25 @@
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="description1" class="form-control" type="text" placeholder="Size Index" required />
+                            <input name="description1" class="form-control" type="text" placeholder="Size Index"
+                                required />
                             <label>Description *</label>
                             <div class="invalid-feedback">Please provide a description.</div>
                         </div>
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="img1" id="img1" class="form-control" type="file" placeholder="Page Thickness" required />
+                            <input name="img1" id="img1" class="form-control" type="file"
+                                placeholder="Page Thickness" required />
                             <label>Img 1 *</label>
                         </div>
-                        <img id="preview-img1" src="#" alt="Image 1 Preview" style="display:none; max-height: 100px; margin-top: 10px;" />
+                        <img id="preview-img1" src="#" alt="Image 1 Preview"
+                            style="display:none; max-height: 100px; margin-top: 10px;" />
 
                     </div>
                 </div>
 
-               <div class="row mb-5" style="padding-top: 20px;">
+                <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-4 md-2">
                         <div class="form-floating form-group">
                             <input name="title2" class="form-control" type="text" placeholder="Title " required />
@@ -60,40 +64,47 @@
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="description2" class="form-control" type="text" placeholder="Size Index" required />
+                            <input name="description2" class="form-control" type="text" placeholder="Size Index"
+                                required />
                             <label>Description *</label>
                             <div class="invalid-feedback">Please provide a description.</div>
                         </div>
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="img2" id="img2" class="form-control" type="file" placeholder="Page Thickness" required />
+                            <input name="img2" id="img2" class="form-control" type="file"
+                                placeholder="Page Thickness" required />
                             <label>Img 2 *</label>
-                        </div><img id="preview-img2" src="#" alt="Image 2 Preview" style="display:none; max-height: 100px; margin-top: 10px;" />
+                        </div><img id="preview-img2" src="#" alt="Image 2 Preview"
+                            style="display:none; max-height: 100px; margin-top: 10px;" />
 
 
                     </div>
-                </div><div class="row mb-5" style="padding-top: 20px;">
+                </div>
+                <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-4 md-2">
                         <div class="form-floating form-group">
                             <input name="title3" class="form-control" type="text" placeholder="Title" required />
-                            <label>Title  *</label>
+                            <label>Title *</label>
                             <div class="invalid-feedback">Please provide a title name.</div>
                         </div>
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="description3" class="form-control" type="text" placeholder="Size Index" required />
+                            <input name="description3" class="form-control" type="text" placeholder="Size Index"
+                                required />
                             <label>Description *</label>
                             <div class="invalid-feedback">Please provide a description.</div>
                         </div>
                     </div>
                     <div class="col-md-4 md-2">
                         <div class="form-floating">
-                            <input name="img3" id="img3" class="form-control" type="file" placeholder="Page Thickness" required />
+                            <input name="img3" id="img3" class="form-control" type="file"
+                                placeholder="Page Thickness" required />
                             <label>Img 3 *</label>
                         </div>
-                        <img id="preview-img3" src="#" alt="Image 3 Preview" style="display:none; max-height: 100px; margin-top: 10px;" />
+                        <img id="preview-img3" src="#" alt="Image 3 Preview"
+                            style="display:none; max-height: 100px; margin-top: 10px;" />
                     </div>
                 </div>
 
@@ -108,7 +119,7 @@
             </form>
         </div>
     </div>
-</div>
+    </div>
     <!-- welcome modal start -->
     @include('dashboard.partials.messagemode')
     <!-- welcome modal end -->
@@ -122,11 +133,11 @@
         const input = document.getElementById(inputId);
         const preview = document.getElementById(previewId);
 
-        input.addEventListener('change', function () {
+        input.addEventListener('change', function() {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
                 }
@@ -144,7 +155,7 @@
 </script>
 
 <script>
-    document.getElementById('submit-all').addEventListener('click', function () {
+    document.getElementById('submit-all').addEventListener('click', function() {
         const form = document.getElementById('product-form');
         if (form.checkValidity()) {
             form.submit();
@@ -153,4 +164,5 @@
         }
     });
 </script>
+
 </html>

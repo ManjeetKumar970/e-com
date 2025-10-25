@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Index;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 // =======================
@@ -67,10 +68,10 @@ Route::prefix('cart')->group(function () {
     Route::delete('/clear', [CartController::class, 'clearCart'])->name('cart.clear');
 });
 
-    Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::post('/notifications/mark-read/{id}', [NotificationController::class, 'markAsRead'])->name('notifications.markRead');
     Route::post('/notifications/mark-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAll');
-    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'destroyusernotification'])->name('notifications.destroynotification');
 });
 // =======================
 // 💖 WISHLIST ROUTES
@@ -109,12 +110,13 @@ Route::post('/contact-message', [ContactMessageController::class, 'store'])->nam
 // 🧠 DASHBOARD (ADMIN SECTION)
 // =======================
 Route::prefix('dashboard')->group(function () {
-
-    // --- Login & Register ---
+    // Public login & register
     Route::get('/', [AuthController::class, 'index'])->name('dashboard.index');
     Route::post('/register', [AuthController::class, 'register'])->name('dashboard.register');
     Route::post('/login', [AuthController::class, 'login'])->name('dashboard.login');
     Route::get('/login', fn() => redirect()->route('dashboard.index'))->name('login');
+});
+Route::prefix('dashboard')->middleware(['auth', AdminMiddleware::class])->group(function () {
 
     // --- Protected Admin Routes ---
     Route::middleware('auth')->group(function () {
@@ -123,7 +125,7 @@ Route::prefix('dashboard')->group(function () {
         Route::get('/admindashboard', fn() => view('dashboard.admindashboard'))->name('dashboard.admindashboard');
         Route::get('/home', [SliderController::class, 'home'])->name('dashboard.home');
         Route::get('/admindashboard', [DashboardController::class, 'adminDashboard'])
-        ->name('dashboard.admindashboard');
+            ->name('dashboard.admindashboard');
 
         // --- Category Management ---
         Route::get('/category', [CategoryController::class, 'category'])->name('dashboard.category');
@@ -137,6 +139,14 @@ Route::prefix('dashboard')->group(function () {
         Route::post('/createproduct', [ProductsController::class, 'createproduct'])->name('dashboard.createproduct');
         Route::get('/listproducts', [ProductsController::class, 'productList'])->name('dashboard.listproducts');
         Route::post('/storeProduct', [ProductsController::class, 'storeProduct'])->name('dashboard.storeProduct');
+        Route::delete('/deleteproduct/{id}', [ProductsController::class, 'deleteProduct'])->name('dashboard.delete');
+        Route::get('/products/edit/{id}', [ProductsController::class, 'edit'])->name('dashboard.products.edit');
+        Route::post('/products/{id}', [ProductsController::class, 'update'])->name('dashboard.products.update');
+        Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('dashboard.products.destroy');
+
+        // Product Image Management
+        Route::delete('/products/images/{id}', [ProductsController::class, 'deleteImage'])->name('dashboard.products.deleteImage');
+        Route::post('/products/{productId}/images/{imageId}/primary', [ProductsController::class, 'setPrimaryImage'])->name('dashboard.products.setPrimaryImage');
         // --- Order  ---
         Route::get('/showorder', [OrderHandleController::class, 'orderview'])->name('order.show');
         Route::get('/order/{id}/details', [OrderHandleController::class, 'getOrderDetails'])->name('order.details');
@@ -159,7 +169,10 @@ Route::prefix('dashboard')->group(function () {
 
         // --- UI Components ---
         Route::get('/sidebar', [DashboardController::class, 'sidebar'])->name('dashboard.sidebar');
-        
+        Route::get('admin/notifications', [NotificationController::class, 'createNotification'])->name('dashboard.notifications.create');
+        Route::post('admin/notifications', [NotificationController::class, 'store'])->name('dashboard.notifications.store');
+        Route::put('admin/notifications/{notification}', [NotificationController::class, 'update'])->name('dashboard.notifications.update');
+        Route::delete('admin/notifications/{id}', [NotificationController::class, 'destroy'])->name('dashboard.notifications.destroy');
         // --- Logout ---
         Route::post('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
     });

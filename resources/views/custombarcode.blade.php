@@ -1,207 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        @include('partials.head')
 
-        <link rel="stylesheet" href="{{ asset('css/barcode.css') }}">
+<head>
+    @include('partials.head')
+
+    <link rel="stylesheet" href="{{ asset('css/barcode.css') }}">
 
 </head>
+
 <body>
     @include('partials.header')
 
 
-         <div class="hero-section-pd">
-            <div class="hero-background">
-                <div class="moving-shape shape-1"></div>
-                <div class="moving-shape shape-2"></div>
-                <div class="moving-shape shape-3"></div>
-                <div class="moving-shape shape-4"></div>
-                <div class="moving-shape shape-5"></div>
-            </div>
-            <div class="container">
-                <h1 class="hero-title">🏷️ Barcode Label Configurator</h1>
-                <p class="hero-subtitle">Design and customize your perfect barcode labels with real-time preview</p>
-            </div>
+    <div class="hero-section-pd">
+        <div class="hero-background">
+            <div class="moving-shape shape-1"></div>
+            <div class="moving-shape shape-2"></div>
+            <div class="moving-shape shape-3"></div>
+            <div class="moving-shape shape-4"></div>
+            <div class="moving-shape shape-5"></div>
         </div>
+        <div class="container">
+            <h1 class="hero-title">🏷️ Barcode Label Configurator</h1>
+            <p class="hero-subtitle">Design and customize your perfect barcode labels with real-time preview</p>
+        </div>
+    </div>
     <div class="container-br">
         <div class="config-section">
-            
-        <div class="form-grid">
-                        <div class="form-group">
-                           <div class="form-group">
-                            <label class="required">Unit System</label>
-                            <select id="unitSystem">
-                                <option value="mm">Millimeters (mm)</option>
-                                <option value="cm">Centimeters (cm)</option>
-                                <option value="inch">Inches (in)</option>
-                            </select>
-                        </div>
-                        </div>
 
-                        <div class="form-group">
-                            <label class="required">Barcode Width</label>
-                            <div class="input-container">
-                                <input type="number" id="barcodeWidth" placeholder="Enter width" step="0.1" value="50">
-                                <span class="unit" id="widthUnit">mm</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="required">Barcode Length</label>
-                            <div class="input-container">
-                                <input type="number" id="barcodeLength" placeholder="Enter length" step="0.1" value="30">
-                                <span class="unit" id="lengthUnit">mm</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="required">Quantity</label>
-                            <div class="input-container">
-                                <input type="number" id="quantity" placeholder="Enter quantity (e.g., 1000)" min="100" max="10000" value="1000">
-                                <span class="unit">#</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown-group">
-                        <div class="dropdown-item-br">
-                            <label>Label Material</label>
-                            <select id="labelMaterial">
-                                <option value="paper">📄 Paper (Standard)</option>
-                                <option value="vinyl">🔧 Vinyl (Durable)</option>
-                                <option value="polyester">💎 Polyester (Premium)</option>
-                                <option value="polypropylene">🛡️ Polypropylene (Weather-resistant)</option>
-                            </select>
-                        </div>
-
-                        <div class="dropdown-item-br">
-                            <label>Barcode Type</label>
-                            <select id="barcodeType">
-                                <option value="CODE128">Code 128 (Versatile)</option>
-                                <option value="CODE39">Code 39 (Industry Standard)</option>
-                                <option value="EAN13">EAN-13 (Retail)</option>
-                                <option value="UPC">UPC-A (North America)</option>
-                                <option value="ITF14">ITF-14 (Shipping)</option>
-                            </select>
-                        </div>
-
-                        <div class="dropdown-item-br">
-                            <label>Adhesive Type</label>
-                            <select id="adhesiveType">
-                                <option value="permanent">🔒 Permanent (Strong bond)</option>
-                                <option value="removable">🔄 Removable (Clean removal)</option>
-                                <option value="repositionable">📍 Repositionable (Multiple uses)</option>
-                                <option value="freezer">❄️ Freezer Grade (Cold resistant)</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="options-section">
-                        <div class="options-title">Additional Options</div>
-                        <div class="options-grid">
-                            <div class="checkbox-item" data-option="sequential">
-                                <input type="checkbox" id="sequential">
-                                <label for="sequential">Sequential Numbering</label>
-                            </div>
-                            <div class="checkbox-item" data-option="logo">
-                                <input type="checkbox" id="logo">
-                                <label for="logo">Add Company Logo</label>
-                            </div>
-                            <div class="checkbox-item" data-option="color">
-                                <input type="checkbox" id="color">
-                                <label for="color">Color Printing</label>
-                            </div>
-                            <div class="checkbox-item" data-option="uv">
-                                <input type="checkbox" id="uv">
-                                <label for="uv">UV Lamination</label>
-                            </div>
-                            <div class="checkbox-item" data-option="perforation">
-                                <input type="checkbox" id="perforation">
-                                <label for="perforation">Perforation Lines</label>
-                            </div>
-                            <div class="checkbox-item" data-option="express">
-                                <input type="checkbox" id="express">
-                                <label for="express">Express Delivery</label>
-                            </div>
-                        </div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="required">Unit System</label>
+                        <select id="unitSystem">
+                            <option value="mm">Millimeters (mm)</option>
+                            <option value="cm">Centimeters (cm)</option>
+                            <option value="inch">Inches (in)</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="preview-section">
-                    <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Label Size Preview</h3>
-                    
-                    <div class="size-presets">
-                        <h4>Quick Size Selection</h4>
-                        <div class="preset-buttons">
-                            <button class="preset-btn" onclick="selectPresetSize(38, 38)">38×38mm</button>
-                            <button class="preset-btn" onclick="selectPresetSize(38, 25)">38×25mm</button>
-                            <button class="preset-btn active" onclick="selectPresetSize(50, 25)">50×25mm</button>
-                            <button class="preset-btn" onclick="selectPresetSize(50, 38)">50×38mm</button>
-                            <button class="preset-btn" onclick="selectPresetSize(75, 50)">75×50mm</button>
-                            <button class="preset-btn" onclick="selectPresetSize(75, 25)">75×25mm</button>
-                            <button class="preset-btn" onclick="selectPresetSize(100, 100)">100×100mm</button>
-                            <button class="preset-btn" onclick="selectPresetSize(100, 150)">100×150mm</button>
-
-                        </div>
-                    </div>
-
-                    <div class="preview-container">
-                        <div class="label-preview-wrapper">
-                            <div class="label-actual-size" id="labelActualSize">
-                                <div class="size-indicators">
-                                    <div class="width-indicator">
-                                        <div class="size-label width-label" id="widthLabel">50mm</div>
-                                    </div>
-                                    <div class="height-indicator">
-                                        <div class="size-label height-label" id="heightLabel">30mm</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="barcode-preview">
-                                    <svg id="barcode"></svg>
-                                </div>
-                                <div class="barcode-text" id="barcodeText">123456789012</div>
-                            </div>
-                        </div>
-                        
-                        <div class="scale-info" id="scaleInfo">
-                            Actual size preview (1:1 scale on most screens)
-                        </div>
-                        <p class="preview-text">Preview updates based on your specifications</p>
+                <div class="form-group">
+                    <label class="required">Barcode Width</label>
+                    <div class="input-container">
+                        <input type="number" id="barcodeWidth" placeholder="Enter width" step="0.1" value="50">
+                        <span class="unit" id="widthUnit">mm</span>
                     </div>
                 </div>
 
-                <div class="pricing-section">
-                    <div class="pricing-grid">
-                        <div class="price-breakdown">
-                            <div class="price-row">
-                                <span>Base Price (<span id="priceQuantity">1000</span> labels)</span>
-                                <span id="basePrice">₹2,499</span>
-                            </div>
-                            <div class="price-row">
-                                <span>Additional Options</span>
-                                <span id="additionalPrice">₹500</span>
-                            </div>
-                            <div class="price-row">
-                                <span>GST (18%)</span>
-                                <span id="gstPrice">₹540</span>
-                            </div>
-                        </div>
-                        <div class="total-price">
-                            <div>Total Estimated Price</div>
-                            <div id="totalPrice">₹3,539</div>
-                        </div>
+                <div class="form-group">
+                    <label class="required">Barcode Length</label>
+                    <div class="input-container">
+                        <input type="number" id="barcodeLength" placeholder="Enter length" step="0.1"
+                            value="30">
+                        <span class="unit" id="lengthUnit">mm</span>
                     </div>
+                </div>
 
-                    <div class="action-buttons">
-                        <button class="btn-br btn-secondary" onclick="saveConfiguration()">Save Configuration</button>
-                        <button class="btn-br btn-primary" onclick="requestQuote()">Request Quote</button>
+                <div class="form-group">
+                    <label class="required">Quantity</label>
+                    <div class="input-container">
+                        <input type="number" id="quantity" placeholder="Enter quantity (e.g., 1000)" min="100"
+                            max="10000" value="1000">
+                        <span class="unit">#</span>
                     </div>
                 </div>
             </div>
 
-   
-  <div class="toast" id="toast"></div>
+            <div class="dropdown-group">
+                <div class="dropdown-item-br">
+                    <label>Label Material</label>
+                    <select id="labelMaterial">
+                        <option value="paper">📄 Paper (Standard)</option>
+                        <option value="vinyl">🔧 Vinyl (Durable)</option>
+                        <option value="polyester">💎 Polyester (Premium)</option>
+                        <option value="polypropylene">🛡️ Polypropylene (Weather-resistant)</option>
+                    </select>
+                </div>
+
+                <div class="dropdown-item-br">
+                    <label>Barcode Type</label>
+                    <select id="barcodeType">
+                        <option value="CODE128">Code 128 (Versatile)</option>
+                        <option value="CODE39">Code 39 (Industry Standard)</option>
+                        <option value="EAN13">EAN-13 (Retail)</option>
+                        <option value="UPC">UPC-A (North America)</option>
+                        <option value="ITF14">ITF-14 (Shipping)</option>
+                    </select>
+                </div>
+
+                <div class="dropdown-item-br">
+                    <label>Adhesive Type</label>
+                    <select id="adhesiveType">
+                        <option value="permanent">🔒 Permanent (Strong bond)</option>
+                        <option value="removable">🔄 Removable (Clean removal)</option>
+                        <option value="repositionable">📍 Repositionable (Multiple uses)</option>
+                        <option value="freezer">❄️ Freezer Grade (Cold resistant)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="options-section">
+                <div class="options-title">Additional Options</div>
+                <div class="options-grid">
+                    <div class="checkbox-item" data-option="sequential">
+                        <input type="checkbox" id="sequential">
+                        <label for="sequential">Sequential Numbering</label>
+                    </div>
+                    <div class="checkbox-item" data-option="logo">
+                        <input type="checkbox" id="logo">
+                        <label for="logo">Add Company Logo</label>
+                    </div>
+                    <div class="checkbox-item" data-option="color">
+                        <input type="checkbox" id="color">
+                        <label for="color">Color Printing</label>
+                    </div>
+                    <div class="checkbox-item" data-option="uv">
+                        <input type="checkbox" id="uv">
+                        <label for="uv">UV Lamination</label>
+                    </div>
+                    <div class="checkbox-item" data-option="perforation">
+                        <input type="checkbox" id="perforation">
+                        <label for="perforation">Perforation Lines</label>
+                    </div>
+                    <div class="checkbox-item" data-option="express">
+                        <input type="checkbox" id="express">
+                        <label for="express">Express Delivery</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h3 style="text-align: center; color: #333; margin-bottom: 20px;">Label Size Preview</h3>
+
+            <div class="size-presets">
+                <h4>Quick Size Selection</h4>
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="selectPresetSize(38, 38)">38×38mm</button>
+                    <button class="preset-btn" onclick="selectPresetSize(38, 25)">38×25mm</button>
+                    <button class="preset-btn active" onclick="selectPresetSize(50, 25)">50×25mm</button>
+                    <button class="preset-btn" onclick="selectPresetSize(50, 38)">50×38mm</button>
+                    <button class="preset-btn" onclick="selectPresetSize(75, 50)">75×50mm</button>
+                    <button class="preset-btn" onclick="selectPresetSize(75, 25)">75×25mm</button>
+                    <button class="preset-btn" onclick="selectPresetSize(100, 100)">100×100mm</button>
+                    <button class="preset-btn" onclick="selectPresetSize(100, 150)">100×150mm</button>
+
+                </div>
+            </div>
+
+            <div class="preview-container">
+                <div class="label-preview-wrapper">
+                    <div class="label-actual-size" id="labelActualSize">
+                        <div class="size-indicators">
+                            <div class="width-indicator">
+                                <div class="size-label width-label" id="widthLabel">50mm</div>
+                            </div>
+                            <div class="height-indicator">
+                                <div class="size-label height-label" id="heightLabel">30mm</div>
+                            </div>
+                        </div>
+
+                        <div class="barcode-preview">
+                            <svg id="barcode"></svg>
+                        </div>
+                        <div class="barcode-text" id="barcodeText">123456789012</div>
+                    </div>
+                </div>
+
+                <div class="scale-info" id="scaleInfo">
+                    Actual size preview (1:1 scale on most screens)
+                </div>
+                <p class="preview-text">Preview updates based on your specifications</p>
+            </div>
+        </div>
+
+        <div class="pricing-section">
+            <div class="pricing-grid">
+                <div class="price-breakdown">
+                    <div class="price-row">
+                        <span>Base Price (<span id="priceQuantity">1000</span> labels)</span>
+                        <span id="basePrice">₹2,499</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Additional Options</span>
+                        <span id="additionalPrice">₹500</span>
+                    </div>
+                    <div class="price-row">
+                        <span>GST (18%)</span>
+                        <span id="gstPrice">₹540</span>
+                    </div>
+                </div>
+                <div class="total-price">
+                    <div>Total Estimated Price</div>
+                    <div id="totalPrice">₹3,539</div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-br btn-secondary" onclick="saveConfiguration()">Save Configuration</button>
+                <button class="btn-br btn-primary" onclick="requestQuote()">Request Quote</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="toast" id="toast"></div>
 
     <script>
         // Initialize the application
@@ -278,13 +282,13 @@
         function selectPresetSize(width, length) {
             document.getElementById('barcodeWidth').value = width;
             document.getElementById('barcodeLength').value = length;
-            
+
             // Update active preset button
             document.querySelectorAll('.preset-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            
+
             handleFormChange();
         }
 
@@ -292,10 +296,10 @@
             const width = parseFloat(document.getElementById('barcodeWidth').value) || 50;
             const length = parseFloat(document.getElementById('barcodeLength').value) || 30;
             const unit = document.getElementById('unitSystem').value;
-            
+
             // Convert to pixels (assuming 96 DPI)
             let widthPx, lengthPx;
-            switch(unit) {
+            switch (unit) {
                 case 'mm':
                     widthPx = width * 3.78; // mm to px
                     lengthPx = length * 3.78;
@@ -312,11 +316,11 @@
                     widthPx = width * 3.78;
                     lengthPx = length * 3.78;
             }
-            
+
             const labelElement = document.getElementById('labelActualSize');
             labelElement.style.width = widthPx + 'px';
             labelElement.style.height = lengthPx + 'px';
-            
+
             // Update size labels
             document.getElementById('widthLabel').textContent = width + unit;
             document.getElementById('heightLabel').textContent = length + unit;
@@ -325,10 +329,10 @@
         function generateBarcode() {
             const barcodeType = document.getElementById('barcodeType').value;
             const svg = document.getElementById('barcode');
-            
+
             // Clear previous barcode
             svg.innerHTML = '';
-            
+
             try {
                 let barcodeValue = "123456789012";
                 let options = {
@@ -339,9 +343,9 @@
                     margin: 5,
                     background: "transparent"
                 };
-                
+
                 // Adjust barcode value based on type
-                switch(barcodeType) {
+                switch (barcodeType) {
                     case 'EAN13':
                         barcodeValue = "1234567890128";
                         break;
@@ -357,18 +361,19 @@
                     default:
                         barcodeValue = "FTPL123";
                 }
-                
+
                 JsBarcode(svg, barcodeValue, options);
                 document.getElementById('barcodeText').textContent = barcodeValue;
             } catch (error) {
                 console.warn('Barcode generation failed:', error);
-                svg.innerHTML = '<rect width="100" height="60" fill="#f0f0f0" stroke="#ccc"/><text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Barcode</text>';
+                svg.innerHTML =
+                    '<rect width="100" height="60" fill="#f0f0f0" stroke="#ccc"/><text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Barcode</text>';
             }
         }
 
         function updatePricing() {
             const quantity = parseInt(document.getElementById('quantity').value) || 1000;
-            
+
             // Base pricing tiers
             let basePrice;
             if (quantity <= 500) {
@@ -382,13 +387,13 @@
             } else {
                 basePrice = 15000;
             }
-            
+
             // Calculate additional options cost
             let additionalCost = 0;
             const checkedOptions = document.querySelectorAll('.checkbox-item input:checked');
-            
+
             checkedOptions.forEach(option => {
-                switch(option.id) {
+                switch (option.id) {
                     case 'sequential':
                         additionalCost += 300;
                         break;
@@ -409,11 +414,11 @@
                         break;
                 }
             });
-            
+
             // Material cost adjustment
             const material = document.getElementById('labelMaterial').value;
             let materialMultiplier = 1;
-            switch(material) {
+            switch (material) {
                 case 'vinyl':
                     materialMultiplier = 1.3;
                     break;
@@ -424,13 +429,13 @@
                     materialMultiplier = 1.4;
                     break;
             }
-            
+
             basePrice *= materialMultiplier;
-            
+
             const subtotal = basePrice + additionalCost;
             const gst = subtotal * 0.18;
             const total = subtotal + gst;
-            
+
             // Update display
             document.getElementById('priceQuantity').textContent = quantity.toLocaleString();
             document.getElementById('basePrice').textContent = '₹' + Math.round(basePrice).toLocaleString();
@@ -451,23 +456,23 @@
                 options: Array.from(document.querySelectorAll('.checkbox-item input:checked')).map(cb => cb.id),
                 timestamp: new Date().toISOString()
             };
-            
+
             // In a real application, this would save to a database
             fetch('{{ route('barcode-orders.store') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify(config),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                    body: JSON.stringify(config),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
 
             showToast('Configuration saved successfully! 💾');
         }
@@ -485,20 +490,20 @@
                 totalPrice: document.getElementById('totalPrice').textContent
             };
             fetch('{{ route('barcode-orders.store') }}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=UTF-8',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-                body: JSON.stringify(formData),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                    body: JSON.stringify(formData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             showToast('Quote request submitted successfully! 🚀 We\'ll contact you within 42 hours.');
         }
 
@@ -506,7 +511,7 @@
             const toast = document.getElementById('toast');
             toast.textContent = message;
             toast.classList.add('show');
-            
+
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 4000);
@@ -545,14 +550,14 @@
                     const size = Math.max(rect.width, rect.height);
                     const x = e.clientX - rect.left - size / 2;
                     const y = e.clientY - rect.top - size / 2;
-                    
+
                     ripple.style.width = ripple.style.height = size + 'px';
                     ripple.style.left = x + 'px';
                     ripple.style.top = y + 'px';
                     ripple.classList.add('ripple');
-                    
+
                     this.appendChild(ripple);
-                    
+
                     setTimeout(() => {
                         ripple.remove();
                     }, 600);
@@ -609,8 +614,9 @@
         `;
         document.head.appendChild(style);
     </script>
- @include('partials.experience')
+    @include('partials.experience')
 </body>
-    <!-- Footer -->
-  @include('partials.footer')
+<!-- Footer -->
+@include('partials.footer')
+
 </html>

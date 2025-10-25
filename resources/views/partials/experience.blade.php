@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<section class="py-5" style="background: #1E3A8A;border-radius: 20px">
+    <section class="py-5" style="background: #1E3A8A;border-radius: 20px">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="text-white fw-bold">Experience the Difference</h2>

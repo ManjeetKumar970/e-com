@@ -50,68 +50,72 @@
     @include('../dashboard.partials.leftsidebar')
 
     <div class="main-container ">
-    <div class="container card card-box md-5">
-        <div class="card-body">
-            <h5 class="card-title text-center">Create Category & Sub Category</h5>
+        <div class="container card card-box md-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">Create Category & Sub Category</h5>
+            </div>
+        </div>
+
+        <div class="container card card-box mt-3 pd-20 mb-20">
+            <form method="POST" action="{{ route('dashboard.storeCategory') }}">
+                @csrf
+
+                {{-- Category Section --}}
+                <div class="row mb-4" style="padding-top: 20px;">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input name="name" class="form-control" type="text" placeholder="Category Name"
+                                required />
+                            <label>Category Name *</label>
+                            <div class="invalid-feedback">Please provide a category name.</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input name="slug" class="form-control" type="text" placeholder="Category Slug"
+                                required />
+                            <label>Category Slug *</label>
+                            <div class="invalid-feedback">Please provide a slug.</div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Sub Category Section --}}
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input name="sub_name" class="form-control" type="text" placeholder="Sub Category Name"
+                                required />
+                            <label>Sub Category Name *</label>
+                            <div class="invalid-feedback">Please provide a subcategory name.</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input name="sub_slug" class="form-control" type="text" placeholder="Sub Category Slug"
+                                required />
+                            <label>Sub Category Slug *</label>
+                            <div class="invalid-feedback">Please provide a subcategory slug.</div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Submit --}}
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-success btn-lg btn-block">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
-    <div class="container card card-box mt-3 pd-20 mb-20">
-        <form method="POST" action="{{ route('dashboard.storeCategory') }}">
-            @csrf
-
-            {{-- Category Section --}}
-            <div class="row mb-4" style="padding-top: 20px;">
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input name="name" class="form-control" type="text" placeholder="Category Name" required />
-                        <label>Category Name *</label>
-                        <div class="invalid-feedback">Please provide a category name.</div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input name="slug" class="form-control" type="text" placeholder="Category Slug" required />
-                        <label>Category Slug *</label>
-                        <div class="invalid-feedback">Please provide a slug.</div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Sub Category Section --}}
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input name="sub_name" class="form-control" type="text" placeholder="Sub Category Name" required />
-                        <label>Sub Category Name *</label>
-                        <div class="invalid-feedback">Please provide a subcategory name.</div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input name="sub_slug" class="form-control" type="text" placeholder="Sub Category Slug" required />
-                        <label>Sub Category Slug *</label>
-                        <div class="invalid-feedback">Please provide a subcategory slug.</div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Submit --}}
-            <div class="row mt-4">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success btn-lg btn-block">
-                        Create
-                    </button>
-                </div>
-            </div>
-        </form>
     </div>
-</div>
-
-        </div>
-          <!-- welcome modal start -->
+    <!-- welcome modal start -->
     @include('dashboard.partials.messagemode')
     <!-- welcome modal end -->
 
@@ -119,9 +123,9 @@
     @include('dashboard.footer.footer')
     </div>
 
-  
 
-   
+
+
 </body>
 
 </html>

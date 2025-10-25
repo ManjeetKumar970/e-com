@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('partials.head')
     <link rel="stylesheet" href="{{ asset('css/wishlist.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+
 <body>
     @include('partials.header')
-    
+
     <div class="hero-section-pd">
         <div class="hero-background">
             <div class="moving-shape shape-1"></div>
@@ -24,14 +26,16 @@
 
     <div class="container py-5">
         <!-- Wishlist Header -->
-        <div class="wishlist-header" id="wishlist-header" style="{{ $wishlistItems->isEmpty() ? 'display: none;' : '' }}">
+        <div class="wishlist-header" id="wishlist-header"
+            style="{{ $wishlistItems->isEmpty() ? 'display: none;' : '' }}">
             <div class="wishlist-stats">
                 <div class="stat-item">
                     <span class="stat-number" id="total-items">{{ $wishlistItems->count() }}</span>
                     <span class="stat-label">Items</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" id="total-value">₹{{ number_format($wishlistItems->sum('product.price'), 2) }}</span>
+                    <span class="stat-number"
+                        id="total-value">₹{{ number_format($wishlistItems->sum('product.price'), 2) }}</span>
                     <span class="stat-label">Total Value</span>
                 </div>
             </div>
@@ -41,72 +45,77 @@
         </div>
 
         <!-- Wishlist Grid -->
-        <div class="wishlist-grid" id="wishlist-container" style="{{ $wishlistItems->isEmpty() ? 'display: none;' : '' }}">
+        <div class="wishlist-grid" id="wishlist-container"
+            style="{{ $wishlistItems->isEmpty() ? 'display: none;' : '' }}">
             @foreach ($wishlistItems as $wishlistItem)
-            <div class="wishlist-card" 
-                 data-price="{{ $wishlistItem->product->sale_price }}" 
-                 data-product-id="{{ $wishlistItem->product->id }}">
-                <div class="card-image-wrapper">
-                    <img src="{{ $wishlistItem->product->productImages->first() ? asset('storage/' . $wishlistItem->product->productImages->first()->image_url) : 'https://via.placeholder.com/500' }}" 
-                        alt="{{ $wishlistItem->product->name }}" 
-                        class="card-image">
-                    
-                    @if($wishlistItem->product->created_at->diffInDays(now()) < 7)
-                        <span class="wishlist-badge">New Arrival</span>
-                    @elseif($wishlistItem->product->is_bestseller ?? false)
-                        <span class="wishlist-badge">Bestseller</span>
-                    @elseif(($wishlistItem->product->stock ?? 10) < 5)
-                        <span class="wishlist-badge">Limited Stock</span>
-                    @else
-                        <span class="wishlist-badge">Trending</span>
-                    @endif
-                    
-                    <button class="remove-btn-top" onclick="removeItem(this)" title="Remove from wishlist">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="card-body-ws">
-                    <h3 class="card-title-ws">{{ $wishlistItem->product->name }}</h3>
-                    <p class="card-description-ws">
-                        {{ \Illuminate\Support\Str::limit($wishlistItem->product->short_description ?? $wishlistItem->product->description ?? 'High-quality product', 80) }}
-                    </p>
-                    
-                    <div class="price-section-ws">
-                        <span class="current-price-ws">₹{{ number_format($wishlistItem->product->sale_price, 2) }}</span>
-                        
-                        @if(isset($wishlistItem->product->regular_price) && $wishlistItem->product->sale_price > $wishlistItem->product->regular_price)
-                            <span class="original-price-ws">₹{{ number_format($wishlistItem->product->sale_price, 2) }}</span>
-                            <span class="discount-badge-ws">
-                                {{ round((($wishlistItem->product->sale_price - $wishlistItem->product->regular_price) / $wishlistItem->product->regular_price) * 100) }}% OFF
-                            </span>
+                <div class="wishlist-card" data-price="{{ $wishlistItem->product->sale_price }}"
+                    data-product-id="{{ $wishlistItem->product->id }}">
+                    <div class="card-image-wrapper">
+                        <img src="{{ $wishlistItem->product->productImages->first() ? asset('storage/' . $wishlistItem->product->productImages->first()->image_url) : 'https://via.placeholder.com/500' }}"
+                            alt="{{ $wishlistItem->product->name }}" class="card-image">
+
+                        @if ($wishlistItem->product->created_at->diffInDays(now()) < 7)
+                            <span class="wishlist-badge">New Arrival</span>
+                        @elseif($wishlistItem->product->is_bestseller ?? false)
+                            <span class="wishlist-badge">Bestseller</span>
+                        @elseif(($wishlistItem->product->stock ?? 10) < 5)
+                            <span class="wishlist-badge">Limited Stock</span>
                         @else
-                            <span class="original-price-ws">₹{{ number_format($wishlistItem->product->sale_price + 300, 2) }}</span>
-                            <span class="discount-badge-ws">20% OFF</span>
+                            <span class="wishlist-badge">Trending</span>
                         @endif
-                    </div>
-                    
-                    <div class="card-actions-ws" data-product-id="{{ $wishlistItem->product->id }}">
-                        <div class="quantity-control-ws">
-                            <button class="qty-btn-ws" onclick="decreaseQty(this)" title="Decrease quantity">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                            <span class="quantity-ws">1</span>
-                            <button class="qty-btn-ws" onclick="increaseQty(this)" title="Increase quantity">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                        <button class="add-to-cart-btn-ws" onclick="addToCart(this)">
-                            <i class="fas fa-shopping-cart"></i> Add to Cart
+
+                        <button class="remove-btn-top" onclick="removeItem(this)" title="Remove from wishlist">
+                            <i class="fas fa-times"></i>
                         </button>
                     </div>
+
+                    <div class="card-body-ws">
+                        <h3 class="card-title-ws">{{ $wishlistItem->product->name }}</h3>
+                        <p class="card-description-ws">
+                            {{ \Illuminate\Support\Str::limit($wishlistItem->product->short_description ?? ($wishlistItem->product->description ?? 'High-quality product'), 80) }}
+                        </p>
+
+                        <div class="price-section-ws">
+                            <span
+                                class="current-price-ws">₹{{ number_format($wishlistItem->product->sale_price, 2) }}</span>
+
+                            @if (isset($wishlistItem->product->regular_price) &&
+                                    $wishlistItem->product->sale_price > $wishlistItem->product->regular_price)
+                                <span
+                                    class="original-price-ws">₹{{ number_format($wishlistItem->product->sale_price, 2) }}</span>
+                                <span class="discount-badge-ws">
+                                    {{ round((($wishlistItem->product->sale_price - $wishlistItem->product->regular_price) / $wishlistItem->product->regular_price) * 100) }}%
+                                    OFF
+                                </span>
+                            @else
+                                <span
+                                    class="original-price-ws">₹{{ number_format($wishlistItem->product->sale_price + 300, 2) }}</span>
+                                <span class="discount-badge-ws">20% OFF</span>
+                            @endif
+                        </div>
+
+                        <div class="card-actions-ws" data-product-id="{{ $wishlistItem->product->id }}">
+                            <div class="quantity-control-ws">
+                                <button class="qty-btn-ws" onclick="decreaseQty(this)" title="Decrease quantity">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="quantity-ws">1</span>
+                                <button class="qty-btn-ws" onclick="increaseQty(this)" title="Increase quantity">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <button class="add-to-cart-btn-ws" onclick="addToCart(this)">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
             @endforeach
         </div>
 
         <!-- Empty State -->
-        <div class="empty-wishlist" id="empty-state" style="{{ $wishlistItems->isEmpty() ? 'display: block;' : 'display: none;' }}">
+        <div class="empty-wishlist" id="empty-state"
+            style="{{ $wishlistItems->isEmpty() ? 'display: block;' : 'display: none;' }}">
             <div class="empty-icon">💔</div>
             <h2 class="empty-title">Your Wishlist is Empty</h2>
             <p class="empty-subtitle">Start adding products you love!</p>
@@ -124,7 +133,7 @@
     </div>
 
 
-  @include('partials.experience')
+    @include('partials.experience')
     <script>
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -139,7 +148,10 @@
             });
 
             document.getElementById('total-items').textContent = totalItems;
-            document.getElementById('total-value').textContent = '₹' + totalValue.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('total-value').textContent = '₹' + totalValue.toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
 
             if (totalItems === 0) {
                 document.getElementById('wishlist-container').style.display = 'none';
@@ -156,32 +168,34 @@
 
             card.style.animation = 'cardDisappear 0.4s ease-out forwards';
 
-            fetch('{{ route("wishlist.remove") }}', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken
-                },
-                body: JSON.stringify({ product_id: productId })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    setTimeout(() => {
-                        card.remove();
-                        updateStats();
-                        alert(data.message || 'Item removed from wishlist');
-                    }, 400);
-                } else {
+            fetch('{{ route('wishlist.remove') }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify({
+                        product_id: productId
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        setTimeout(() => {
+                            card.remove();
+                            updateStats();
+                            alert(data.message || 'Item removed from wishlist');
+                        }, 400);
+                    } else {
+                        card.style.animation = '';
+                        alert(data.message || 'Failed to remove item');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
                     card.style.animation = '';
-                    alert(data.message || 'Failed to remove item');
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                card.style.animation = '';
-                alert('Failed to remove item. Please try again.');
-            });
+                    alert('Failed to remove item. Please try again.');
+                });
         }
 
         function increaseQty(btn) {
@@ -197,35 +211,40 @@
                 updateStats();
             }
         }
+
         function clearAll() {
             if (!confirm('Are you sure you want to clear your entire wishlist?')) return;
 
             const cards = document.querySelectorAll('.wishlist-card');
 
-            fetch('{{ route("wishlist.clear") }}', {
-                method: 'DELETE',
-                headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrfToken }
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    cards.forEach((card, i) => {
-                        setTimeout(() => {
-                            card.style.animation = 'cardDisappear 0.4s ease-out forwards';
-                            setTimeout(() => card.remove(), 400);
-                        }, i * 100);
-                    });
-                    setTimeout(updateStats, cards.length * 100 + 400);
-                } else {
-                    alert(data.message || 'Failed to clear wishlist');
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                alert('Error clearing wishlist');
-            });
+            fetch('{{ route('wishlist.clear') }}', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        cards.forEach((card, i) => {
+                            setTimeout(() => {
+                                card.style.animation = 'cardDisappear 0.4s ease-out forwards';
+                                setTimeout(() => card.remove(), 400);
+                            }, i * 100);
+                        });
+                        setTimeout(updateStats, cards.length * 100 + 400);
+                    } else {
+                        alert(data.message || 'Failed to clear wishlist');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert('Error clearing wishlist');
+                });
         }
     </script>
 </body>
 @include('partials.footer')
+
 </html>

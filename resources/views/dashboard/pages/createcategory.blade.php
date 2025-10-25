@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     @include('../dashboard.header.head')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+
 <body>
     <!-- loader -->
     @include('../dashboard.partials.loader')
@@ -17,22 +19,22 @@
     <!-- end right-sidebar -->
     <!-- left-side-bar -->
     @include('../dashboard.partials.leftsidebar')
-    
+
     <div class="main-container">
         <div class="container">
             <!-- Success/Error Messages -->
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="fas fa-check-circle"></i> {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             @endif
 
-            @if($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <ul class="mb-0">
-                        @foreach($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
@@ -46,7 +48,8 @@
                         <h2><i class="fas fa-folder-open"></i> Category Management</h2>
                         <p class="text-muted mb-0">Manage your product categories</p>
                     </div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="openAddModal()">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal"
+                        onclick="openAddModal()">
                         <i class="fas fa-plus"></i> Add Category
                     </button>
                 </div>
@@ -57,7 +60,7 @@
                     <h5 class="mb-0">All Categories</h5>
                     <input type="text" class="form-control w-25" id="searchInput" placeholder="Search categories...">
                 </div>
-                
+
                 <div class="table-responsive">
                     <table class="table table-hover" id="categoryTable">
                         <thead class="table-light">
@@ -77,11 +80,13 @@
                                 <tr>
                                     <td>{{ $cat->id }}</td>
                                     <td>
-                                        @if($cat->image_url)
-                                            @if(filter_var($cat->image_url, FILTER_VALIDATE_URL))
-                                                <img src="{{ $cat->image_url }}" width="50" alt="{{ $cat->name }}">
+                                        @if ($cat->image_url)
+                                            @if (filter_var($cat->image_url, FILTER_VALIDATE_URL))
+                                                <img src="{{ $cat->image_url }}" width="50"
+                                                    alt="{{ $cat->name }}">
                                             @else
-                                                <img src="{{ asset('storage/' . $cat->image_url) }}" width="50" alt="{{ $cat->name }}">
+                                                <img src="{{ asset('storage/' . $cat->image_url) }}" width="50"
+                                                    alt="{{ $cat->name }}">
                                             @endif
                                         @else
                                             <span class="text-muted">—</span>
@@ -97,10 +102,12 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button class="btn btn-sm btn-warning" onclick="openEditModal({{ $cat->id }})" title="Edit">
+                                        <button class="btn btn-sm btn-warning"
+                                            onclick="openEditModal({{ $cat->id }})" title="Edit">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button class="btn btn-sm btn-danger" onclick="deleteCategory({{ $cat->id }})" title="Delete">
+                                        <button class="btn btn-sm btn-danger"
+                                            onclick="deleteCategory({{ $cat->id }})" title="Delete">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
@@ -131,16 +138,20 @@
 
                         <div class="modal-body">
                             <input type="hidden" name="category_id" id="categoryId">
-                            
+
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="categoryName" class="form-label">Category Name <span class="text-danger">*</span></label>
-                                    <input type="text" name="name" class="form-control" id="categoryName" required maxlength="100">
+                                    <label for="categoryName" class="form-label">Category Name <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" name="name" class="form-control" id="categoryName" required
+                                        maxlength="100">
                                 </div>
-                                
+
                                 <div class="col-md-6 mb-3">
-                                    <label for="categorySlug" class="form-label">Slug <span class="text-danger">*</span></label>
-                                    <input type="text" name="slug" class="form-control" id="categorySlug" required maxlength="100">
+                                    <label for="categorySlug" class="form-label">Slug <span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" name="slug" class="form-control" id="categorySlug" required
+                                        maxlength="100">
                                 </div>
                             </div>
 
@@ -154,15 +165,16 @@
                                     <label for="parentCategory" class="form-label">Parent Category</label>
                                     <select name="parent_id" class="form-select" id="parentCategory">
                                         <option value="">None (Top Level)</option>
-                                        @foreach($categories as $cat)
+                                        @foreach ($categories as $cat)
                                             <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                                 <div class="col-md-6 mb-3">
                                     <label for="displayOrder" class="form-label">Display Order</label>
-                                    <input type="number" name="order" class="form-control" id="displayOrder" value="0">
+                                    <input type="number" name="order" class="form-control" id="displayOrder"
+                                        value="0">
                                 </div>
                             </div>
 
@@ -170,27 +182,33 @@
                                 <label class="form-label">Category Image</label>
                                 <ul class="nav nav-tabs mb-3" id="imageTab" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload-pane" type="button">Upload</button>
+                                        <button class="nav-link active" id="upload-tab" data-bs-toggle="tab"
+                                            data-bs-target="#upload-pane" type="button">Upload</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="url-tab" data-bs-toggle="tab" data-bs-target="#url-pane" type="button">URL</button>
+                                        <button class="nav-link" id="url-tab" data-bs-toggle="tab"
+                                            data-bs-target="#url-pane" type="button">URL</button>
                                     </li>
                                 </ul>
 
                                 <div class="tab-content" id="imageTabContent">
                                     <div class="tab-pane fade show active" id="upload-pane" role="tabpanel">
                                         <div class="mb-2">
-                                            <input type="file" name="image_file" class="form-control" id="imageFile" accept="image/*">
-                                            <small class="text-muted">Accepted formats: JPG, PNG, GIF, WebP (Max: 2MB)</small>
+                                            <input type="file" name="image_file" class="form-control"
+                                                id="imageFile" accept="image/*">
+                                            <small class="text-muted">Accepted formats: JPG, PNG, GIF, WebP (Max:
+                                                2MB)</small>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="url-pane" role="tabpanel">
-                                        <input type="url" name="image_url" class="form-control" id="imageUrl" maxlength="255" placeholder="https://example.com/image.jpg">
+                                        <input type="url" name="image_url" class="form-control" id="imageUrl"
+                                            maxlength="255" placeholder="https://example.com/image.jpg">
                                     </div>
                                 </div>
 
                                 <div id="imagePreviewContainer" class="mt-3 d-none">
-                                    <img id="imagePreview" class="image-preview" alt="Preview" style="max-width: 200px; max-height: 200px;">
+                                    <img id="imagePreview" class="image-preview" alt="Preview"
+                                        style="max-width: 200px; max-height: 200px;">
                                     <button type="button" class="btn btn-sm btn-danger mt-2" onclick="clearImage()">
                                         <i class="fas fa-times"></i> Remove Image
                                     </button>
@@ -198,7 +216,8 @@
                             </div>
 
                             <div class="form-check form-switch" style="padding-left: 3.25rem;">
-                                <input class="form-check-input" type="checkbox" name="is_active" id="isActive" checked>
+                                <input class="form-check-input" type="checkbox" name="is_active" id="isActive"
+                                    checked>
                                 <label class="form-check-label" for="isActive">Active</label>
                             </div>
                         </div>
@@ -236,9 +255,9 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-        @include('dashboard.partials.messagemode')
+    @include('dashboard.partials.messagemode')
     <!-- welcome modal end -->
 
     <!-- js -->
@@ -267,7 +286,7 @@
         // Open Edit Modal
         function openEditModal(id) {
             document.getElementById('modalTitle').textContent = 'Edit Category';
-            
+
             fetch(`/dashboard/categories/${id}/edit`)
                 .then(response => response.json())
                 .then(data => {
@@ -278,16 +297,16 @@
                     document.getElementById('parentCategory').value = data.parent_id || '';
                     document.getElementById('displayOrder').value = data.display_order;
                     document.getElementById('isActive').checked = data.is_active;
-                    
+
                     // Update form action and method
                     document.getElementById('categoryForm').action = `/dashboard/categories/${id}/update`;
                     document.getElementById('formMethod').value = 'POST';
-                    
+
                     // Show image preview if exists
                     if (data.image_url) {
                         const preview = document.getElementById('imagePreview');
                         const container = document.getElementById('imagePreviewContainer');
-                        
+
                         if (data.image_url.startsWith('http')) {
                             preview.src = data.image_url;
                         } else {
@@ -295,7 +314,7 @@
                         }
                         container.classList.remove('d-none');
                     }
-                    
+
                     // Open modal
                     const modal = new bootstrap.Modal(document.getElementById('categoryModal'));
                     modal.show();
@@ -345,7 +364,7 @@
         document.getElementById('searchInput').addEventListener('keyup', function(e) {
             const searchText = e.target.value.toLowerCase();
             const rows = document.querySelectorAll('#categoryTable tbody tr');
-            
+
             rows.forEach(row => {
                 const text = row.textContent.toLowerCase();
                 row.style.display = text.includes(searchText) ? '' : 'none';
@@ -353,4 +372,5 @@
         });
     </script>
 </body>
+
 </html>

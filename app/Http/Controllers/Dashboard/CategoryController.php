@@ -53,6 +53,7 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
 
+  
         $validated = $request->validate([
             'name' => 'required|string|max:100',
             'slug' => 'required|string|max:100|unique:categories,slug,' . $id,
@@ -61,12 +62,12 @@ class CategoryController extends Controller
             'order' => 'nullable|integer',
             'image_file' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'image_url' => 'nullable|url|max:255',
-            'is_active' => 'nullable|boolean'
+            'is_active' => 'nullable'
         ]);
+
         if ($validated['parent_id'] == $id) {
             return back()->withErrors(['parent_id' => 'A category cannot be its own parent.']);
         }
-
         $category->name = $validated['name'];
         $category->slug = $validated['slug'];
         $category->description = $validated['description'] ?? null;

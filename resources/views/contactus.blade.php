@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 </head>
+
 <body>
     @include('partials.header')
-     <!-- Hero Section -->
+    <!-- Hero Section -->
     <div class="hero-section-pd">
-    <div class="hero-background">
-        <div class="moving-shape shape-1"></div>
-        <div class="moving-shape shape-2"></div>
-        <div class="moving-shape shape-3"></div>
-        <div class="moving-shape shape-4"></div>
-        <div class="moving-shape shape-5"></div>
+        <div class="hero-background">
+            <div class="moving-shape shape-1"></div>
+            <div class="moving-shape shape-2"></div>
+            <div class="moving-shape shape-3"></div>
+            <div class="moving-shape shape-4"></div>
+            <div class="moving-shape shape-5"></div>
+        </div>
+        <div class="container">
+            <h1 class="hero-title">Business Equipment & Solutions</h1>
+            <p class="hero-subtitle">Find the perfect tools to streamline your operations and boost productivity</p>
+        </div>
     </div>
-    <div class="container">
-        <h1 class="hero-title">Business Equipment & Solutions</h1>
-        <p class="hero-subtitle">Find the perfect tools to streamline your operations and boost productivity</p>
-    </div>
-</div>
     <div class="container">
         <!-- Contact Cards Section -->
         <div class="contact-section">
@@ -63,7 +65,8 @@
 
             <div class="marketplace-grid">
                 <div class="marketplace-card">
-                    <div class="marketplace-logo" style="color: #2563eb; font-size: 32px; font-weight: bold;">Flipkart</div>
+                    <div class="marketplace-logo" style="color: #2563eb; font-size: 32px; font-weight: bold;">Flipkart
+                    </div>
                     <h3>Flipkart</h3>
                     <div class="rating">
                         <span class="star">★</span>
@@ -79,7 +82,8 @@
                 </div>
 
                 <div class="marketplace-card">
-                    <div class="marketplace-logo" style="color: #232f3e; font-size: 32px; font-weight: bold;">amazon</div>
+                    <div class="marketplace-logo" style="color: #232f3e; font-size: 32px; font-weight: bold;">amazon
+                    </div>
                     <h3>Amazon India</h3>
                     <div class="rating">
                         <span class="star">★</span>
@@ -91,11 +95,13 @@
                     <div class="marketplace-stats">4.7/5 Rating • 15,000+ Reviews</div>
                     <div class="marketplace-stats">Amazon's Choice Products</div>
                     <div class="marketplace-stats">Prime Delivery Available</div>
-                    <a href="https://www.amazon.in/PRIME-Thermal-Billing-Machine-FT-POS7950/dp/B0DSVNHF6P?ref_=v_sp_product_dpx&th=1" class="btn btn-amazon btn-marketplace">Shop on Amazon</a>
+                    <a href="https://www.amazon.in/PRIME-Thermal-Billing-Machine-FT-POS7950/dp/B0DSVNHF6P?ref_=v_sp_product_dpx&th=1"
+                        class="btn btn-amazon btn-marketplace">Shop on Amazon</a>
                 </div>
 
                 <div class="marketplace-card">
-                    <div class="marketplace-logo" style="color: #ff6d2d; font-size: 32px; font-weight: bold;">IndiaMART</div>
+                    <div class="marketplace-logo" style="color: #ff6d2d; font-size: 32px; font-weight: bold;">IndiaMART
+                    </div>
                     <h3>IndiaMART</h3>
                     <div class="rating">
                         <span class="star">★</span>
@@ -107,7 +113,8 @@
                     <div class="marketplace-stats">4.9/5 Rating • Verified Supplier</div>
                     <div class="marketplace-stats">GST Registered • TrustSEAL</div>
                     <div class="marketplace-stats">Bulk Orders Welcome</div>
-                    <a href="https://www.indiamart.com/theformatter/?srsltid=AfmBOor0n_rocpATh4fSyXx_A5XZIQLcmjh8jHJ0_Z1sFBkxkNZy1d80" class="btn btn-indiamart btn-marketplace">Get Quotes</a>
+                    <a href="https://www.indiamart.com/theformatter/?srsltid=AfmBOor0n_rocpATh4fSyXx_A5XZIQLcmjh8jHJ0_Z1sFBkxkNZy1d80"
+                        class="btn btn-indiamart btn-marketplace">Get Quotes</a>
                 </div>
             </div>
         </div>
@@ -119,58 +126,63 @@
                 <p>Fill out the form below and we'll get back to you within 24 hours</p>
 
                 <form method="POST" action="{{ route('contact-message.store') }}">
-                @csrf
+                    @csrf
 
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="firstName">First Name <span class="required">*</span></label>
-                        <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Enter your first name" required>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" name="firstName" id="firstName" class="form-control"
+                                placeholder="Enter your first name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" name="lastName" id="lastName" class="form-control"
+                                placeholder="Enter your last name" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name <span class="required">*</span></label>
-                        <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Enter your last name" required>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" name="email" id="email" class="form-control"
+                                placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" name="phone" id="phone" class="form-control"
+                                placeholder="+91 98765 43210">
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-grid">
                     <div class="form-group">
-                        <label for="email">Email Address <span class="required">*</span></label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="your.email@example.com" required>
+                        <label for="company">Company Name</label>
+                        <input type="text" name="company" id="company" class="form-control"
+                            placeholder="Your company name">
                     </div>
+
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" name="phone" id="phone" class="form-control" placeholder="+91 98765 43210">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <select name="subject" id="subject" class="form-control" required>
+                            <option value="">Select a subject</option>
+                            <option>Product Inquiry</option>
+                            <option>Technical Support</option>
+                            <option>Partnership</option>
+                            <option>General Question</option>
+                        </select>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="company">Company Name</label>
-                    <input type="text" name="company" id="company" class="form-control" placeholder="Your company name">
-                </div>
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea name="message" id="message" class="form-control" placeholder="Tell us how we can help you..." required></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="subject">Subject <span class="required">*</span></label>
-                    <select name="subject" id="subject" class="form-control" required>
-                        <option value="">Select a subject</option>
-                        <option>Product Inquiry</option>
-                        <option>Technical Support</option>
-                        <option>Partnership</option>
-                        <option>General Question</option>
-                    </select>
-                </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" name="newsletter" id="newsletter" value="1">
+                        <label for="newsletter">Subscribe to our newsletter for updates and offers</label>
+                    </div>
 
-                <div class="form-group">
-                    <label for="message">Message <span class="required">*</span></label>
-                    <textarea name="message" id="message" class="form-control" placeholder="Tell us how we can help you..." required></textarea>
-                </div>
-
-                <div class="checkbox-container">
-                    <input type="checkbox" name="newsletter" id="newsletter" value="1">
-                    <label for="newsletter">Subscribe to our newsletter for updates and offers</label>
-                </div>
-
-                <button type="submit" class="btn-send">Send Message</button>
-            </form>
+                    <button type="submit" class="btn-send">Send Message</button>
+                </form>
 
             </div>
 
@@ -194,7 +206,7 @@
                     </div>
                 </div>
 
-                <div class="support-links contact-card" >
+                <div class="support-links contact-card">
                     <h3>Quick Support Links</h3>
                     <a href="#" class="support-link">📚 Knowledge Base</a>
                     <a href="#" class="support-link">🎫 Submit a Ticket</a>
@@ -220,40 +232,43 @@
 
         <!-- Find Our Office Section -->
         <div class="office-section">
-                <h2 class="section-title">Find Our Office</h2>
-                <div class="office-content">
-                    <!-- Google Map for Patna Office -->
-                    <div class="map-container" style="width:100%; height:400px;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d115116.30361957189!2d85.02807368197587!3d25.625361694106264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x39ed59d2fe575cff%3A0xb433bf70d7cdcf7a!2sOpp.%20Anand%20Palace%2C%20Alpana%20Market%2C%2013%2C%20Patliputra%20Colony%2C%20Patna%2C%20Bihar%20800013!3m2!1d25.6253848!2d85.1104752!5e0!3m2!1sen!2sin!4v1761127992607!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+            <h2 class="section-title">Find Our Office</h2>
+            <div class="office-content">
+                <!-- Google Map for Patna Office -->
+                <div class="map-container" style="width:100%; height:400px;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d115116.30361957189!2d85.02807368197587!3d25.625361694106264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x39ed59d2fe575cff%3A0xb433bf70d7cdcf7a!2sOpp.%20Anand%20Palace%2C%20Alpana%20Market%2C%2013%2C%20Patliputra%20Colony%2C%20Patna%2C%20Bihar%20800013!3m2!1d25.6253848!2d85.1104752!5e0!3m2!1sen!2sin!4v1761127992607!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
 
-                    <!-- Optional Directions Card -->
-                    <div class="directions-card">
-                        <h3>How to Reach Us</h3>
-                        <div class="direction-item">
-                            <div class="direction-icon car">🚗</div>
-                            <div class="direction-content">
-                                <h4>By Car:</h4>
-                                <p>Parking available nearby. Located in Patliputra Colony, close to Alpana Market.</p>
-                            </div>
+                <!-- Optional Directions Card -->
+                <div class="directions-card">
+                    <h3>How to Reach Us</h3>
+                    <div class="direction-item">
+                        <div class="direction-icon car">🚗</div>
+                        <div class="direction-content">
+                            <h4>By Car:</h4>
+                            <p>Parking available nearby. Located in Patliputra Colony, close to Alpana Market.</p>
                         </div>
-                        <div class="direction-item">
-                            <div class="direction-icon bus">🚌</div>
-                            <div class="direction-content">
-                                <h4>By Public Transport:</h4>
-                                <p>Local buses stop near Patliputra Colony. 2–5 minute walk to the office.</p>
-                            </div>
+                    </div>
+                    <div class="direction-item">
+                        <div class="direction-icon bus">🚌</div>
+                        <div class="direction-content">
+                            <h4>By Public Transport:</h4>
+                            <p>Local buses stop near Patliputra Colony. 2–5 minute walk to the office.</p>
                         </div>
-                        <div class="direction-item">
-                            <div class="direction-icon plane">✈️</div>
-                            <div class="direction-content">
-                                <h4>From Airport:</h4>
-                                <p>Approx. 12 km from Patna Airport. About 25 minutes by taxi.</p>
-                            </div>
+                    </div>
+                    <div class="direction-item">
+                        <div class="direction-icon plane">✈️</div>
+                        <div class="direction-content">
+                            <h4>From Airport:</h4>
+                            <p>Approx. 12 km from Patna Airport. About 25 minutes by taxi.</p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <!-- FAQ Section -->
         <div class="faq-section">
@@ -261,19 +276,23 @@
             <div class="faq-grid">
                 <div class="faq-card">
                     <h4>What are your delivery timelines?</h4>
-                    <p>Standard delivery takes 3-5 business days within city limits. Express delivery available for urgent orders.</p>
+                    <p>Standard delivery takes 3-5 business days within city limits. Express delivery available for
+                        urgent orders.</p>
                 </div>
                 <div class="faq-card">
                     <h4>Do you provide installation services?</h4>
-                    <p>Yes, we offer professional installation for all POS systems and large equipment. Charges apply based on location.</p>
+                    <p>Yes, we offer professional installation for all POS systems and large equipment. Charges apply
+                        based on location.</p>
                 </div>
                 <div class="faq-card">
                     <h4>What is your return policy?</h4>
-                    <p>We accept returns within 7 days of delivery for unopened products. Terms and conditions apply.</p>
+                    <p>We accept returns within 7 days of delivery for unopened products. Terms and conditions apply.
+                    </p>
                 </div>
                 <div class="faq-card">
                     <h4>Do you offer bulk discounts?</h4>
-                    <p>Yes, special pricing available for orders above ₹50,000. Contact our sales team for custom quotes.</p>
+                    <p>Yes, special pricing available for orders above ₹50,000. Contact our sales team for custom
+                        quotes.</p>
                 </div>
                 <div class="faq-card">
                     <h4>Are your products GST compliant?</h4>
@@ -281,12 +300,14 @@
                 </div>
                 <div class="faq-card">
                     <h4>Do you offer warranty on products?</h4>
-                    <p>Yes, we offer manufacturer warranty on all products ranging from 1-3 years depending on the product category.</p>
+                    <p>Yes, we offer manufacturer warranty on all products ranging from 1-3 years depending on the
+                        product category.</p>
                 </div>
             </div>
         </div>
     </div>
-@include('partials.footer')
- 
+    @include('partials.footer')
+
 </body>
+
 </html>

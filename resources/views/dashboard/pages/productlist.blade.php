@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('../dashboard.header.head')
     <!-- DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
-<!-- DataTables JS + jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+    <!-- DataTables JS + jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
-    .dataTables_filter {
-    display: none; /* hide built-in search since we have custom search */
-}
-.dataTables_paginate .pagination {
-    justify-content: end;
-}
-#productTable th, #productTable td {
-    vertical-align: middle;
-}
+        .dataTables_filter {
+            display: none;
+            /* hide built-in search since we have custom search */
+        }
+
+        .dataTables_paginate .pagination {
+            justify-content: end;
+        }
+
+        #productTable th,
+        #productTable td {
+            vertical-align: middle;
+        }
+
         .container {
             max-width: 1400px;
         }
@@ -30,7 +37,7 @@
             background: white;
             padding: 1.5rem;
             border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 2rem;
         }
 
@@ -49,7 +56,7 @@
             border-radius: 12px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             border: 1px solid #e2e8f0;
         }
 
@@ -146,7 +153,7 @@
             border-radius: 12px;
             padding: 1rem;
             margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
         /* Price styling */
@@ -171,7 +178,7 @@
             .main-container {
                 margin-left: 0;
             }
-            
+
             .table-responsive {
                 font-size: 0.875rem;
             }
@@ -187,8 +194,17 @@
         .loading-spinner.active {
             display: block;
         }
+
+        .modal-backdrop.show {
+            z-index: 1050 !important;
+        }
+
+        .modal.show {
+            z-index: 2000 !important;
+        }
     </style>
 </head>
+
 <body>
     <!-- loader -->
     @include('../dashboard.partials.loader')
@@ -199,22 +215,22 @@
     <!-- end right-sidebar -->
     <!-- left-side-bar -->
     @include('../dashboard.partials.leftsidebar')
-    
+
     <div class="main-container">
         <div class="container">
             <!-- Success/Error Messages -->
-            @if(session('success'))
+            @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <i class="fas fa-check-circle"></i> {{ session('success') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             @endif
 
-            @if($errors->any())
+            @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <i class="fas fa-exclamation-circle"></i>
                     <ul class="mb-0">
-                        @foreach($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
@@ -254,7 +270,7 @@
                         <label class="form-label">Category</label>
                         <select class="form-select" id="categoryFilter">
                             <option value="">All Categories</option>
-                            @foreach($categories as $category)
+                            @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
@@ -290,22 +306,30 @@
                             <i class="fas fa-download"></i> Export
                         </button>
                         <div class="dropdown">
-                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
                                 <i class="fas fa-columns"></i> Columns
                             </button>
                             <ul class="dropdown-menu" id="columnToggle">
-                                <li><a class="dropdown-item" href="#" data-column="1"><input type="checkbox" checked> Image</a></li>
-                                <li><a class="dropdown-item" href="#" data-column="2"><input type="checkbox" checked> Name</a></li>
-                                <li><a class="dropdown-item" href="#" data-column="3"><input type="checkbox" checked> SKU</a></li>
-                                <li><a class="dropdown-item" href="#" data-column="4"><input type="checkbox" checked> Category</a></li>
-                                <li><a class="dropdown-item" href="#" data-column="5"><input type="checkbox" checked> Price</a></li>
-                                <li><a class="dropdown-item" href="#" data-column="6"><input type="checkbox" checked> Stock</a></li>
-                                <li><a class="dropdown-item" href="#" data-column="7"><input type="checkbox" checked> Status</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="1"><input type="checkbox"
+                                            checked> Image</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="2"><input type="checkbox"
+                                            checked> Name</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="3"><input type="checkbox"
+                                            checked> SKU</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="4"><input type="checkbox"
+                                            checked> Category</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="5"><input type="checkbox"
+                                            checked> Price</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="6"><input type="checkbox"
+                                            checked> Stock</a></li>
+                                <li><a class="dropdown-item" href="#" data-column="7"><input type="checkbox"
+                                            checked> Status</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="table-responsive">
                     <table class="table table-hover" id="productTable">
                         <thead class="table-light">
@@ -323,69 +347,97 @@
                             </tr>
 
                         <tbody id="productTableBody">
-                            @foreach ($products as $product) 
-                            <tr data-id="{{ $product->id }}" 
-                                data-status="{{ $product->status }}" 
-                                data-category-id="{{ $product->category_id }}"
-                                data-stock-status="{{ $product->stock_quantity > 10 ? 'in_stock' : ($product->stock_quantity > 0 ? 'low_stock' : 'out_of_stock') }}">
-                                <td>{{ $product->id }}</td>
-                                <td>
-                                    @if($product->primaryImage)
-                                        <img src="{{ asset('storage/' . $product->primaryImage->image_url) }}" 
-                                            alt="{{ $product->name }}" class="product-image">
-                                    @else
-                                        <img src="{{ asset('images/no-image.png') }}" alt="No Image" class="product-image">
-                                    @endif
-                                </td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->sku }}</td>
-                                <td>{{ $product->category ? $product->category->name : 'Uncategorized' }}</td>
-                                <td>
-                                    @if($product->sale_price)
-                                        <span class="price-sale">${{ number_format($product->regular_price, 2) }}</span>
-                                        <span class="price-final ms-2">${{ number_format($product->sale_price, 2) }}</span>
-                                    @else
-                                        <span class="price-regular">${{ number_format($product->regular_price, 2) }}</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($product->stock_quantity > 10)
-                                        <span class="stock-status stock-in">In Stock ({{ $product->stock_quantity }})</span>
-                                    @elseif($product->stock_quantity > 0)
-                                        <span class="stock-status stock-low">Low Stock ({{ $product->stock_quantity }})</span>
-                                    @else
-                                        <span class="stock-status stock-out">Out of Stock</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <select class="form-select product-status-dropdown" data-product-id="{{ $product->id }}">
-                                        <option value="published" {{ $product->status === 'published' ? 'selected' : '' }}>Published</option>
-                                        <option value="draft" {{ $product->status === 'draft' ? 'selected' : '' }}>Draft</option>
-                                        <option value="archived" {{ $product->status === 'archived' ? 'selected' : '' }}>Archived</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <a href="" class="action-btn btn-view" title="View">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <a href="" class="action-btn btn-edit" title="Edit">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                    <button class="action-btn btn-delete" title="Delete" onclick="confirmDelete({{ $product->id }})">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </td>
-                                <td>
-                                    <select class="form-select product-label-dropdown" data-product-id="{{ $product->id }}">
-                                        <option value="">Select label</option>
-                                        <option value="New" {{ $product->prodcutlabel == 'New' ? 'selected' : '' }}>New</option>
-                                        <option value="Best Seller" {{ $product->prodcutlabel == 'Best Seller' ? 'selected' : '' }}>Best Seller</option>
-                                        <option value="Popular" {{ $product->prodcutlabel == 'Popular' ? 'selected' : '' }}>Popular</option>
-                                        <option value="Hot Deal" {{ $product->prodcutlabel == 'Hot Deal' ? 'selected' : '' }}>Hot Deal</option>
-                                        <option value="Best Value" {{ $product->prodcutlabel == 'Best Value' ? 'selected' : '' }}>Best Value</option>
-                                    </select>
-                                </td>
-                            </tr>
+                            @foreach ($products as $product)
+                                <tr data-id="{{ $product->id }}" data-status="{{ $product->status }}"
+                                    data-category-id="{{ $product->category_id }}"
+                                    data-stock-status="{{ $product->stock_quantity > 10 ? 'in_stock' : ($product->stock_quantity > 0 ? 'low_stock' : 'out_of_stock') }}">
+                                    <td>{{ $product->id }}</td>
+                                    @php
+                                        $image = $product->primaryImage ?? $product->productImages->first(); // fallback if no primary image
+                                    @endphp
+
+                                    <td>
+                                        @if ($image)
+                                            <img src="{{ asset('storage/' . $image->image_url) }}"
+                                                alt="{{ $product->name }}" class="product-image">
+                                        @else
+                                            <img src="{{ asset('images/no-image.png') }}" alt="No Image"
+                                                class="product-image">
+                                        @endif
+                                    </td>
+
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->sku }}</td>
+                                    <td>{{ $product->category ? $product->category->name : 'Uncategorized' }}</td>
+                                    <td>
+                                        @if ($product->sale_price)
+                                            <span
+                                                class="price-sale">${{ number_format($product->regular_price, 2) }}</span>
+                                            <span
+                                                class="price-final ms-2">${{ number_format($product->sale_price, 2) }}</span>
+                                        @else
+                                            <span
+                                                class="price-regular">${{ number_format($product->regular_price, 2) }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($product->stock_quantity > 10)
+                                            <span class="stock-status stock-in">In Stock
+                                                ({{ $product->stock_quantity }})</span>
+                                        @elseif($product->stock_quantity > 0)
+                                            <span class="stock-status stock-low">Low Stock
+                                                ({{ $product->stock_quantity }})</span>
+                                        @else
+                                            <span class="stock-status stock-out">Out of Stock</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <select class="form-select product-status-dropdown"
+                                            data-product-id="{{ $product->id }}">
+                                            <option value="published"
+                                                {{ $product->status === 'published' ? 'selected' : '' }}>Published
+                                            </option>
+                                            <option value="draft"
+                                                {{ $product->status === 'draft' ? 'selected' : '' }}>Draft</option>
+                                            <option value="archived"
+                                                {{ $product->status === 'archived' ? 'selected' : '' }}>Archived
+                                            </option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a href="" class="action-btn btn-view" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('dashboard.products.edit', $product->id) }}"
+                                            class="action-btn btn-edit" title="Edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <button class="action-btn btn-delete" title="Delete"
+                                            onclick="confirmDelete({{ $product->id }})">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <select class="form-select product-label-dropdown"
+                                            data-product-id="{{ $product->id }}">
+                                            <option value="">Select label</option>
+                                            <option value="New"
+                                                {{ $product->prodcutlabel == 'New' ? 'selected' : '' }}>New</option>
+                                            <option value="Best Seller"
+                                                {{ $product->prodcutlabel == 'Best Seller' ? 'selected' : '' }}>Best
+                                                Seller</option>
+                                            <option value="Popular"
+                                                {{ $product->prodcutlabel == 'Popular' ? 'selected' : '' }}>Popular
+                                            </option>
+                                            <option value="Hot Deal"
+                                                {{ $product->prodcutlabel == 'Hot Deal' ? 'selected' : '' }}>Hot Deal
+                                            </option>
+                                            <option value="Best Value"
+                                                {{ $product->prodcutlabel == 'Best Value' ? 'selected' : '' }}>Best
+                                                Value</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -415,167 +467,234 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1">
-        <div class="modal-dialog">
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirm Delete</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteModalLabel">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Confirm Delete
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Are you sure you want to delete this product? This action cannot be undone.</p>
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <strong>Warning:</strong> This will permanently remove the product and all associated data.
+                    <p class="mb-3">Are you sure you want to delete this product? This action cannot be undone.</p>
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <div>
+                            <strong>Warning:</strong> This will permanently remove the product and all associated data.
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete Product</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-1"></i>Cancel
+                    </button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">
+                        <i class="fas fa-trash-alt me-1"></i>Delete Product
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-  
-    
-</body>
- @include('dashboard.partials.messagemode')
-    <!-- welcome modal end -->
+    <!-- Hidden form for delete submission -->
+    <form id="deleteForm" method="POST" style="display:none;">
+        @csrf
+        @method('DELETE')
+    </form>
 
-    <!-- js -->
-      @include('dashboard.footer.footer') 
+
+</body>
+@include('dashboard.partials.messagemode')
+<!-- welcome modal end -->
+
+<!-- js -->
+@include('dashboard.footer.footer')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let deleteProductId = null;
+        let deleteModalInstance = null;
+
+        // Initialize modal instance
+        const deleteModalEl = document.getElementById('deleteModal');
+        if (deleteModalEl) {
+            deleteModalInstance = new bootstrap.Modal(deleteModalEl);
+        }
+
+        // Function to show delete confirmation
+        window.confirmDelete = function(productId) {
+            deleteProductId = productId;
+
+            if (!deleteModalEl) {
+                console.error('Delete modal element not found.');
+                return;
+            }
+
+            // Show the modal
+            deleteModalInstance.show();
+        }
+
+        // Handle confirm delete button click
+        const confirmBtn = document.getElementById('confirmDelete');
+        if (confirmBtn) {
+            confirmBtn.addEventListener('click', function() {
+                if (!deleteProductId) {
+                    console.error('No product ID set for deletion');
+                    return;
+                }
+
+                // Set form action and submit
+                const form = document.getElementById('deleteForm');
+                form.action = `/dashboard/deleteproduct/${deleteProductId}`;
+                form.submit();
+
+                // Hide modal
+                deleteModalInstance.hide();
+            });
+        }
+
+        // Reset product ID when modal is closed
+        deleteModalEl.addEventListener('hidden.bs.modal', function() {
+            deleteProductId = null;
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.product-label-dropdown').change(function() {
+            let label = $(this).val();
+            let productId = $(this).data('product-id');
+
+            $.ajax({
+                url: "{{ route('product.updateLabel') }}", // Route to handle update
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    product_id: productId,
+                    label: label
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert('Label updated successfully!');
+                    } else {
+                        alert('Failed to update label!');
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+    $(document).ready(function() {
+        $('.product-status-dropdown').change(function() {
+            let status = $(this).val();
+            let productId = $(this).data('product-id');
+
+            $.ajax({
+                url: "{{ route('product.updateStatus') }}", // route to handle status update
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    product_id: productId,
+                    status: status
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert('Status updated successfully!');
+                    } else {
+                        alert('Failed to update status!');
+                    }
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        let table = $('#productTable').DataTable({
+            pageLength: 10,
+            order: [
+                [0, 'desc']
+            ],
+            dom: '<"top"f>rt<"bottom"lp><"clear">',
+            columnDefs: [{
+                targets: [1, 8, 9],
+                orderable: false
+            }]
+        });
+
+        // --- Search Filter ---
+        $('#searchInput').on('keyup', function() {
+            table.search(this.value).draw();
+        });
+
+        // --- Status Filter (using data attributes) ---
+        $('#statusFilter').on('change', function() {
+            const val = this.value;
+
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    if (settings.nTable !== table.table().node()) return true;
+
+                    const row = table.row(dataIndex).node();
+                    const rowStatus = $(row).data('status');
+
+                    return val === '' || rowStatus === val;
+                }
+            );
+            table.draw();
+            $.fn.dataTable.ext.search.pop();
+        });
+
+        // --- Category Filter (using data attributes) ---
+        $('#categoryFilter').on('change', function() {
+            const categoryId = this.value;
+
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    if (settings.nTable !== table.table().node()) return true;
+
+                    const row = table.row(dataIndex).node();
+                    const rowCategoryId = $(row).data('category-id');
+
+                    return categoryId === '' || rowCategoryId == categoryId;
+                }
+            );
+            table.draw();
+            $.fn.dataTable.ext.search.pop();
+        });
+
+        // --- Stock Filter (using data attributes) ---
+        $('#stockFilter').on('change', function() {
+            const val = this.value;
+
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    if (settings.nTable !== table.table().node()) return true;
+
+                    const row = table.row(dataIndex).node();
+                    const rowStockStatus = $(row).data('stock-status');
+
+                    return val === '' || rowStockStatus === val;
+                }
+            );
+            table.draw();
+            $.fn.dataTable.ext.search.pop();
+        });
+
+        // --- Reset Filters ---
+        window.resetFilters = function() {
+            $('#searchInput').val('');
+            $('#statusFilter, #categoryFilter, #stockFilter').val('');
+            table.search('').columns().search('').draw();
+        };
+    });
+</script>
 
 </html>
-<script>
-$(document).ready(function(){
-    $('.product-label-dropdown').change(function(){
-        let label = $(this).val();
-        let productId = $(this).data('product-id');
-
-        $.ajax({
-            url: "{{ route('product.updateLabel') }}", // Route to handle update
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                product_id: productId,
-                label: label
-            },
-            success: function(response){
-                if(response.success){
-                    alert('Label updated successfully!');
-                } else {
-                    alert('Failed to update label!');
-                }
-            },
-            error: function(xhr){
-                console.log(xhr.responseText);
-            }
-        });
-    });
-});
-$(document).ready(function(){
-    $('.product-status-dropdown').change(function(){
-        let status = $(this).val();
-        let productId = $(this).data('product-id');
-
-        $.ajax({
-            url: "{{ route('product.updateStatus') }}", // route to handle status update
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                product_id: productId,
-                status: status
-            },
-            success: function(response){
-                if(response.success){
-                    alert('Status updated successfully!');
-                } else {
-                    alert('Failed to update status!');
-                }
-            },
-            error: function(xhr){
-                console.log(xhr.responseText);
-            }
-        });
-    });
-});
-</script>
-<script>
-$(document).ready(function () {
-    let table = $('#productTable').DataTable({
-        pageLength: 10,
-        order: [[0, 'desc']],
-        dom: '<"top"f>rt<"bottom"lp><"clear">',
-        columnDefs: [
-            { targets: [1, 8, 9], orderable: false }
-        ]
-    });
-
-    // --- Search Filter ---
-    $('#searchInput').on('keyup', function () {
-        table.search(this.value).draw();
-    });
-
-    // --- Status Filter (using data attributes) ---
-    $('#statusFilter').on('change', function () {
-        const val = this.value;
-        
-        $.fn.dataTable.ext.search.push(
-            function(settings, data, dataIndex) {
-                if (settings.nTable !== table.table().node()) return true;
-                
-                const row = table.row(dataIndex).node();
-                const rowStatus = $(row).data('status');
-                
-                return val === '' || rowStatus === val;
-            }
-        );
-        table.draw();
-        $.fn.dataTable.ext.search.pop();
-    });
-
-    // --- Category Filter (using data attributes) ---
-    $('#categoryFilter').on('change', function () {
-        const categoryId = this.value;
-        
-        $.fn.dataTable.ext.search.push(
-            function(settings, data, dataIndex) {
-                if (settings.nTable !== table.table().node()) return true;
-                
-                const row = table.row(dataIndex).node();
-                const rowCategoryId = $(row).data('category-id');
-                
-                return categoryId === '' || rowCategoryId == categoryId;
-            }
-        );
-        table.draw();
-        $.fn.dataTable.ext.search.pop();
-    });
-
-    // --- Stock Filter (using data attributes) ---
-    $('#stockFilter').on('change', function () {
-        const val = this.value;
-        
-        $.fn.dataTable.ext.search.push(
-            function(settings, data, dataIndex) {
-                if (settings.nTable !== table.table().node()) return true;
-                
-                const row = table.row(dataIndex).node();
-                const rowStockStatus = $(row).data('stock-status');
-                
-                return val === '' || rowStockStatus === val;
-            }
-        );
-        table.draw();
-        $.fn.dataTable.ext.search.pop();
-    });
-
-    // --- Reset Filters ---
-    window.resetFilters = function() {
-        $('#searchInput').val('');
-        $('#statusFilter, #categoryFilter, #stockFilter').val('');
-        table.search('').columns().search('').draw();
-    };
-});
-</script>

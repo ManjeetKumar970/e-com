@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,10 +45,10 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, 
-                rgba(0, 0, 0, 0.2) 0%, 
-                rgba(0, 0, 0, 0.1) 50%, 
-                rgba(0, 0, 0, 0.4) 100%);
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.2) 0%,
+                    rgba(0, 0, 0, 0.1) 50%,
+                    rgba(0, 0, 0, 0.4) 100%);
             z-index: 1;
         }
 
@@ -89,6 +90,7 @@
         .slidehome-cta {
             animation: fadeInUp 0.8s ease-out 0.9s both;
         }
+
         /* Navigation Dots */
         .slidehomer-nav {
             position: absolute;
@@ -180,6 +182,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -296,88 +299,95 @@
         }
     </style>
 </head>
+
 <body>
     <div class="hero-slidehomer">
         @if (isset($sliders) && $sliders->count() > 0)
-        @foreach ($sliders as $slider )            
-        <!-- slidehome 1 -->
-        <div class="slidehome active">
-            <img src="{{ asset('storage/' . ($slider->image_path ?? 'images/no-image.png')) }}" alt="Business Solutions" class="slidehome-image">
-            <div class="slidehome-overlay"></div>
-            <div class="slidehome-content">
-                <h1 class="slidehome-title">{{$slider->title}}</h1>
-                <p class="slidehome-subtitle">{{$slider->description}}</p>
-                <div class="slidehome-cta">
-                    <a href="#" class="btn btn-primary">Explore Products</a>
-                    <a href="#" class="btn btn-secondary">Get Free Demo</a>
+            @foreach ($sliders as $slider)
+                <!-- slidehome 1 -->
+                <div class="slidehome active">
+                    <img src="{{ asset('storage/' . ($slider->image_path ?? 'images/no-image.png')) }}"
+                        alt="Business Solutions" class="slidehome-image">
+                    <div class="slidehome-overlay"></div>
+                    <div class="slidehome-content">
+                        <h1 class="slidehome-title">{{ $slider->title }}</h1>
+                        <p class="slidehome-subtitle">{{ $slider->description }}</p>
+                        <div class="slidehome-cta">
+                            <a href="#" class="btn btn-primary">Explore Products</a>
+                            <a href="#" class="btn btn-secondary">Get Free Demo</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <div class="slidehome active">
+                <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=1920&q=80"
+                    alt="Business Solutions" class="slidehome-image">
+                <div class="slidehome-overlay"></div>
+                <div class="slidehome-content">
+                    <h1 class="slidehome-title">Transform Your Business</h1>
+                    <p class="slidehome-subtitle">Smart thermal printers and billing solutions for modern enterprises
+                    </p>
+                    <div class="slidehome-cta">
+                        <a href="#" class="btn btn-primary">Explore Products</a>
+                        <a href="#" class="btn btn-secondary">Get Free Demo</a>
+                    </div>
                 </div>
             </div>
-        </div>
- @endforeach
-    @else
-  <div class="slidehome active">
-            <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=1920&q=80" alt="Business Solutions" class="slidehome-image">
-            <div class="slidehome-overlay"></div>
-            <div class="slidehome-content">
-                <h1 class="slidehome-title">Transform Your Business</h1>
-                <p class="slidehome-subtitle">Smart thermal printers and billing solutions for modern enterprises</p>
-                <div class="slidehome-cta">
-                    <a href="#" class="btn btn-primary">Explore Products</a>
-                    <a href="#" class="btn btn-secondary">Get Free Demo</a>
+            <!-- slidehome 2 -->
+            <div class="slidehome">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80" alt="Technology"
+                    class="slidehome-image">
+                <div class="slidehome-overlay"></div>
+                <div class="slidehome-content">
+                    <h1 class="slidehome-title">Cutting-Edge Technology</h1>
+                    <p class="slidehome-subtitle">High-speed thermal printing solutions that boost productivity</p>
+                    <div class="slidehome-cta">
+                        <a href="#" class="btn btn-primary">View Solutions</a>
+                        <a href="#" class="btn btn-secondary">Learn More</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- slidehome 2 -->
-        <div class="slidehome">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1920&q=80" alt="Technology" class="slidehome-image">
-            <div class="slidehome-overlay"></div>
-            <div class="slidehome-content">
-                <h1 class="slidehome-title">Cutting-Edge Technology</h1>
-                <p class="slidehome-subtitle">High-speed thermal printing solutions that boost productivity</p>
-                <div class="slidehome-cta">
-                    <a href="#" class="btn btn-primary">View Solutions</a>
-                    <a href="#" class="btn btn-secondary">Learn More</a>
-                </div>
-            </div>
-        </div>
 
-        <!-- slidehome 3 -->
-        <div class="slidehome">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80" alt="Integration" class="slidehome-image">
-            <div class="slidehome-overlay"></div>
-            <div class="slidehome-content">
-                <h1 class="slidehome-title">Seamless Integration</h1>
-                <p class="slidehome-subtitle">Connect your business with cloud-based billing software</p>
-                <div class="slidehome-cta">
-                    <a href="#" class="btn btn-primary">Start Free Trial</a>
-                    <a href="#" class="btn btn-secondary">Contact Sales</a>
+            <!-- slidehome 3 -->
+            <div class="slidehome">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=80" alt="Integration"
+                    class="slidehome-image">
+                <div class="slidehome-overlay"></div>
+                <div class="slidehome-content">
+                    <h1 class="slidehome-title">Seamless Integration</h1>
+                    <p class="slidehome-subtitle">Connect your business with cloud-based billing software</p>
+                    <div class="slidehome-cta">
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                        <a href="#" class="btn btn-secondary">Contact Sales</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- slidehome 4 -->
-        <div class="slidehome">
-            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80" alt="Support" class="slidehome-image">
-            <div class="slidehome-overlay"></div>
-            <div class="slidehome-content">
-                <h1 class="slidehome-title">24/7 Support</h1>
-                <p class="slidehome-subtitle">Expert assistance whenever you need it, wherever you are</p>
-                <div class="slidehome-cta">
-                    <a href="#" class="btn btn-primary">Get Support</a>
-                    <a href="#" class="btn btn-secondary">Call Now</a>
+            <!-- slidehome 4 -->
+            <div class="slidehome">
+                <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80" alt="Support"
+                    class="slidehome-image">
+                <div class="slidehome-overlay"></div>
+                <div class="slidehome-content">
+                    <h1 class="slidehome-title">24/7 Support</h1>
+                    <p class="slidehome-subtitle">Expert assistance whenever you need it, wherever you are</p>
+                    <div class="slidehome-cta">
+                        <a href="#" class="btn btn-primary">Get Support</a>
+                        <a href="#" class="btn btn-secondary">Call Now</a>
+                    </div>
                 </div>
             </div>
-        </div>
-@endif
+        @endif
         <!-- Navigation Arrows -->
         <div class="slidehomer-arrow prev" onclick="changeslidehome(-1)">
             <svg viewBox="0 0 24 24">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
             </svg>
         </div>
         <div class="slidehomer-arrow next" onclick="changeslidehome(1)">
             <svg viewBox="0 0 24 24">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
             </svg>
         </div>
 
@@ -393,21 +403,22 @@
         <div class="slidehome-counter">
             <span id="current-slidehome">1</span> / <span id="total-slidehomes">4</span>
         </div>
-@if (isset($sliders) && $sliders->count() > 0)
-    @php $counter = 0; @endphp
+        @if (isset($sliders) && $sliders->count() > 0)
+            @php $counter = 0; @endphp
 
-    <div class="thumbnail-nav">
-        @foreach ($sliders as $slider)
-            <div class="thumbnail {{ $counter == 0 ? 'active' : '' }}" onclick="goToslidehome({{ $counter }})">
-                <img src="{{ asset('storage/' . ($slider->image_path ?? 'images/no-image.png')) }}" 
-                     alt="{{ $slider->title }}">
+            <div class="thumbnail-nav">
+                @foreach ($sliders as $slider)
+                    <div class="thumbnail {{ $counter == 0 ? 'active' : '' }}"
+                        onclick="goToslidehome({{ $counter }})">
+                        <img src="{{ asset('storage/' . ($slider->image_path ?? 'images/no-image.png')) }}"
+                            alt="{{ $slider->title }}">
+                    </div>
+                    @php $counter++; @endphp
+                @endforeach
             </div>
-            @php $counter++; @endphp
-        @endforeach
-    </div>
-@endif
+        @endif
 
-   </div>
+    </div>
     <script>
         let currentslidehome = 0;
         const slidehomes = document.querySelectorAll('.slidehome');
@@ -425,9 +436,9 @@
             slidehomes.forEach(slidehome => slidehome.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
             thumbnails.forEach(thumb => thumb.classList.remove('active'));
-            
+
             currentslidehome = (index + slidehomes.length) % slidehomes.length;
-            
+
             slidehomes[currentslidehome].classList.add('active');
             dots[currentslidehome].classList.add('active');
             thumbnails[currentslidehome].classList.add('active');
@@ -480,4 +491,5 @@
         });
     </script>
 </body>
+
 </html>

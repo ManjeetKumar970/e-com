@@ -57,19 +57,22 @@
         </div>
 
         <div class="container card card-box mt-3 pd-20 mb-20">
-            <form id="product-form" method="POST" action="{{ route('dashboard.storebillingrols') }}" enctype="multipart/form-data">
+            <form id="product-form" method="POST" action="{{ route('dashboard.storebillingrols') }}"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-5" style="padding-top: 20px;">
                     <div class="col-md-6 md-2">
                         <div class="form-floating form-group">
-                            <input name="name" class="form-control" type="text" placeholder="Fixed Name" required />
+                            <input name="name" class="form-control" type="text" placeholder="Fixed Name"
+                                required />
                             <label>Fixed Name *</label>
                             <div class="invalid-feedback">Please provide a fixed name.</div>
                         </div>
                     </div>
                     <div class="col-md-6 md-2">
                         <div class="form-floating">
-                            <input name="size" class="form-control" type="text" placeholder="Size Index" required />
+                            <input name="size" class="form-control" type="text" placeholder="Size Index"
+                                required />
                             <label>Size Index *</label>
                             <div class="invalid-feedback">Please provide a size index.</div>
                         </div>
@@ -79,7 +82,8 @@
                 <div class="row">
                     <div class="col-md-6 md-2">
                         <div class="form-floating">
-                            <input name="page_thickness" class="form-control" type="text" placeholder="Page Thickness" required />
+                            <input name="page_thickness" class="form-control" type="text"
+                                placeholder="Page Thickness" required />
                             <label>Page Thickness (mm) *</label>
                             <div class="invalid-feedback">Please provide page thickness.</div>
                         </div>
@@ -96,10 +100,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <select class="custom-select2 form-control select2-hidden-accessible" name="paper_type" style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                            <select class="custom-select2 form-control select2-hidden-accessible" name="paper_type"
+                                style="width: 100%; height: 38px" data-select2-id="1" tabindex="-1" aria-hidden="true">
                                 <optgroup label="Select Paper Type" data-select2-id="17">
                                     <option value="XYZ" data-select2-id="18">XYZ</option>
-                                    
+
                                 </optgroup>
                             </select>
                             <label>Paper Type</label>
@@ -124,7 +129,8 @@
                     </div>
                     <div class="col-md-6 md-2">
                         <div class="form-floating">
-                            <input name="price" class="form-control" type="number" step="0.01" placeholder="Price" required />
+                            <input name="price" class="form-control" type="number" step="0.01" placeholder="Price"
+                                required />
                             <label>Price *</label>
                             <div class="invalid-feedback">Please provide a valid price.</div>
                         </div>
@@ -314,9 +320,9 @@
 
                     myDropzone.removeAllFiles();
                     form.reset();
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         window.location.reload()
-                    },3000)
+                    }, 3000)
                 })
                 .catch(error => {
                     const Toast = Swal.mixin({
