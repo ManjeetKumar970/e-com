@@ -63,6 +63,7 @@ class ProductsController extends Controller
         try {
             $product = Product::create([
                 'name' => $request->name,
+                'numberofpack' => $request->numberofpack,
                 'slug' => $slug . '-' . strtolower(preg_replace('/[^A-Za-z0-9-]+/', '-', $request->name)),
                 'sku' => $request->sku,
                 'category_id' => $request->category_id,

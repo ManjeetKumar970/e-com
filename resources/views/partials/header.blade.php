@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
@@ -416,13 +418,23 @@
     }
 
     function addToCart(element) {
-        // Check if user is logged in
-        if (typeof isLoggedIn !== "undefined" && !isLoggedIn) {
-            if (confirm('Please login to add items to cart. Redirect to login page?')) {
-                window.location.href = loginUrl;
-            }
+       if (typeof isLoggedIn !== "undefined" && !isLoggedIn) {
+            Swal.fire({
+                title: 'Login Required',
+                text: 'Please login to add items to your cart.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Go to Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = loginUrl;
+                }
+            });
             return;
         }
+
 
         // Find the nearest product card (supports multiple layouts)
         const card = element.closest(
@@ -475,7 +487,6 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Success UI feedback
                     element.innerHTML = '✓';
                     element.style.background = '#28a745';
                     element.style.transform = 'scale(1.2)';
@@ -498,6 +509,8 @@
                         card.style.transform = '';
                         card.style.boxShadow = '';
                     }, 1500);
+                 window.location.reload();
+
                 } else {
                     throw new Error(data.message || 'Failed to add to cart');
                 }

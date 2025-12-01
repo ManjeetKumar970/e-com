@@ -6,7 +6,7 @@
             aria-atomic="true" data-bs-autohide="true" data-bs-delay="5000">
             <div class="d-flex">
                 <div class="toast-body">
-                    <strong>✓ Success!</strong> {{ session('success') }}
+                    <strong>Success!</strong> {{ session('success') }}
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                     aria-label="Close"></button>
@@ -101,8 +101,6 @@
             warning: 'text-bg-warning',
             info: 'text-bg-info'
         };
-
-        // Define icons for different types
         const icons = {
             success: '✓',
             error: '✗',
@@ -129,33 +127,23 @@
 
         // Insert toast into container
         toastContainer.insertAdjacentHTML('beforeend', toastHTML);
-
-        // Get the newly added toast
         const toastElement = toastContainer.lastElementChild;
-
-        // Initialize and show the toast
         const toast = new bootstrap.Toast(toastElement, {
             autohide: true,
             delay: 5000
         });
 
         toast.show();
-
-        // Remove toast element after it's hidden
         toastElement.addEventListener('hidden.bs.toast', function() {
             toastElement.remove();
         });
     }
-
-    // Global AJAX error handler (optional)
     window.addEventListener('error', function(e) {
         if (e.error && e.error.response) {
             showToast('An error occurred. Please try again.', 'error');
         }
     });
 </script>
-
-{{-- Optional: Custom CSS for better styling --}}
 <style>
     .toast {
         min-width: 300px;

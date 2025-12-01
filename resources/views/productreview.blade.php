@@ -1095,9 +1095,15 @@
             }
         }
 
-        function openReviewModal() {
-            document.getElementById('reviewModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+         function openReviewModal() {
+            @if(!auth()->check())
+                // User is NOT logged in → redirect
+                window.location.href = "{{ route('login') }}";
+            @else
+                // User is logged in → open modal
+                document.getElementById('reviewModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            @endif
         }
 
         function closeReviewModal() {

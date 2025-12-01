@@ -493,16 +493,21 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label for="modelNumber" class="form-label">Model Number</label>
                                         <input type="text" class="form-control" id="modelNumber"
                                             name="model_number" placeholder="e.g., RP-80USE">
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-4 mb-3">
                                         <label for="manufacturer" class="form-label">Manufacturer</label>
                                         <input type="text" class="form-control" id="manufacturer"
                                             name="manufacturer" placeholder="Manufacturing company">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="manufacturer" class="form-label">Nuber Of Pack </label>
+                                        <input type="text" class="form-control" id="numberofpack"
+                                            name="numberofpack" placeholder="Number Of Pack">
                                     </div>
                                 </div>
 
@@ -694,12 +699,11 @@
                                             <label for="paperSize" class="form-label">Paper/Roll Size</label>
                                             <select class="form-select" name="paper_size">
                                                 <option value="">Select</option>
-                                                <option value="57mm x 25mm">57mm x 25mm</option>
-                                                <option value="57mm x 40mm">57mm x 40mm</option>
-                                                <option value="80mm x 50mm">80mm x 50mm</option>
-                                                <option value="80mm x 80mm">80mm x 80mm</option>
-                                                <option value="110mm x 100mm">110mm x 100mm</option>
-                                                <option value="A4">A4 (210mm x 297mm)</option>
+                                                <option value="57mm x 15mm">57mm x 15mm</option>
+                                                <option value="57mm x 20mm">57mm x 20mm</option>
+                                                 <option value="57mm x 25mm">57mm x 25mm</option>
+                                                <option value="79mm x 50mm">80mm x 50mm</option>
+                                                <option value="79mm x 25mm">80mm x 80mm</option>
                                             </select>
                                         </div>
 
@@ -1641,8 +1645,6 @@
                         body: formData,
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest',
-                            // CSRF token will be automatically included by Laravel if you have the meta tag
-                            // 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         }
                     })
                     .then(response => {

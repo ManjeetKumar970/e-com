@@ -18,6 +18,7 @@ class Product extends Model
         'slug',
         'description',
         'short_description',
+        'numberofpack',
         
         // Pricing
         'regular_price',

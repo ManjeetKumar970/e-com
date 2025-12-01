@@ -55,17 +55,17 @@
                                     <a href="{{ url('productreview/' . $product->slug . '/' . $product->id) }}">
                                         <div class="product-image-pd">
                                             <img src="{{ asset('storage/' . ($product->primaryImage->image_url ?? 'images/no-image.png')) }}"
-                                                alt="{{ $product->name }}" class="img-fluid">
+                                                alt="{{ $product->name }}" class="img-fluid" style="max-height: 200px">
                                         </div>
                                     </a>
                                     <div class="product-category">{{ $product->category->name ?? 'Uncategorized' }}
                                     </div>
                                     <h6 class="product-title">{{ $product->name }}</h6>
 
-                                    <ul class="product-features">
-                                        <li>High-speed printing</li>
-                                        <li>Wireless connectivity</li>
-                                        <li>Multiple size support</li>
+                                    <ul class="product-features">                            
+                                                <li>{{ implode(' ', array_slice(explode(' ', $product->description ?? ''), 0, 5)) }}...</li>
+
+                                      
                                     </ul>
 
                                     <div class="price-section-pd">
@@ -113,15 +113,14 @@
 
                                     <div class="product-image-pd">
                                         <img src="{{ asset('storage/' . ($allProduct->primaryImage->image_url ?? 'images/no-image.png')) }}"
-                                            alt="" class="img-fluid">
+                                            alt="" class="img-fluid" style="max-height: 200px">
                                     </div>
                                 </a>
                                 <div class="product-category">{{ $allProduct->name }}</div>
                                 <h6 class="product-title">{{ $allProduct->name }}</h6>
                                 <ul class="product-features">
-                                    <li>2D barcode support</li>
-                                    <li>Lightning fast scanning</li>
-                                    <li>Durable design</li>
+                                    <li>{{ implode(' ', array_slice(explode(' ', $allProduct->description ?? ''), 0, 5)) }}...</li>
+                                    
                                 </ul>
                                 <div class="price-section-pd">
                                     <span class="current-price">₹{{ $allProduct->sale_price }}</span>

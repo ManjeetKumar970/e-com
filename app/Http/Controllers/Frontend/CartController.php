@@ -51,8 +51,7 @@ class CartController extends Controller
             session()->put('cartItems', $cartItems);
 
             return response()->json([
-                'success' => true,
-                'message' => 'Product added to cart successfully',
+                'success' => 'Product added to cart successfully',
                 'cart_count' => $cartItems->sum('quantity')
             ]);
         }
@@ -142,7 +141,7 @@ class CartController extends Controller
             ->where('product_id', $productId)
             ->delete();
          
-       return redirect()->back()->with('success', 'Item removed from cart');
+       return redirect()->back()->with('info', 'Item removed from cart');
 
     }
 
